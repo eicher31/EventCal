@@ -4,6 +4,7 @@ class UsersTableSeeder extends Seeder {
 
 	public function run()
 	{
+		DB::table('users')->delete();
 		DB::table('users')->insert(array(
 			array(
 				'email' 		=> 'mathieu.rosser@he-arc.ch',
