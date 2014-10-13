@@ -1,25 +1,47 @@
-## Laravel PHP Framework
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/downloads.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, and caching.
+## EventCal
 
-Laravel aims to make the development process a pleasing one for the developer without sacrificing application functionality. Happy developers make the best code. To this end, we've attempted to combine the very best of what we have seen in other web frameworks, including frameworks implemented in other languages, such as Ruby on Rails, ASP.NET MVC, and Sinatra.
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+Le but du projet EventCal est de proposer un calendrier publique d'événements annoncés par des sociétés.
+Le calendrier des événements s'organise par mois. Les événements sont publiés dans une catégorie, qui permet une identification rapide par code couleur (par exemple, fête de village). 
 
-## Official Documentation
+Les visiteurs du site ont accès au calendrier des événements, à la liste des sociétés inscrites ainsi qu'aux détails de chaque société (par exemple, description ou site web de la société).
 
-Documentation for the entire framework can be found on the [Laravel website](http://laravel.com/docs).
+Les sociétés qui souhaitent publier leurs événements doivent préalablement s'inscrire. Les inscriptions sont validées par un administrateur, pour éviter les abus.
 
-### Contributing To Laravel
+### Fonctionnalités
 
-**All issues and pull requests should be filed on the [laravel/framework](http://github.com/laravel/framework) repository.**
+Le projet est développé avec le Framework PHP Laravel. Le Framework Javascript jQuery pourrait être utilisé pour les parties dynamiques. La partie design pourrait être réalisée avec le Framework CSS Bootstrap.
 
-### License
+**Visiteur**
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+* Regarder le calendrier des évènements 
+
+* Voir la liste des sociétés, ainsi que le détail de chaque société
+
+* Inscription en tant que société
+
+**Membre**
+
+* Autentification
+
+* Gérer les évènements
+
+ * Publier un évènement dans une catégorie
+ * Mettre à jour un évènement
+ * Suprimer un évènement
+
+* Gérer son compte 
+ * Modifer ses informations
+ * Désactiver son compte
+
+**Administrateur**
+
+* Gérer les comptes des utilisateurs
+ * Activer un compte 
+ * Suprimer un compte
+
+* Gérer les évènements des utilisateurs
+
+* Gérer les catégories des évènements
