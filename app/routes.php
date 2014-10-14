@@ -23,7 +23,13 @@ Route::group(array('before' => 'guest'), function()
 {
 	Route::get('connexion', 'SessionController@showConnect');
 	Route::post('connexion', 'SessionController@connect');
+	//Register
+	Route::controller('register',  'RegisterController');
 });
 
 // disconnection for members
 Route::get('deconnexion', array('before' => 'auth', 'uses' => 'SessionController@disconnect'));
+
+// Routes unknown
+App::missing(function(){return "404";});
+//TODO

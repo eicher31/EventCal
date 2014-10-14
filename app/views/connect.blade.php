@@ -10,5 +10,7 @@
     {{ Form::password('password') }}
     {{ Form::submit('Se connecter') }}
     {{ Form::close() }}
-	
+
+	{{ Link_to('register',"Inscription") }}
+
 @stop
