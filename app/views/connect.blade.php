@@ -11,6 +11,8 @@
     {{ Form::submit('Se connecter') }}
     {{ Form::close() }}
 
-	{{ Link_to('register',"Inscription") }}
-
+	<p>
+		{{ Link_to('register',"Inscription") }}
+		{{ link_to('password/remind', 'Mot de passe perdu') }}
+	</p>
 @stop

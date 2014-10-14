@@ -4,8 +4,8 @@
 
 @foreach($errors->all() as $error)
 	<p>{{$error}}<p>
+	
 @endforeach
-
     {{ Form::open(array('action' => 'RegisterController@postUser','method' => 'post')) }}
         {{ Form::label('last_name', 'Nom : ') }}
         {{ Form::text('last_name') }}

@@ -17,7 +17,6 @@ Route::get('/', function()
 	return View::make('index');
 });
 
-
 // connection for guest
 Route::group(array('before' => 'guest'), function() 
 {
@@ -29,6 +28,9 @@ Route::group(array('before' => 'guest'), function()
 
 // disconnection for members
 Route::get('deconnexion', array('before' => 'auth', 'uses' => 'SessionController@disconnect'));
+
+// password reminders
+Route::controller('password', 'RemindersController');
 
 // Routes unknown
 App::missing(function(){return "404";});

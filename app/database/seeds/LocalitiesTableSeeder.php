@@ -4,7 +4,6 @@ class LocalitiesTableSeeder extends Seeder {
 
 	public function run()
 	{
-		DB::table('localities')->delete();
 		DB::table('localities')->insert(array(
 			array(
 				'code' => '2740',

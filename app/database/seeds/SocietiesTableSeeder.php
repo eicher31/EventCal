@@ -4,7 +4,6 @@ class SocietiesTableSeeder extends Seeder {
 
 	public function run()
 	{
-		DB::table('societies')->delete();
 		DB::table('societies')->insert(array(
 			array(
 				'user_id' => 1,
