@@ -11,7 +11,19 @@
 |
 */
 
+// index
 Route::get('/', function()
 {
-	return View::make('hello');
+	return View::make('index');
 });
+
+
+// connection for guest
+Route::group(array('before' => 'guest'), function() 
+{
+	Route::get('connexion', 'SessionController@showConnect');
+	Route::post('connexion', 'SessionController@connect');
+});
+
+// disconnection for members
+Route::get('deconnexion', array('before' => 'auth', 'uses' => 'SessionController@disconnect'));
