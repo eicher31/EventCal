@@ -27,3 +27,6 @@ Route::group(array('before' => 'guest'), function()
 
 // disconnection for members
 Route::get('deconnexion', array('before' => 'auth', 'uses' => 'SessionController@disconnect'));
+
+// password reminders
+Route::controller('password', 'RemindersController');

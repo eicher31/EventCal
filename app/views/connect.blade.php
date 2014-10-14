@@ -10,5 +10,10 @@
     {{ Form::password('password') }}
     {{ Form::submit('Se connecter') }}
     {{ Form::close() }}
+
+	<p>
+		{{ link_to('inscription', "S'inscrire") }} 
+		{{ link_to('password/remind', 'Mot de passe perdu') }}
+	</p>
 	
 @stop
