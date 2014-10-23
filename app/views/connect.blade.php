@@ -8,6 +8,8 @@
     {{ Form::text('email') }}
     {{ Form::label('password', 'Mot de passe :') }}
     {{ Form::password('password') }}
+	{{ Form::label('persistent', 'Se souvenir de moi') }}
+	{{ Form::checkbox('persistent') }}
     {{ Form::submit('Se connecter') }}
     {{ Form::close() }}
 

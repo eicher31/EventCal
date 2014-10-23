@@ -14,8 +14,10 @@ class SessionController extends BaseController {
 	{
 		$email = Input::get('email');
 		$password = Input::get('password');
+		$persistent = Input::get('persistent');
 		
-		$success = Auth::attempt(array('email' => $email, 'password' => $password));
+		// connection works only if the user is active
+		$success = Auth::attempt(array('email' => $email, 'password' => $password, 'is_actif' => 1), (bool)$persistent);
 		
 		if (!$success)
 		{
