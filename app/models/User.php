@@ -21,13 +21,6 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	 * @var array
 	 */
 	protected $hidden = array('password', 'remember_token');
-
-	/**
-	 * Deactivate timestamps fields
-	 *
-	 * @var bool
-	 */
-	public $timestamps = false;
 	
 	/**
 	 * Fields that are fillable with fill()
