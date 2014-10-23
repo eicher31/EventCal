@@ -32,6 +32,15 @@ Route::get('deconnexion', array('before' => 'auth', 'uses' => 'SessionController
 // password reminders
 Route::controller('password', 'RemindersController');
 
+// administration
+Route::group(array('before' => 'auth.admin'), function()
+{
+	Route::get('admin', function(){
+		return Redirect::to('admin/users');
+	});
+	Route::resource('admin/users', 'AdminUsersController');
+});
+
 // Routes unknown
 App::missing(function(){return "404";});
 //TODO

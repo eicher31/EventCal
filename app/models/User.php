@@ -4,7 +4,7 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class User extends Eloquent implements UserInterface, RemindableInterface {
+class User extends BaseModel implements UserInterface, RemindableInterface {
 	
 	use UserTrait, RemindableTrait;
 
@@ -29,14 +29,46 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	public $timestamps = false;
 	
-	private static  $validateRules = array(
-		'email' => 'required|email|unique:users',
-		'password' => 'required|min:6|same:password_confirm',
+	/**
+	 * Fields that are fillable with fill()
+	 * @var array
+	 */
+	protected $fillable = array('email', 'password', 'first_name', 'last_name');
+	
+	/**
+	 * Fields that cannot be filled with fill()
+	 * @var array
+	 */
+	protected $guarded = array('id', 'is_admin', 'is_actif', 'remember_token');
+	
+	/**
+	 * Validation rules of an User
+	 * @var array
+	 */
+	protected static $validateRules = array(
+		'email' => 'required|email|unique:users,email',
+		'password' => 'required|min:4|same:password_confirm',
 		'first_name' => 'required',
 		'last_name' => 'required',
 	);
-	
-	public static function validate(array $data){
-		return Validator::make($data, self::$validateRules);
+		
+	/**
+	 * Mutator for the password field: set the hash of the password
+	 * @param unknown $value
+	 */
+	public function setPasswordAttribute($value) 
+	{
+		$this->attributes['password'] = Hash::make($value);
 	}
+	
+// 	public function society()
+// 	{
+// 		return $this->hasOne('Society');
+// 	}
+		
+	// in Society class
+// 	public function user()
+// 	{
+// 		return $this->belongsTo('User');
+// 	}
 }

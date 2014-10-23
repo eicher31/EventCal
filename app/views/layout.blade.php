@@ -33,6 +33,9 @@
 
 		<footer>
 			<p>&copy; EventCal 2014</p>
+			@if (Auth::check() && Auth::user()->is_admin)
+				{{ link_to('admin', 'Administration') }}
+			@endif
 		</footer>
 	</body>
 </html>
