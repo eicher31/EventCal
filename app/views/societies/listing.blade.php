@@ -10,10 +10,8 @@
     
 	<p> ----------------- Events ---------------------</p>
 	
-    @foreach($events as $event)
-    	@if($event->society_id === $society->id)
+    @foreach($society->events as $event)
     	<p>{{$event->name}}</p>
-    	@endif
 	@endforeach  
 
 	<p> ----------------------------------------------</p>

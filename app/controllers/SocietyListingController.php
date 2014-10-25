@@ -1,22 +1,17 @@
 <?php
 
 namespace EventCal\Controllers;
-
-use EventCal\Models;
+use EventCal\Models\Society;
 
 class SocietyListingController extends BaseController
 {
 	
 	public function index()
 	{
+		// get societies and their events, avoid N+1 queries performance problem
+		$societies = Society::with('events')->get();
 		
-		$societies = \EventCal\Models\Society::all();	
-		//$events = \EventCal\Models\Event::all();
-		
-		$events = \EventCal\Models\Event::get();
-		
-		return \View::make('societies.listing',array('societies'=>$societies))->with('events',$events);
-		//return View::make('societies.listing',array('societies'=>$societies),array('societies'=>$events));
+		return \View::make('societies.listing')->with('societies', $societies);
 	}
 	
 }

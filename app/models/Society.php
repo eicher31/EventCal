@@ -11,8 +11,8 @@ class Society extends BaseModel
 		return $this->belongsTo('User');
 	}
 	
-	public function event()
+	public function events()
 	{
-		return $this->hasMany('Event');
+		return $this->hasMany('EventCal\Models\Event');
 	}
 }
