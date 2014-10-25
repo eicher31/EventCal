@@ -1,5 +1,8 @@
 <?php
 
+namespace EventCal\Models;
+use Eloquent;
+
 class BaseModel extends Eloquent {
 	
 	/**

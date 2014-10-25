@@ -6,7 +6,7 @@
 	"require": {
 		"laravel/framework": "4.2.*"
 	},
-	"autoload": {
+	"autoload": {		
 		"classmap": [
 			"app/commands",
 			"app/controllers",
@@ -14,8 +14,16 @@
 			"app/database/migrations",
 			"app/database/seeds",
 			"app/tests/TestCase.php"
-		]
+		],
+		"psg-0":{
+			"EventCal\\Controllers" : "app/controllers",
+			"EventCal\\Models"		: "app/models"
+		}
+		
+		
 	},
+
+	
 	"scripts": {
 		"post-install-cmd": [
 			"php artisan clear-compiled",

@@ -1,5 +1,7 @@
 <?php
 
+namespace EventCal\Controllers;
+
 class AdminUsersController extends \BaseController {
 
 	/**
@@ -10,7 +12,7 @@ class AdminUsersController extends \BaseController {
 	public function index()
 	{
 		$users = User::all();
-		return View::make('admin.listing_users')->with('users', $users);
+		return \View::make('admin.listing_users')->with('users', $users);
 	}
 
 
@@ -44,7 +46,7 @@ class AdminUsersController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		return View::make('admin.show_user')->with('user', User::find($id));
+		return \View::make('admin.show_user')->with('user', User::find($id));
 	}
 
 
@@ -56,7 +58,7 @@ class AdminUsersController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		return View::make('admin.edit_user')->with('user', User::find($id));
+		return \View::make('admin.edit_user')->with('user', User::find($id));
 	}
 
 

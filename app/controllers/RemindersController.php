@@ -1,6 +1,8 @@
 <?php
 
-class RemindersController extends Controller {
+//namespace EventCal\Controllers;
+
+class RemindersController extends \Controller {
 
 	/**
 	 * Display the password reminder view.
@@ -9,7 +11,7 @@ class RemindersController extends Controller {
 	 */
 	public function getRemind()
 	{
-		return View::make('password.remind');
+		return \View::make('password.remind');
 	}
 
 	/**
@@ -45,7 +47,7 @@ class RemindersController extends Controller {
 		if (is_null($token))
 			App::abort(404);
 		
-		return View::make('password.reset')->with('token', $token);
+		return \View::make('password.reset')->with('token', $token);
 	}
 
 	/**

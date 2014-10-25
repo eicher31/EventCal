@@ -1,5 +1,9 @@
 <?php 
 
+namespace EventCal\Controllers;
+
+use EventCal\Models;
+
 class RegisterController extends BaseController{
 	
 	public function getIndex(){
@@ -7,15 +11,15 @@ class RegisterController extends BaseController{
 	}
 	
 	public function getUser(){
-		return View::make('register.user');
+		return \View::make('register.user');
 	}
 	
 	public function getSociety(){
-		return View::make('register.society');
+		return \View::make('register.society');
 	}
 	
 	public function getConfirm(){
-		return View::make('register.confirm');
+		return \View::make('register.confirm');
 	}
 	
 	public function postUser(){

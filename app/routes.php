@@ -1,5 +1,7 @@
 <?php
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -14,22 +16,23 @@
 // index
 Route::get('/', function()
 {
-	return View::make('index');
+	return \View::make('index');
 });
 
 // connection for guest
 Route::group(array('before' => 'guest'), function() 
 {
-	Route::get('connexion', 'SessionController@showConnect');
-	Route::post('connexion', 'SessionController@connect');
+	Route::get('connexion', 'EventCal\Controllers\SessionController@showConnect');
+	Route::post('connexion', 'EventCal\Controllers\SessionController@connect');
 	//Register
-	Route::controller('register',  'RegisterController');
+	Route::controller('register',  'EventCal\Controllers\RegisterController');
 });
 
 // disconnection for members
-Route::get('deconnexion', array('before' => 'auth', 'uses' => 'SessionController@disconnect'));
+Route::get('deconnexion', array('before' => 'auth', 'uses' => 'EventCal\Controllers\SessionController@disconnect'));
 
 // password reminders
+//Route::controller('password', 'EventCal\Controllers\RemindersController');
 Route::controller('password', 'RemindersController');
 
 // administration
@@ -38,9 +41,13 @@ Route::group(array('before' => 'auth.admin'), function()
 	Route::get('admin', function(){
 		return Redirect::to('admin/users');
 	});
-	Route::resource('admin/users', 'AdminUsersController');
+	Route::resource('admin/users', 'EventCal\Controllers\AdminUsersController');
 });
+
+//
+Route::get('societies','EventCal\Controllers\SocietyListingController@index');
 
 // Routes unknown
 App::missing(function(){return "404";});
 //TODO
+

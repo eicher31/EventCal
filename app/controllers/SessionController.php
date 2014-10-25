@@ -1,5 +1,7 @@
 <?php
 
+namespace EventCal\Controllers;
+
 class SessionController extends BaseController {
 	
 	public function showConnect()
