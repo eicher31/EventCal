@@ -1,8 +1,9 @@
 <?php
 
 namespace EventCal\Controllers;
+use EventCal\Models\User;
 
-class AdminUsersController extends \BaseController {
+class AdminUsersController extends BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -73,21 +74,21 @@ class AdminUsersController extends \BaseController {
 		$user = User::find($id);
 		
 		$exceptValidation = array();
-		if (!Input::has('password'))
+		if (!\Input::has('password'))
 		{
 			$exceptValidation[] = 'password';
 		}
 		
-		$validator = User::validate(Input::all(), $exceptValidation, array('email' => $user->id));
+		$validator = User::validate(\Input::all(), $exceptValidation, array('email' => $user->id));
 		if ($validator->fails())
 		{
-			return Redirect::action('AdminUsersController@edit', array($id))->withErrors($validator)->withInput();
+			return \Redirect::action('EventCal\Controllers\AdminUsersController@edit', array($id))->withErrors($validator)->withInput();
 		}
 		
-		$user->fill(Input::all());
+		$user->fill(\Input::all());
 		$user->save();
 		
-		return Redirect::action('AdminUsersController@show', array($id))->with('notification', 'Màj réussie');
+		return \Redirect::action('EventCal\Controllers\AdminUsersController@show', array($id))->with('notification', 'Màj réussie');
 	}
 
 
@@ -100,7 +101,7 @@ class AdminUsersController extends \BaseController {
 	public function destroy($id)
 	{
 		User::destroy($id);
-		return Redirect::action('AdminUsersController@index')->with('notification', 'Suppression effectuée');
+		return \Redirect::action('EventCal\Controllers\AdminUsersController@index')->with('notification', 'Suppression effectuée');
 	}
 
 

@@ -40,7 +40,7 @@ class BaseModel extends Eloquent {
 		}
 		
 		// create validator
-		return Validator::make($data, $validationRules);
+		return \Validator::make($data, $validationRules);
 	}
 	
 }

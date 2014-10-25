@@ -7,7 +7,7 @@
 		<p>{{{ Session::get('error') }}}</p>
 	@endif
 	
-    {{ Form::open(array('action' => 'RemindersController@postReset', 'method' => 'post')) }}
+    {{ Form::open(array('action' => 'EventCal\Controllers\RemindersController@postReset', 'method' => 'post')) }}
 	{{ Form::hidden('token', $token) }}
     {{ Form::label('email', 'E-mail :') }}
     {{ Form::text('email') }}

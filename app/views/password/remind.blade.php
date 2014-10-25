@@ -10,7 +10,7 @@
 		<p>{{{ Session::get('error') }}}</p>
 	@endif
 	
-    {{ Form::open(array('action' => 'RemindersController@postRemind', 'method' => 'post')) }}
+    {{ Form::open(array('action' => 'EventCal\Controllers\RemindersController@postRemind', 'method' => 'post')) }}
     {{ Form::label('email', 'E-mail :') }}
     {{ Form::text('email') }}
     {{ Form::submit('Envoyer le mot de passe') }}

@@ -1,8 +1,8 @@
 <?php
 
-//namespace EventCal\Controllers;
+namespace EventCal\Controllers;
 
-class RemindersController extends \Controller {
+class RemindersController extends BaseController {
 
 	/**
 	 * Display the password reminder view.
@@ -21,18 +21,18 @@ class RemindersController extends \Controller {
 	 */
 	public function postRemind()
 	{
-		$response = Password::remind(Input::only('email'), function ($message)
+		$response = \Password::remind(\Input::only('email'), function ($message)
 		{
 			$message->subject('Password Reminder');
 		});
 		
 		switch ($response)
 		{
-			case Password::INVALID_USER:
-				return Redirect::back()->with('error', Lang::get($response));
+			case \Password::INVALID_USER:
+				return \Redirect::back()->with('error', \Lang::get($response));
 			
-			case Password::REMINDER_SENT:
-				return Redirect::back()->with('status', Lang::get($response));
+			case \Password::REMINDER_SENT:
+				return \Redirect::back()->with('status', \Lang::get($response));
 		}
 	}
 
@@ -45,7 +45,7 @@ class RemindersController extends \Controller {
 	public function getReset($token = null)
 	{
 		if (is_null($token))
-			App::abort(404);
+			\App::abort(404);
 		
 		return \View::make('password.reset')->with('token', $token);
 	}
@@ -57,24 +57,23 @@ class RemindersController extends \Controller {
 	 */
 	public function postReset()
 	{
-		$credentials = Input::only('email', 'password', 'password_confirmation', 'token');
+		$credentials = \Input::only('email', 'password', 'password_confirmation', 'token');
 		
-		$response = Password::reset($credentials, function ($user, $password)
+		$response = \Password::reset($credentials, function ($user, $password)
 		{
-			$user->password = Hash::make($password);
-			
+			$user->password = $password;	// hashed by the model
 			$user->save();
 		});
 		
 		switch ($response)
 		{
-			case Password::INVALID_PASSWORD:
-			case Password::INVALID_TOKEN:
-			case Password::INVALID_USER:
-				return Redirect::back()->with('error', Lang::get($response));
+			case \Password::INVALID_PASSWORD:
+			case \Password::INVALID_TOKEN:
+			case \Password::INVALID_USER:
+				return \Redirect::back()->with('error', \Lang::get($response));
 			
-			case Password::PASSWORD_RESET:
-				return Redirect::to('/')->with('notification', 'Mot de passe mis à jour');
+			case \Password::PASSWORD_RESET:
+				return \Redirect::to('/')->with('notification', 'Mot de passe mis à jour');
 		}
 	}
 }

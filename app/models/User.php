@@ -54,17 +54,15 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	 */
 	public function setPasswordAttribute($value) 
 	{
-		$this->attributes['password'] = Hash::make($value);
+		$this->attributes['password'] = \Hash::make($value);
 	}
 	
-// 	public function society()
-// 	{
-// 		return $this->hasOne('Society');
-// 	}
+	/**
+	 * user relationship to a society: he can have only one
+	 */
+	public function society()
+	{
+		return $this->hasOne('Society');
+	}
 		
-	// in Society class
-// 	public function user()
-// 	{
-// 		return $this->belongsTo('User');
-// 	}
 }

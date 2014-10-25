@@ -9,8 +9,8 @@
 		<td>{{{ $user->email }}}</td>
 		<td>{{{ $user->first_name }}}</td>
 		<td>{{{ $user->last_name }}}</td>
-		<td>{{ link_to_action('AdminUsersController@show', 'Voir', array($user->id)) }}</td>
-		<td>{{ link_to_action('AdminUsersController@edit', 'Editer', array($user->id)) }}</td>
+		<td>{{ link_to_action('EventCal\Controllers\AdminUsersController@show', 'Voir', array($user->id)) }}</td>
+		<td>{{ link_to_action('EventCal\Controllers\AdminUsersController@edit', 'Editer', array($user->id)) }}</td>
 	</tr>
 	@endforeach
 	

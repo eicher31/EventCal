@@ -7,7 +7,7 @@
 		<p>{{$error}}<p>
 	@endforeach
 	
-    {{ Form::model($user, array('action' => array('AdminUsersController@update', $user->id),'method' => 'put')) }}
+    {{ Form::model($user, array('action' => array('EventCal\Controllers\AdminUsersController@update', $user->id),'method' => 'put')) }}
         {{ Form::label('last_name', 'Nom : ') }}
         {{ Form::text('last_name') }}
         {{ Form::label('first_name', 'Prénom : ') }}

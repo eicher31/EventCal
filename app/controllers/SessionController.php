@@ -6,7 +6,7 @@ class SessionController extends BaseController {
 	
 	public function showConnect()
 	{
-		return View::make('connect');
+		return \View::make('connect');
 	}
 	
 	/**
@@ -14,22 +14,22 @@ class SessionController extends BaseController {
 	 */
 	public function connect()
 	{
-		$email = Input::get('email');
-		$password = Input::get('password');
-		$persistent = Input::get('persistent');
+		$email = \Input::get('email');
+		$password = \Input::get('password');
+		$persistent = \Input::get('persistent');
 		
 		// connection works only if the user is active
-		$success = Auth::attempt(array('email' => $email, 'password' => $password, 'is_actif' => 1), (bool)$persistent);
+		$success = \Auth::attempt(array('email' => $email, 'password' => $password, 'is_actif' => 1), (bool)$persistent);
 		
 		if (!$success)
 		{
 			// impossible de se connecter
-			return Redirect::refresh()->with('error', 'Impossible de se connecter!')->withInput(Input::except('password'));
+			return \Redirect::refresh()->with('error', 'Impossible de se connecter!')->withInput(\Input::except('password'));
 		}
 		else
 		{
 			// connexion réussie
-			return Redirect::to('/')->with('notification', 'Connexion réussie');
+			return \Redirect::to('/')->with('notification', 'Connexion réussie');
 		}
 	}
 	
@@ -38,9 +38,9 @@ class SessionController extends BaseController {
 	 */
 	public function disconnect()
 	{
-		Auth::logout();
+		\Auth::logout();
 		
-		return Redirect::to('/')->with('notification', 'Vous êtes déconnecté!');
+		return \Redirect::to('/')->with('notification', 'Vous êtes déconnecté!');
 	}
 
 }

@@ -32,8 +32,7 @@ Route::group(array('before' => 'guest'), function()
 Route::get('deconnexion', array('before' => 'auth', 'uses' => 'EventCal\Controllers\SessionController@disconnect'));
 
 // password reminders
-//Route::controller('password', 'EventCal\Controllers\RemindersController');
-Route::controller('password', 'RemindersController');
+Route::controller('password', 'EventCal\Controllers\RemindersController');
 
 // administration
 Route::group(array('before' => 'auth.admin'), function()
