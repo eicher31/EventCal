@@ -58,11 +58,12 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	}
 	
 	/**
-	 * user relationship to a society: he can have only one
+	 * An user can have one society
+	 * @return \Illuminate\Database\Eloquent\Relations\HasOne
 	 */
 	public function society()
 	{
-		return $this->hasOne('Society');
+		return $this->hasOne('EventCal\Models\Society');
 	}
 		
 }

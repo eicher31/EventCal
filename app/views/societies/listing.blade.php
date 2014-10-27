@@ -7,6 +7,7 @@
     <p>{{ $society->name }} </p>
     <p>{{ $society->name }} | {{ $society->address }}</p>
     <p>{{ $society->description }} | {{ $society->telephone }}</p>
+    <p>{{ $society->locality->codeCity() }}</p>
     
 	<p> ----------------- Events ---------------------</p>
 	
