@@ -16,5 +16,20 @@
 	<p>{{{ $user->last_name }}}</p>
 	
 	<h3>Société</h3>
+	
+	@if ($user->society)
+		<p>{{{ $user->society->name }}}</p>
+		<p>{{{ $user->society->description }}}</p>
+		<p>{{{ $user->society->website }}}</p>
+		<p>{{{ $user->society->logo }}}</p>
+		<p>{{{ $user->society->telephone }}}</p>
+		<p>{{{ $user->society->address }}}</p>
+		<p>{{{ $user->society->locality->codeCity() }}}</p>
+	@endif
+	
 	<h3>Evénements</h3>
+	
+	@foreach ($events as $event)
+		<p>{{{ $event->id }}}</p>
+	@endforeach
 @stop

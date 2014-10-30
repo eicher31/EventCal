@@ -7,8 +7,14 @@
 	@foreach ($users as $user)
 	<tr>
 		<td>{{{ $user->email }}}</td>
-		<td>{{{ $user->first_name }}}</td>
-		<td>{{{ $user->last_name }}}</td>
+		<td>{{{ $user->fullName() }}}</td>
+		
+		<td>
+		@if ($user->society)
+			{{{ $user->society->name }}}
+		@endif
+		</td>
+		
 		<td>{{ link_to_action('EventCal\Controllers\AdminUsersController@show', 'Voir', array($user->id)) }}</td>
 		<td>{{ link_to_action('EventCal\Controllers\AdminUsersController@edit', 'Editer', array($user->id)) }}</td>
 	</tr>

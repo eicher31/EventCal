@@ -12,7 +12,7 @@ class AdminUsersController extends BaseController {
 	 */
 	public function index()
 	{
-		$users = User::all();
+		$users = User::with('society')->get();
 		return \View::make('admin.listing_users')->with('users', $users);
 	}
 
@@ -47,7 +47,13 @@ class AdminUsersController extends BaseController {
 	 */
 	public function show($id)
 	{
-		return \View::make('admin.show_user')->with('user', User::find($id));
+		$user = User::with('society')->find($id);
+		$events = $user->society ? $user->society->with('events')->get() : array();
+		
+		return \View::make('admin.show_user')->with(array(
+			'user'   => $user,
+			'events' => $events,
+		));
 	}
 
 
@@ -61,7 +67,6 @@ class AdminUsersController extends BaseController {
 	{
 		return \View::make('admin.edit_user')->with('user', User::find($id));
 	}
-
 
 	/**
 	 * Update the specified resource in storage.
