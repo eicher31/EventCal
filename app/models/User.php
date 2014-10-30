@@ -43,7 +43,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	 */
 	protected static $validateRules = array(
 		'email' => 'required|email|unique:users,email',
-		'password' => 'required|min:4|same:password_confirm',
+		'password' => 'required|min:6|same:password_confirm',
 		'first_name' => 'required',
 		'last_name' => 'required',
 	);
@@ -65,5 +65,14 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	{
 		return $this->hasOne('EventCal\Models\Society');
 	}
-		
+	
+	/**
+	 * First and last name of the user
+	 * @return string
+	 */
+	public function fullName()
+	{
+		return $this->attributes['first_name'] . " " . $this->attributes['last_name'];
+	}
+			
 }

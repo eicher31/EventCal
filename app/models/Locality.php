@@ -4,8 +4,12 @@ namespace EventCal\Models;
 
 class Locality extends BaseModel
 {
+	/**
+	 * Table name on DB
+	 * @var string
+	 */
 	protected $table = 'localities';
-
+	
 	/**
 	 * A locality has many societies
 	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
