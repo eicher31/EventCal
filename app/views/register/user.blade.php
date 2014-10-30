@@ -12,7 +12,7 @@
         {{ Form::label('first_name', 'Prénom : ') }}
         {{ Form::text('first_name') }}
         {{ Form::label('email', 'E-mail : ') }}
-        {{ Form::text('email') }}
+        {{ Form::email('email') }}
         {{ Form::label('password', 'Mot de passe : ') }}
         {{ Form::password('password') }}
         {{ Form::label('password_confirm', 'Confirmer : ') }}

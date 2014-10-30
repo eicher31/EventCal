@@ -34,6 +34,13 @@ class RegisterController extends BaseController{
 	
 	public function postSociety(){
 		
+		if (false){
+			return Redirect::back()->withInput();
+			//TODO
+		}else {
+			return Redirect::action('');
+		}
+		
 	}
 	
 	public function postConfirm(){
