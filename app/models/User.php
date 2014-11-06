@@ -179,7 +179,17 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 		
 		if ($errorsUser !== true || $errorsSociety !== true)
 		{
-			return $errorsUser->merge($validatorSociety->messages());
+			if ($errorsUser === true)
+			{
+				return $errorsSociety;
+			}
+			
+			if ($errorsSociety === true)
+			{
+				return $errorsUser;
+			}
+
+			return $errorsUser->merge($errorsSociety);
 		}
 		
 		return true;
