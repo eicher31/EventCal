@@ -14,6 +14,7 @@
 				@endif
 				
 				@if (Auth::check())
+					{{ link_to('profile', 'Profil') }}
 					{{ link_to('deconnexion', 'Déconnexion') }}
 				@endif
 			</div>
