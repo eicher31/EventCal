@@ -5,7 +5,7 @@
 	
 	<table>
 	@foreach ($users as $user)
-	<tr>
+	<tr{{ !$user->is_actif ? ' style="background-color: yellow;"' : '' }}>
 		<td>{{{ $user->email }}}</td>
 		<td>{{{ $user->fullName() }}}</td>
 		
@@ -19,6 +19,5 @@
 		<td>{{ link_to_action('EventCal\Controllers\AdminUsersController@edit', 'Editer', array($user->id)) }}</td>
 	</tr>
 	@endforeach
-	
 	</table>
 @stop

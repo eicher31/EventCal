@@ -11,6 +11,14 @@
 		{{ Form::close() }}
 	</p>
 	
+	@if (!$user->is_actif)
+	<p>
+	    {{ Form::open(array('action' => array('EventCal\Controllers\AdminUsersController@putActivate', $user->id), 'method' => 'put')) }}
+		{{ Form::submit('Activer') }}
+		{{ Form::close() }}
+	</p>
+	@endif
+	
 	<p>{{{ $user->email }}}</p>
 	<p>{{{ $user->first_name }}}</p>
 	<p>{{{ $user->last_name }}}</p>

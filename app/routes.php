@@ -41,6 +41,7 @@ Route::group(array('before' => 'auth.admin'), function()
 		return Redirect::to('admin/users');
 	});
 	Route::resource('admin/users', 'EventCal\Controllers\AdminUsersController');
+	Route::controller('admin/users', 'EventCal\Controllers\AdminUsersController');
 });
 
 //

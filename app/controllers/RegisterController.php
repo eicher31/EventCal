@@ -14,46 +14,18 @@ class RegisterController extends BaseController {
 
 	public function getUser()
 	{
-		$locality = Locality::orderBy('code')->get();
-		
-		$local = array();
-		
-		foreach ($locality as $l)
-		{
-			$local[$l->id] = $l->codeCity();
-					
-		}
-			
-			
-
-		return \View::make('register.user')->with('city',$local);
+		return \View::make('register.user')->with('city',Locality::getLocalitiesArray());
 	}
 
 	public function postUser()
 	{
 		$input = \Input::all();
-		$validatorUser = User::validate($input);
-		$validatorSociety = Society::validate($input);
 		
-		if ($validatorUser->fails() || $validatorSociety->fails())
+		if (($errors = User::createWithSociety($input)) !== true)
 		{
-			$notValid = $validatorUser->messages()->merge($validatorSociety->messages());
-			return \Redirect::back()->withErrors($notValid)->withInput();
+			return \Redirect::back()->withErrors($errors)->withInput();
 		}
 		
-		$user = new User();
-		$user->fill($input);
-		$user->is_admin = 0;
-		$user->is_actif = 0;
-		$user->save();
-		
-		$society = new Society();
-		$society->fill($input);
-		$society->user_id = $user->id;
-		$society->is_public = 1;
-		$society->save();
-		
-		return \Redirect::to('/');
-		
+		return \Redirect::to('/');		
 	}
 }

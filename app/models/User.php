@@ -74,5 +74,115 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	{
 		return $this->attributes['first_name'] . " " . $this->attributes['last_name'];
 	}
+	
+	/**
+	 * Delete a user and all his data: society and events
+	 */
+	public static function deleteAllData($id)
+	{
+		$user = User::findWithSociety($id);
+		
+		if ($user->society)
+		{
+			$user->society->events()->delete();
+			$user->society->delete();
+		}
+		
+		$user->delete();
+	}
+	
+	/**
+	 * Get user with society given an $id
+	 */
+	public static function findWithSociety($id)
+	{
+		return User::with('society')->find($id);
+	}
+	
+	/**
+	 * Create an user with a society
+	 * @param array $data
+	 * @return errors | true on success
+	 */
+	public static function createWithSociety(array $data)
+	{
+		$errors = self::validateUserSociety($data);
+		if ($errors !== true)
+		{
+			return $errors;
+		}
+		
+		$user = new User();
+		$user->fill($data);
+		$user->is_admin = 0;
+		$user->is_actif = 0;
+		$user->save();
+		
+		$society = new Society();
+		$society->fill($data);
+		$society->user_id = $user->id;
+		$society->is_public = 1;
+		$society->save();
+		
+		return true;
+	}
+	
+	/**
+	 * Update a specified user with user and society data
+	 * @param int $id
+	 * @param array $data
+	 * @return errors | true on success
+	 */
+	public static function updateWithSociety($id, array $data)
+	{
+		$user = User::findWithSociety($id);
+		
+		// set exception rules for password: if empty, doesn't validate nor set it
+		$exceptValidation = User::buildExceptValidation(array('password'), $data);
+		
+		$validatorMethod = $user->society ? 'validateUserSociety' : 'validate';
+		$errors = User::$validatorMethod($data, $exceptValidation, array('email' => $user->id));
+		
+		if ($errors !== true)
+		{
+			return $errors;
+		}
+				
+		$user->fill($data);
+		if (isset($data['is_actif']))
+		{
+			$user->is_actif = (bool) $data['is_actif'];
+		}
+		$user->save();
+		
+		if ($user->society)
+		{
+			$user->society->fill($data);
+			$user->society->save();
+		}
+
+		return true;
+	}
+	
+	/**
+	 * Validate an user and his society data
+	 * See static::validate() for parameters
+	 * @param array $data
+	 * @param array $except
+	 * @param array $uniqueId
+	 * @return errors | true on success
+	 */
+	public static function validateUserSociety(array $data, array $except = array(), array $uniqueId = array())
+	{
+		$errorsUser = User::validate($data, $except, $uniqueId);
+		$errorsSociety = Society::validate($data, $except, $uniqueId);
+		
+		if ($errorsUser !== true || $errorsSociety !== true)
+		{
+			return $errorsUser->merge($validatorSociety->messages());
+		}
+		
+		return true;
+	}
 			
 }

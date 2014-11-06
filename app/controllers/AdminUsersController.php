@@ -2,6 +2,7 @@
 
 namespace EventCal\Controllers;
 use EventCal\Models\User;
+use EventCal\Models\Locality;
 
 class AdminUsersController extends BaseController {
 
@@ -12,7 +13,8 @@ class AdminUsersController extends BaseController {
 	 */
 	public function index()
 	{
-		$users = User::with('society')->get();
+		$users = User::with('society')->orderBy('is_actif', 'ASC')->orderBy('email', 'ASC')->get();
+		
 		return \View::make('admin.listing_users')->with('users', $users);
 	}
 
@@ -47,7 +49,7 @@ class AdminUsersController extends BaseController {
 	 */
 	public function show($id)
 	{
-		$user = User::with('society')->find($id);
+		$user = User::findWithSociety($id);
 		$events = $user->society ? $user->society->with('events')->get() : array();
 		
 		return \View::make('admin.show_user')->with(array(
@@ -65,7 +67,10 @@ class AdminUsersController extends BaseController {
 	 */
 	public function edit($id)
 	{
-		return \View::make('admin.edit_user')->with('user', User::find($id));
+		return \View::make('admin.edit_user')->with(array(
+			'user' => User::findWithSociety($id),
+			'city' => Locality::getLocalitiesArray(),
+		));
 	}
 
 	/**
@@ -76,22 +81,15 @@ class AdminUsersController extends BaseController {
 	 */
 	public function update($id)
 	{
-		$user = User::find($id);
+		$input = \Input::all();
+		$input['is_actif'] = \Input::has('is_actif') ? \Input::get('is_actif') : false;
+
+		$errors = User::updateWithSociety($id, $input);
 		
-		$exceptValidation = array();
-		if (!\Input::has('password'))
+		if ($errors !== true)
 		{
-			$exceptValidation[] = 'password';
+			return \Redirect::action('EventCal\Controllers\AdminUsersController@edit', array($id))->withErrors($errors)->withInput();			
 		}
-		
-		$validator = User::validate(\Input::all(), $exceptValidation, array('email' => $user->id));
-		if ($validator->fails())
-		{
-			return \Redirect::action('EventCal\Controllers\AdminUsersController@edit', array($id))->withErrors($validator)->withInput();
-		}
-		
-		$user->fill(\Input::all());
-		$user->save();
 		
 		return \Redirect::action('EventCal\Controllers\AdminUsersController@show', array($id))->with('notification', 'Màj réussie');
 	}
@@ -105,9 +103,24 @@ class AdminUsersController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		User::destroy($id);
+		User::deleteAllData($id);
+		
 		return \Redirect::action('EventCal\Controllers\AdminUsersController@index')->with('notification', 'Suppression effectuée');
 	}
-
-
+	
+	/**
+	 * Activate the specified user with his id
+	 * 
+	 * @param int $id
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
+	public function putActivate($id)
+	{
+		$user = User::find($id);
+		$user->is_actif = true;
+		$user->save();
+		
+		return \Redirect::action('EventCal\Controllers\AdminUsersController@show', array($id))->with('notification', 'Utilisateur activé');
+	}
+	
 }

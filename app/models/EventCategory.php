@@ -15,7 +15,7 @@ class EventCategory extends BaseModel
 	 * @var array
 	 */
 	protected $fillable = array('name', 'color');
-	
+
 	/**
 	 * Fields that cannot be filled with fill()
 	 * @var array

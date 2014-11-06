@@ -36,11 +36,44 @@ class BaseModel extends Eloquent {
 		// set id to unique fields
 		foreach ($uniqueId as $unique => $id)
 		{
-			$validationRules[$unique] .= ',' . $id;
+			if (isset($validationRules[$unique]))
+			{
+				$validationRules[$unique] .= ',' . $id;
+			}
 		}
 		
-		// create validator
-		return \Validator::make($data, $validationRules);
+		// create validator and validate
+		$validator = \Validator::make($data, $validationRules);
+		if ($validator->fails())
+		{
+			return $validator->messages();
+		}
+		
+		return true;
+	}
+	
+	/**
+	 * Build validation exceptions if the specified data of rules are empty
+	 * When an rule's data is empty, the rules is excepted and the data is removed from the data array
+	 * 
+	 * @param array $rules list of rules to except if value is empty in data
+	 * @param array $data data to except, by reference: could be modified if a rule data is empty
+	 * @return array rules which are excepted given data values
+	 */
+	public static function buildExceptValidation(array $rules, array &$data = array())
+	{
+		$exceptValidation = array();
+		
+		foreach ($rules as $r)
+		{
+			if (empty($data[$r]))
+			{
+				$exceptValidation[] = $r;
+				unset($data[$r]);
+			}
+		}
+
+		return $exceptValidation;
 	}
 	
 }

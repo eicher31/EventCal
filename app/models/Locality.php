@@ -37,4 +37,22 @@ class Locality extends BaseModel
 		return $this->attributes['code'] . " " . $this->attributes['city'];
 	}
 	
+	/**
+	 * Returns an array of the localities, ordered by code, with format: id => code-city
+	 * @return array
+	 */
+	public static function getLocalitiesArray()
+	{
+		$locality = Locality::orderBy('code')->get();
+		
+		$local = array();
+		
+		foreach ($locality as $l)
+		{
+			$local[$l->id] = $l->codeCity();
+				
+		}
+		
+		return $local;
+	}
 }
