@@ -179,10 +179,28 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 		
 		if ($errorsUser !== true || $errorsSociety !== true)
 		{
-			return $errorsUser->merge($validatorSociety->messages());
+			if ($errorsUser === true)
+			{
+				return $errorsSociety;
+			}
+			
+			if ($errorsSociety === true)
+			{
+				return $errorsUser;
+			}
+
+			return $errorsUser->merge($errorsSociety);
 		}
 		
 		return true;
+	}
+	
+	/**
+	 * Get all users, ordered by active flag and email for admin listing purpose
+	 */
+	public static function getAllUsersForAdmin()
+	{
+		return User::with('society')->orderBy('is_actif', 'ASC')->orderBy('email', 'ASC')->get();
 	}
 			
 }

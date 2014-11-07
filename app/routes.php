@@ -28,9 +28,6 @@ Route::group(array('before' => 'guest'), function()
 	Route::controller('register',  'EventCal\Controllers\RegisterController');
 });
 
-// disconnection for members
-Route::get('deconnexion', array('before' => 'auth', 'uses' => 'EventCal\Controllers\SessionController@disconnect'));
-
 // password reminders
 Route::controller('password', 'EventCal\Controllers\RemindersController');
 
@@ -46,6 +43,15 @@ Route::group(array('before' => 'auth.admin'), function()
 
 //
 Route::get('societies','EventCal\Controllers\SocietyListingController@index');
+
+// routes for connected users, like profile and event management
+Route::group(array('before' => 'auth'), function()
+{
+	// disconnection for members
+	Route::get('deconnexion', 'EventCal\Controllers\SessionController@disconnect');
+	// profile
+	Route::controller('profile', 'EventCal\Controllers\ProfileController');
+});
 
 // Routes unknown
 App::missing(function(){return "404";});
