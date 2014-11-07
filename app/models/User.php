@@ -202,5 +202,10 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	{
 		return User::with('society')->orderBy('is_actif', 'ASC')->orderBy('email', 'ASC')->get();
 	}
-			
+	
+	
+	public static function getIsActif()
+	{
+		return User::where('is_actif','=','1');
+	}
 }

@@ -2,6 +2,7 @@
 
 namespace EventCal\Models;
 
+use Carbon\Carbon;
 class Event extends BaseModel
 {
 	/**
@@ -58,8 +59,14 @@ class Event extends BaseModel
 	 * An events belongs to a category
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
 	 */
-	public function eventCategory()
+	public function category()
 	{
 		return $this->belongsTo('EventCal\Models\EventCategory');
+	}
+	
+	public function getHour()
+	{
+		$newHourFormat = Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes["datetime"]);
+		return $newHourFormat->format('H:i');
 	}
 }

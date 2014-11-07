@@ -13,12 +13,6 @@
 |
 */
 
-// index
-Route::get('/', function()
-{
-	return \View::make('index');
-});
-
 // connection for guest
 Route::group(array('before' => 'guest'), function() 
 {
@@ -41,7 +35,7 @@ Route::group(array('before' => 'auth.admin'), function()
 	Route::controller('admin/users', 'EventCal\Controllers\AdminUsersController');
 });
 
-//
+// routes for listing entreprise with there events
 Route::get('societies','EventCal\Controllers\SocietyListingController@index');
 
 // routes for connected users, like profile and event management
@@ -55,5 +49,15 @@ Route::group(array('before' => 'auth'), function()
 
 // Routes unknown
 App::missing(function(){return "404";});
-//TODO
+
+// index
+Route::get('/', 'EventCal\Controllers\EventsController@index');
+//Route::controller('/',  'EventCal\Controllers\CalenderController');
+
+/*/
+ Route::get('/', function()
+ {
+ 	return \View::make('index');
+ 	});
+ //*/
 

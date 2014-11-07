@@ -68,7 +68,7 @@ class Society extends BaseModel
 	 */
 	public function getAllEvents()
 	{
-		return Event::where('society_id', '=', $this->attributes['id'])->orderBy('datetime', 'DESC')->get();
+		return $this->where('society_id', '=', $this->attributes['id'])->orderBy('datetime', 'DESC')->get();
 	}
 
 }
