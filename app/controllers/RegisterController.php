@@ -14,7 +14,18 @@ class RegisterController extends BaseController {
 
 	public function getUser()
 	{
-		return \View::make('register.user')->with('city',Locality::getLocalitiesArray());
+		return \View::make('register.user')->with('city', Locality::getLocalitiesArray());
+	}
+
+	public function getConfirm()
+	{
+		\Mail::send('emails.confirm.user', [], function($m)
+		{
+			$m->from('notreply@event_cal.ch', 'Administrateur');
+			$m->to(\Session::get('email'))->cc('mathieu.rosser@he-arc.ch')->subject('Confirmation');
+		});
+		
+		return \View::make('register.confirm')->with('email', \Session::get('email'));
 	}
 
 	public function postUser()
@@ -25,7 +36,9 @@ class RegisterController extends BaseController {
 		{
 			return \Redirect::back()->withErrors($errors)->withInput();
 		}
-		
-		return \Redirect::to('/');		
+		else
+		{
+			return \Redirect::action('EventCal\Controllers\RegisterController@getConfirm')->with('email', $input['email']);
+		}
 	}
 }
