@@ -2,41 +2,64 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+		
 		<title>EventCal</title>
+		
+		<link href="theme.css" rel="stylesheet">
+		{{ Helpers::css() }}
 	</head>
 	<body>
-		<header>
-			<h1>EventCal</h1>
-			<div>Menus...</div>
-			<div>
-				@if (Auth::guest())
-					{{ link_to('connexion', 'Connexion') }}
+		    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		      <div class="container">
+		        <div class="navbar-header">
+		          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+		            <span class="sr-only">Toggle navigation</span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		          </button>
+		          <a class="navbar-brand" href="{{ url('/') }}">EventCal</a>
+		        </div>
+		        <div id="navbar" class="collapse navbar-collapse">
+		          <ul class="nav navbar-nav">
+		            <li class="active"><a href="{{ url('/') }} ">Accueil</a></li>
+					@if (Auth::guest())
+						<li>{{ link_to('connexion', 'Connexion') }}</li>
+					@else
+						<li>{{ link_to('profile', 'Profil') }}</li>
+						<li>{{ link_to('deconnexion', 'Déconnexion') }}</li>
+					@endif
+		            <li><a href="#about">About</a></li>
+		            <li><a href="#contact">Contact</a></li>
+		          </ul>
+		        </div><!--/.nav-collapse -->
+		      </div>
+		    </nav>
+ 
+ 		
+	    <div class="container">
+	      	<div class="starter-template">
+				@if (Session::has('notification'))
+					{{ Alert::success(Session::get('notification')) }}
 				@endif
-				
-				@if (Auth::check())
-					{{ link_to('profile', 'Profil') }}
-					{{ link_to('deconnexion', 'Déconnexion') }}
-				@endif
+	      	
+				@yield('contenu')
 			</div>
-		</header>
-
-		@if (Session::get('notification'))
-		<div style="background-color: green;">
-			{{{ Session::get('notification') }}}
-		</div>
-		@endif
+    	</div>
 		
-		<hr />
-
-		<div id="contenu">@yield('contenu')</div>
-
-		<hr />
-
 		<footer>
-			<p>&copy; EventCal 2014</p>
-			@if (Auth::check() && Auth::user()->is_admin)
-				{{ link_to('admin', 'Administration') }}
-			@endif
+			<div class="container">
+		      	<div class="starter-template">
+					<p class="lead">&copy; EventCal 2014</p>
+					@if (Auth::check() && Auth::user()->is_admin)
+						<p class="lead">{{ link_to('admin', 'Administration') }}</p>
+					@endif
+				</div>
+	    	</div>
 		</footer>
+		
+		{{ Helpers::js() }}
 	</body>
 </html>

@@ -2,7 +2,7 @@
 
 @section('contenu')
 	<h2>Administration des utilisateurs</h2>
-	
+
 	<table>
 	@foreach ($users as $user)
 	<tr{{ !$user->is_actif ? ' style="background-color: yellow;"' : '' }}>
