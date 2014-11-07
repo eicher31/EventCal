@@ -194,5 +194,13 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 		
 		return true;
 	}
+	
+	/**
+	 * Get all users, ordered by active flag and email for admin listing purpose
+	 */
+	public static function getAllUsersForAdmin()
+	{
+		return User::with('society')->orderBy('is_actif', 'ASC')->orderBy('email', 'ASC')->get();
+	}
 			
 }

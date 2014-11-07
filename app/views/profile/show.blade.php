@@ -24,6 +24,6 @@
 	<h3>Evénements</h3>
 	
 	@foreach ($events as $event)
-		<p>{{{ $event->id }}}</p>
+		<p>{{{ $event->name }}}</p>
 	@endforeach
 @stop

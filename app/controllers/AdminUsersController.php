@@ -13,8 +13,7 @@ class AdminUsersController extends BaseController {
 	 */
 	public function index()
 	{
-		$users = User::with('society')->orderBy('is_actif', 'ASC')->orderBy('email', 'ASC')->get();
-		
+		$users = User::getAllUsersForAdmin();
 		return \View::make('admin.listing_users')->with('users', $users);
 	}
 
@@ -50,7 +49,7 @@ class AdminUsersController extends BaseController {
 	public function show($id)
 	{
 		$user = User::findWithSociety($id);
-		$events = $user->society ? $user->society->with('events')->get() : array();
+		$events = $user->society ? $user->society->getAllEvents() : array();
 		
 		return \View::make('admin.show_user')->with(array(
 			'user'   => $user,

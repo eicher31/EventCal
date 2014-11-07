@@ -3,6 +3,7 @@
 namespace EventCal\Controllers;
 use EventCal\Models\User;
 use EventCal\Models\Locality;
+use EventCal\Models\Event;
 use \Auth;
 
 class ProfileController extends BaseController {
@@ -29,7 +30,7 @@ class ProfileController extends BaseController {
 	public function getIndex()
 	{
 		$user = User::findWithSociety($this->currentUserId);
-		$events = $user->society ? $user->society->with('events')->get() : array();
+		$events = $user->society ? $user->society->getAllEvents() : array();
 		
 		return \View::make('profile.show')->with(array(
 			'user'   => $user,

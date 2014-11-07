@@ -62,5 +62,13 @@ class Society extends BaseModel
 	{
 		return $this->belongsTo('EventCal\Models\Locality');
 	}
+	
+	/**
+	 * Get all events of the current society, ordered by datetime
+	 */
+	public function getAllEvents()
+	{
+		return Event::where('society_id', '=', $this->attributes['id'])->orderBy('datetime', 'DESC')->get();
+	}
 
 }
