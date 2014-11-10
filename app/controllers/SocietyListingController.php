@@ -9,13 +9,8 @@ class SocietyListingController extends BaseController
 	
 	public function index()
 	{
-		
 		// get societies, their events and localities, avoiding N+1 queries performance problem
-		$societies = Society::with(array('events', 'locality','user'))
-								->whereHas('user', function($req)
-								{
-									$req->where('users.is_actif','=','1');
-								})->get();
+		$societies = Society::getAllActiveSocietiesData();
 		
 		return \View::make('societies.listing')->with('societies', $societies);
 	}

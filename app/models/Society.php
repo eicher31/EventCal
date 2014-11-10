@@ -68,7 +68,20 @@ class Society extends BaseModel
 	 */
 	public function getAllEvents()
 	{
-		return $this->where('society_id', '=', $this->attributes['id'])->orderBy('datetime', 'DESC')->get();
+		// must be on Event model, we grab events corresponding to the current society
+		return Event::where('society_id', '=', $this->attributes['id'])->orderBy('datetime', 'DESC')->get();
+	}
+	
+	/**
+	 * Get active societies, with their data (user, locality, events)
+	 */
+	public static function getAllActiveSocietiesData()
+	{
+		return Society::with(array('events', 'locality','user'))
+			->whereHas('user', function($req)
+			{
+				$req->where('users.is_actif','=','1');
+			})->get();
 	}
 
 }
