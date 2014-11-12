@@ -31,8 +31,7 @@
 						<li>{{ link_to('profile', 'Profil') }}</li>
 						<li>{{ link_to('deconnexion', 'Déconnexion') }}</li>
 					@endif
-		            <li><a href="#about">About</a></li>
-		            <li><a href="#contact">Contact</a></li>
+		            <li>{{ link_to('about', 'A propos / Contact') }}</li>
 		          </ul>
 		        </div><!--/.nav-collapse -->
 		      </div>

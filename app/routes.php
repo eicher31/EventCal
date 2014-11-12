@@ -52,6 +52,9 @@ App::missing(function(){return "404";});
 
 // index
 Route::get('/', 'EventCal\Controllers\EventsController@index');
+
+Route::controller('about',  'EventCal\Controllers\AboutController');
+
 //Route::controller('/',  'EventCal\Controllers\CalenderController');
 
 /*/
