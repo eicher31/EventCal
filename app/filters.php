@@ -59,7 +59,7 @@ Route::filter('auth.admin', function()
 	$connected = Auth::check();
 	if (!$connected || ($connected && !Auth::user()->is_admin))
 	{
-		return Redirect::to('/');
+		return Redirect::guest('connexion');
 	}
 });
 
