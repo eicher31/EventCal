@@ -34,6 +34,8 @@ class BaseModel extends Eloquent {
 		// define rules for validation
 		$validationRules = array_except(static::$validateRules, $except);
 		// set id to unique fields
+		
+		
 		foreach ($uniqueId as $unique => $id)
 		{
 			if (isset($validationRules[$unique]))

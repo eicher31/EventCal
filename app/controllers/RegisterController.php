@@ -19,12 +19,6 @@ class RegisterController extends BaseController {
 
 	public function getConfirm()
 	{
-		\Mail::send('emails.confirm.user', [], function($m)
-		{
-			$m->from('notreply@event_cal.ch', 'Administrateur');
-			$m->to(\Session::get('email'))->cc('mathieu.rosser@he-arc.ch')->subject('Confirmation');
-		});
-		
 		return \View::make('register.confirm')->with('email', \Session::get('email'));
 	}
 
@@ -32,7 +26,9 @@ class RegisterController extends BaseController {
 	{
 		$input = \Input::all();
 		
-		if (($errors = User::createWithSociety($input)) !== true)
+		list ($errors, $user) = User::createWithSociety($input);
+		
+		if ($errors !== true)
 		{
 			return \Redirect::back()->withErrors($errors)->withInput();
 		}

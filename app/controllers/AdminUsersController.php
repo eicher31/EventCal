@@ -7,7 +7,7 @@ use EventCal\Models\Locality;
 class AdminUsersController extends BaseController {
 
 	/**
-	 * Display a listing of the resource.
+	 * Display a listing of the user.
 	 *
 	 * @return Response
 	 */
@@ -115,9 +115,10 @@ class AdminUsersController extends BaseController {
 	 */
 	public function putActivate($id)
 	{
-		$user = User::find($id);
-		$user->is_actif = true;
-		$user->save();
+		$input['is_actif'] = true;
+		
+		User::updateWithSociety($id, $input);
+		
 		
 		return \Redirect::action('EventCal\Controllers\AdminUsersController@show', array($id))->with('notification', 'Utilisateur activé');
 	}
