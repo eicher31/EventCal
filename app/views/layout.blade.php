@@ -7,8 +7,10 @@
 		
 		<title>EventCal</title>
 		
-		<link href="theme.css" rel="stylesheet">
-		{{ Helpers::css() }}
+		<!-- {{ Helpers::css() }} -->
+		{{ HTML::style('css/bootstrap.min.css') }}
+		{{ HTML::style('css/bootstrap-theme.min.css') }}
+		{{ HTML::style('css/theme.css') }}
 	</head>
 	<body>
 		    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -41,7 +43,7 @@
 	    <div class="container">
 	      	<div class="starter-template">
 				@if (Session::has('notification'))
-					{{ Alert::success(Session::get('notification')) }}
+					{{ Alert::success(Session::get('notification'))->close() }}
 				@endif
 	      	
 				@yield('contenu')
@@ -59,6 +61,8 @@
 	    	</div>
 		</footer>
 		
-		{{ Helpers::js() }}
+		<!-- {{ Helpers::js() }} -->
+		{{ HTML::script('js/jquery-2.1.0.min.js') }}
+		{{ HTML::script('js/bootstrap.min.js') }}
 	</body>
 </html>
