@@ -76,7 +76,7 @@ class BaseModel extends Eloquent {
 		
 		foreach ($rules as $r)
 		{
-			if (empty($data[$r]))
+			if (!isset($data[$r]))
 			{
 				$exceptValidation[] = $r;
 				unset($data[$r]);

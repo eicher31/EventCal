@@ -169,6 +169,12 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	{
 		$user = User::findWithSociety($id);
 		
+		// force except password if empty: the password can be blank and it will be left unchanged
+		if (empty($data['password']))
+		{
+			unset($data['password']);
+		}
+		
 		// set exception rules: if value is empty, doesn't validate nor set it
 		$exceptKeys = array_keys(array_merge(self::$validateRules, Society::getValidateRules()));
 		$exceptValidation = User::buildExceptValidation($exceptKeys, $data);
