@@ -64,9 +64,71 @@ class Event extends BaseModel
 		return $this->belongsTo('EventCal\Models\EventCategory');
 	}
 	
+	
+	public static function creatEvent()
+	{
+		
+	}
+	
+	public static function editEvent($id)
+	{
+		
+	}
+	
+	public static function eraseEvent()
+	{
+		
+	}
+	
+	/**
+	 * 
+	 */
 	public function getHour()
 	{
 		$newHourFormat = Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes["datetime"]);
 		return $newHourFormat->format('H:i');
+	}
+	
+	/**
+	 * 
+	 * @param unknown $date
+	 * @return unknown
+	 */
+	public static function showEventPerWeek($date)
+	{
+		if(isset($date))
+		{
+			$today = $date;
+			$nextWeek = Carbon::today()->addWeek();
+		}	
+		else
+		{
+			$today = Carbon::today();
+			$nextWeek = Carbon::today()->addWeek();
+		}
+		
+		$day = Carbon::today();
+		
+		
+		$events = Event::with('society', 'category')
+		->where('datetime', '>=', $today)
+		->where('datetime', '<', $nextWeek)
+		->get();
+		
+		$dataEvent = array();
+		
+		for ($i = 0; $i <= 7; $i ++)
+		{
+		$dataEvent[$day->toDateString()] = array();
+		$day->addDay();
+		}
+		
+		foreach ($events as $event)
+		{
+			$newDateFormat = Carbon::createFromFormat('Y-m-d H:i:s', $event->datetime);
+			$dataEvent[$newDateFormat->toDateString()][] = $event;
+		}
+		
+		return $dataEvent;
 	}
 }

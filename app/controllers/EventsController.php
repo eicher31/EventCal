@@ -14,31 +14,9 @@ class EventsController extends BaseController {
 	 */
 	public function index()
 	{
-		$today = Carbon::today();
-		$nextWeek = Carbon::today()->addWeek();
-		
-		$day = Carbon::today();
-		
-		$events = Event::with('society', 'category')
-			->where('datetime', '>=', $today)
-			->where('datetime', '<', $nextWeek)
-			->get();
-		
-		$dataEvent = array();
-		
-		for ($i = 0; $i <= 7; $i ++)
-		{
-			$dataEvent[$day->toDateString()] = array();
-			$day->addDay();
-		}
-		
-		foreach ($events as $event)
-		{
-			$newDateFormat = Carbon::createFromFormat('Y-m-d H:i:s', $event->datetime);
-			$dataEvent[$newDateFormat->toDateString()][] = $event;
-		}
-		
-		return \View::make('index')->with('weekEvents', $dataEvent);
+		//TODO a changer une fois le calendrier est en place
+		$date = Carbon::today();
+		return \View::make('index')->with('weekEvents',Event::showEventPerWeek($date));
 	}
 
 	/**
@@ -80,7 +58,8 @@ class EventsController extends BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$input = \Input::all();
+		
 	}
 
 	/**
