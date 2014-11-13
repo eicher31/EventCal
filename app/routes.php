@@ -33,8 +33,8 @@ Route::group(array('before' => 'auth.admin'), function()
 	Route::get('admin', function(){
 		return Redirect::to('admin/users');
 	});
-	Route::resource('admin/users', 'EventCal\Controllers\AdminUsersController');
-	Route::controller('admin/users', 'EventCal\Controllers\AdminUsersController');
+	Route::resource('admin/users', 'EventCal\Controllers\Admin\UsersController');
+	Route::controller('admin/users', 'EventCal\Controllers\Admin\UsersController');
 });
 
 // routes for listing entreprise with there events

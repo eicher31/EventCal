@@ -1,10 +1,11 @@
 <?php
 
-namespace EventCal\Controllers;
+namespace EventCal\Controllers\Admin;
+use EventCal\Controllers\BaseController;
 use EventCal\Models\User;
 use EventCal\Models\Locality;
 
-class AdminUsersController extends BaseController {
+class UsersController extends BaseController {
 
 	/**
 	 * Display a listing of the user.
@@ -87,10 +88,10 @@ class AdminUsersController extends BaseController {
 		
 		if ($errors !== true)
 		{
-			return \Redirect::action('EventCal\Controllers\AdminUsersController@edit', array($id))->withErrors($errors)->withInput();			
+			return \Redirect::action('EventCal\Controllers\Admin\UsersController@edit', array($id))->withErrors($errors)->withInput();			
 		}
 		
-		return \Redirect::action('EventCal\Controllers\AdminUsersController@show', array($id))->with('notification', 'Màj réussie');
+		return \Redirect::action('EventCal\Controllers\Admin\UsersController@show', array($id))->with('notification', 'Màj réussie');
 	}
 
 
@@ -104,7 +105,7 @@ class AdminUsersController extends BaseController {
 	{
 		User::deleteAllData($id);
 		
-		return \Redirect::action('EventCal\Controllers\AdminUsersController@index')->with('notification', 'Suppression effectuée');
+		return \Redirect::action('EventCal\Controllers\Admin\UsersController@index')->with('notification', 'Suppression effectuée');
 	}
 	
 	/**
@@ -119,7 +120,7 @@ class AdminUsersController extends BaseController {
 		
 		User::updateWithSociety($id, $input);
 		
-		return \Redirect::action('EventCal\Controllers\AdminUsersController@show', array($id))->with('notification', 'Utilisateur activé');
+		return \Redirect::action('EventCal\Controllers\Admin\UsersController@show', array($id))->with('notification', 'Utilisateur activé');
 	}
 	
 }
