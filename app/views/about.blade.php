@@ -7,9 +7,7 @@
 	
 	<h2>Contact</h2>
 	
-	@if ($errors->has())
-		{{ Alert::warning(implode('<br />', $errors->all())) }}
-	@endif
+	@include('tools.errors')
 	
     {{ Form::open(array('url' => 'about','method' => 'post')) }}    
         {{ Form::label('email', 'Votre e-mail : ') }}

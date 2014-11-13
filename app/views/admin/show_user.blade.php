@@ -3,17 +3,17 @@
 @section('contenu')
 	<h2>Compte de l'utilisateur {{{ $user->email }}}</h2>
 	
-	<p>{{ link_to_action('EventCal\Controllers\AdminUsersController@edit', 'Editer', array($user->id)) }}</p>
+	<p>{{ link_to_action('EventCal\Controllers\Admin\UsersController@edit', 'Editer', array($user->id)) }}</p>
 	
 	<p>
-	    {{ Form::open(array('action' => array('EventCal\Controllers\AdminUsersController@destroy', $user->id), 'method' => 'delete')) }}
+	    {{ Form::open(array('action' => array('EventCal\Controllers\Admin\UsersController@destroy', $user->id), 'method' => 'delete')) }}
 		{{ Form::submit('Supprimer') }}
 		{{ Form::close() }}
 	</p>
 	
 	@if (!$user->is_actif)
 	<p>
-	    {{ Form::open(array('action' => array('EventCal\Controllers\AdminUsersController@putActivate', $user->id), 'method' => 'put')) }}
+	    {{ Form::open(array('action' => array('EventCal\Controllers\Admin\UsersController@putActivate', $user->id), 'method' => 'put')) }}
 		{{ Form::submit('Activer') }}
 		{{ Form::close() }}
 	</p>

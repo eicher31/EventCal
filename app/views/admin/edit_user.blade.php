@@ -3,11 +3,9 @@
 @section('contenu')
 	<h2>Edition de l'utilisateur {{{ $user->email }}}</h2>
 	
-	@foreach($errors->all() as $error)
-		<p>{{$error}}<p>
-	@endforeach
+	@include('tools.errors')
 	
-    {{ Form::model($user, array('action' => array('EventCal\Controllers\AdminUsersController@update', $user->id),'method' => 'put')) }}
+    {{ Form::model($user, array('action' => array('EventCal\Controllers\Admin\UsersController@update', $user->id),'method' => 'put')) }}
         
     <fieldset>
     <legend>Information personnel:</legend>

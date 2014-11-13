@@ -15,8 +15,8 @@
 		@endif
 		</td>
 		
-		<td>{{ link_to_action('EventCal\Controllers\AdminUsersController@show', 'Voir', array($user->id)) }}</td>
-		<td>{{ link_to_action('EventCal\Controllers\AdminUsersController@edit', 'Editer', array($user->id)) }}</td>
+		<td>{{ link_to_action('EventCal\Controllers\Admin\UsersController@show', 'Voir', array($user->id)) }}</td>
+		<td>{{ link_to_action('EventCal\Controllers\Admin\UsersController@edit', 'Editer', array($user->id)) }}</td>
 	</tr>
 	@endforeach
 	</table>

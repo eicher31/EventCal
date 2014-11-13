@@ -3,9 +3,7 @@
 @section('contenu')
 	<h2>Edition de l'utilisateur {{{ $user->email }}}</h2>
 	
-	@foreach($errors->all() as $error)
-		<p>{{$error}}<p>
-	@endforeach
+	@include('tools.errors')
 	
     {{ Form::model($user, array('action' => 'EventCal\Controllers\ProfileController@putEdit','method' => 'put')) }}
         

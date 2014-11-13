@@ -3,9 +3,7 @@
 @section('contenu')
 	<h2>Changer le mot de passe</h2>
 	
-	@if (Session::has('error'))
-		<p>{{{ Session::get('error') }}}</p>
-	@endif
+	@include('tools.errors')
 	
     {{ Form::open(array('action' => 'EventCal\Controllers\RemindersController@postReset', 'method' => 'post')) }}
 	{{ Form::hidden('token', $token) }}

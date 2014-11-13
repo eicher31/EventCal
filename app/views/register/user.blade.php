@@ -2,10 +2,8 @@
 
 @section('contenu')
 
-@foreach($errors->all() as $error)
-	<p>{{$error}}<p>
-	
-@endforeach
+	@include('tools.errors')
+
     {{ Form::open(array('action' => 'EventCal\Controllers\RegisterController@postUser','method' => 'post')) }}
     
     <fieldset>

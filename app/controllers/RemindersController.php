@@ -29,13 +29,13 @@ class RemindersController extends BaseController {
 		switch ($response)
 		{
 			case \Password::INVALID_USER:
-				return \Redirect::back()->with('error', \Lang::get($response));
+				return \Redirect::back()->withErrors($this->createErrors($response));
 			
 			case \Password::REMINDER_SENT:
-				return \Redirect::back()->with('status', \Lang::get($response));
+				return \Redirect::back()->with('notification', 'Email de récupération de mot de passe envoyé');
 		}
 	}
-
+	
 	/**
 	 * Display the password reset view for the given token.
 	 *
@@ -70,10 +70,21 @@ class RemindersController extends BaseController {
 			case \Password::INVALID_PASSWORD:
 			case \Password::INVALID_TOKEN:
 			case \Password::INVALID_USER:
-				return \Redirect::back()->with('error', \Lang::get($response));
+				return \Redirect::back()->withErrors($this->createErrors($response));
 			
 			case \Password::PASSWORD_RESET:
 				return \Redirect::to('/')->with('notification', 'Mot de passe mis à jour');
 		}
 	}
+	
+	/**
+	 * Create a new MessageBag instance for errors handling
+	 * @param string $langKey
+	 * @return \Illuminate\Support\MessageBag
+	 */
+	private function createErrors($langKey)
+	{
+		return new \Illuminate\Support\MessageBag(array(\Lang::get($langKey)));
+	}
+	
 }
