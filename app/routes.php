@@ -13,6 +13,8 @@
 |
 */
 
+Route::get('/','EventCal\Controllers\EventsController@index');
+
 // connection for guest
 Route::group(array('before' => 'guest'), function() 
 {
@@ -47,20 +49,12 @@ Route::group(array('before' => 'auth'), function()
 	Route::controller('profile', 'EventCal\Controllers\ProfileController');
 });
 
-// Routes unknown
-App::missing(function(){return "404";});
 
-// index
-Route::get('/', 'EventCal\Controllers\EventsController@index');
+// event managing
+Route::resource('event', 'EventCal\Controllers\EventsController');
 
+// about contact
 Route::controller('about',  'EventCal\Controllers\AboutController');
 
-//Route::controller('/',  'EventCal\Controllers\CalenderController');
-
-/*/
- Route::get('/', function()
- {
- 	return \View::make('index');
- 	});
- //*/
-
+// Routes unknown
+App::missing(function(){return "404";});
