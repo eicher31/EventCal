@@ -128,10 +128,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 		$errors = self::validateUserSociety($data);
 		if ($errors !== true)
 		{
-			return [
-				$errors,
-				null
-			];
+			return [$errors,null];
 		}
 		
 		$user = new User();
@@ -146,26 +143,19 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 		$society->is_public = 1;
 		$society->save();
 		
-		\Mail::send('emails.confirm.user', [
-			"user" => $user
-		], function ($m) use ($user)
+		\Mail::send('emails.confirm.user', ["user" => $user], function ($m) use ($user)
 		{
 			$m->from(\Config::get('eventcal.noreply'), 'Administrateur');
-			$m->to($user->email);
+			$m->to($user->email)->subject('Inscription sur EventCal');
 		});
 		
-		\Mail::send('emails.confirm.admin', [
-			"user" => $user
-		], function ($m)
+		\Mail::send('emails.confirm.admin', ["user" => $user], function ($m)
 		{
 			$m->from(\Config::get('eventcal.noreply'), 'Administrateur');
-			$m->to(\Config::get('eventcal.mail'));
+			$m->to(\Config::get('eventcal.mail'))->subject('Inscription à valider sur EventCal');
 		});
 		
-		return [
-			true,
-			$user
-		];
+		return [true,$user];
 	}
 
 	/**
@@ -179,15 +169,12 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	{
 		$user = User::findWithSociety($id);
 		
-		// set exception rules for password: if empty, doesn't validate nor set it
-		$exceptValidation = User::buildExceptValidation(array_keys(self::$validateRules), $data);
+		// set exception rules: if value is empty, doesn't validate nor set it
+		$exceptKeys = array_keys(array_merge(self::$validateRules, Society::getValidateRules()));
+		$exceptValidation = User::buildExceptValidation($exceptKeys, $data);
 		
 		$validatorMethod = $user->society ? 'validateUserSociety' : 'validate';
-		
-		
-		$errors = User::$validatorMethod($data, $exceptValidation, array(
-			'email' => $user->id
-		));
+		$errors = User::$validatorMethod($data, $exceptValidation, array('email' => $user->id));
 		
 		if ($errors !== true)
 		{
@@ -209,22 +196,16 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 			$user->society->save();
 		}
 		
+		// send email if active state changed
 		if ($oldState != $user->is_actif)
 		{
-			if ($user->is_actif)
+			$mailTemplate = $user->is_actif ? 'emails.confirm.activate' : 'emails.confirm.disactivate';
+			$mailSubject = $user->is_actif ? 'Activation' : 'Désactivation';
+			\Mail::send($mailTemplate, ["user" => $user], function ($m) use ($user, $mailSubject)
 			{
-				\Mail::send('emails.confirm.activate', ["user" => $user], function ($m) use ($user)
-				{
-					$m->from(\Config::get('eventcal.noreply'), 'Administrateur');
-					$m->to($user->email);
-				});
-			}else{
-				\Mail::send('emails.confirm.disactivate', ["user" => $user], function ($m) use ($user)
-				{
-					$m->from(\Config::get('eventcal.noreply'), 'Administrateur');
-					$m->to($user->email);
-				});
-			}
+				$m->from(\Config::get('eventcal.noreply'), 'Administrateur');
+				$m->to($user->email)->subject($mailSubject . ' de votre compte sur EventCal');
+			});
 		}
 		
 		return true;
@@ -270,8 +251,4 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 		return User::with('society')->orderBy('is_actif', 'ASC')->orderBy('email', 'ASC')->get();
 	}
 
-	public static function getIsActif()
-	{
-		return User::where('is_actif', '=', '1');
-	}
 }

@@ -8,7 +8,7 @@
 
 		<div>
 			Bonjour {{{$user->fullName()}}},<br/><br/>
-			Votre comptre a bien été activé sur le site EventCal.<br/>
+			Votre compte a été activé sur le site EventCal.<br/>
 			
 			Nous vous remercions d'utiliser nos service pour afficher vos évennements.
 			

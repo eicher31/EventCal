@@ -119,7 +119,6 @@ class AdminUsersController extends BaseController {
 		
 		User::updateWithSociety($id, $input);
 		
-		
 		return \Redirect::action('EventCal\Controllers\AdminUsersController@show', array($id))->with('notification', 'Utilisateur activé');
 	}
 	
