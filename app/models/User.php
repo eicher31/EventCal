@@ -145,13 +145,13 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 		
 		\Mail::send('emails.confirm.user', ["user" => $user], function ($m) use ($user)
 		{
-			$m->from(\Config::get('eventcal.noreply'), 'Administrateur');
+			$m->from(\Config::get('eventcal.noreply'), \Config::get('eventcal.name'));
 			$m->to($user->email)->subject('Inscription sur EventCal');
 		});
 		
 		\Mail::send('emails.confirm.admin', ["user" => $user], function ($m)
 		{
-			$m->from(\Config::get('eventcal.noreply'), 'Administrateur');
+			$m->from(\Config::get('eventcal.noreply'), \Config::get('eventcal.name'));
 			$m->to(\Config::get('eventcal.mail'))->subject('Inscription à valider sur EventCal');
 		});
 		
@@ -209,7 +209,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 			$mailSubject = $user->is_actif ? 'Activation' : 'Désactivation';
 			\Mail::send($mailTemplate, ["user" => $user], function ($m) use ($user, $mailSubject)
 			{
-				$m->from(\Config::get('eventcal.noreply'), 'Administrateur');
+				$m->from(\Config::get('eventcal.noreply'), \Config::get('eventcal.name'));
 				$m->to($user->email)->subject($mailSubject . ' de votre compte sur EventCal');
 			});
 		}
