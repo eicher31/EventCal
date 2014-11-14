@@ -12,8 +12,8 @@ class EventsTableSeeder extends Seeder {
 			'name'=>'Cours de dance',
 			'description'=>'Cours de dance à Mervelier',
 			'datetime' => Carbon::now()->toDateTimeString(),
-			'address'=>null,
-			'locality_id'=>null,
+			'address'=>"",
+			'locality_id'=>1,
 			'category_id'=>1,
 			),
 

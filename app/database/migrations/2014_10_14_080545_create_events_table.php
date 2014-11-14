@@ -21,9 +21,9 @@ class CreateEventsTable extends Migration {
 			
 			$table->string('name',255);
 			$table->text('description');
-			$table->string('address',255)->nullable();
+			$table->string('address',255);
 			
-			$table->integer('locality_id')->unsigned()->nullable();
+			$table->integer('locality_id')->unsigned();
 			$table->foreign('locality_id')->references('id')->on('localities');
 			
 			$table->integer('category_id')->unsigned();
