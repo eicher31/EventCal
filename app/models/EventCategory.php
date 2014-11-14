@@ -32,6 +32,12 @@ class EventCategory extends BaseModel
 	);
 	
 	/**
+	 * Order models by this column on listing
+	 * @var string
+	 */
+	protected static $orderBy = "name";
+	
+	/**
 	 * A category can have many events
 	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
 	 */
@@ -40,23 +46,4 @@ class EventCategory extends BaseModel
 		return $this->hasMany('EventCal\Models\Event');
 	}
 	
-	/**
-	 * 
-	 * @return multitype:NULL
-	 */
-	//TODO : function unique in baseModel
-	public static function getCategoriesArray()
-	{
-		$categories = self::orderBy('name')->get();
-	
-		$cat = array();
-	
-		foreach ($categories as $c)
-		{
-			$cat[$c->id] = $c->name;
-	
-		}
-	
-		return $cat;
-	}
 }

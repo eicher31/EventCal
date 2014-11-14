@@ -7,7 +7,7 @@
 	@foreach ($users as $user)
 	<tr{{ !$user->is_actif ? ' style="background-color: yellow;"' : '' }}>
 		<td>{{{ $user->email }}}</td>
-		<td>{{{ $user->fullName() }}}</td>
+		<td>{{{ $user->getName() }}}</td>
 		
 		<td>
 		@if ($user->society)

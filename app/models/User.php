@@ -22,34 +22,21 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	 *
 	 * @var array
 	 */
-	protected $hidden = array(
-		'password',
-		'remember_token'
-	);
+	protected $hidden = array('password','remember_token');
 
 	/**
 	 * Fields that are fillable with fill()
 	 * 
 	 * @var array
 	 */
-	protected $fillable = array(
-		'email',
-		'password',
-		'first_name',
-		'last_name'
-	);
+	protected $fillable = array('email','password','first_name','last_name');
 
 	/**
 	 * Fields that cannot be filled with fill()
 	 * 
 	 * @var array
 	 */
-	protected $guarded = array(
-		'id',
-		'is_admin',
-		'is_actif',
-		'remember_token'
-	);
+	protected $guarded = array('id','is_admin','is_actif','remember_token');
 
 	/**
 	 * Validation rules of an User
@@ -62,7 +49,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 		'first_name' => 'required',
 		'last_name' => 'required'
 	);
-
+	
 	/**
 	 * Mutator for the password field: set the hash of the password
 	 * 
@@ -82,13 +69,12 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	{
 		return $this->hasOne('EventCal\Models\Society');
 	}
-
+	
 	/**
-	 * First and last name of the user
-	 * 
+	 * Representational name of the model data
 	 * @return string
 	 */
-	public function fullName()
+	public function getName()
 	{
 		return $this->attributes['first_name'] . " " . $this->attributes['last_name'];
 	}
@@ -98,7 +84,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	 */
 	public static function deleteAllData($id)
 	{
-		$user = User::findWithSociety($id);
+		$user = self::findWithSociety($id);
 		
 		if ($user->society)
 		{
@@ -114,7 +100,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	 */
 	public static function findWithSociety($id)
 	{
-		return User::with('society')->find($id);
+		return self::with('society')->find($id);
 	}
 
 	/**
@@ -167,7 +153,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	 */
 	public static function updateWithSociety($id, array $data)
 	{
-		$user = User::findWithSociety($id);
+		$user = self::findWithSociety($id);
 		
 		// force except password if empty: the password can be blank and it will be left unchanged
 		if (empty($data['password']))
@@ -177,10 +163,10 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 		
 		// set exception rules: if value is empty, doesn't validate nor set it
 		$exceptKeys = array_keys(array_merge(self::$validateRules, Society::getValidateRules()));
-		$exceptValidation = User::buildExceptValidation($exceptKeys, $data);
+		$exceptValidation = self::buildExceptValidation($exceptKeys, $data);
 		
 		$validatorMethod = $user->society ? 'validateUserSociety' : 'validate';
-		$errors = User::$validatorMethod($data, $exceptValidation, array('email' => $user->id));
+		$errors = self::$validatorMethod($data, $exceptValidation, array('email' => $user->id));
 		
 		if ($errors !== true)
 		{
@@ -228,7 +214,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	 */
 	public static function validateUserSociety(array $data, array $except = array(), array $uniqueId = array())
 	{
-		$errorsUser = User::validate($data, $except, $uniqueId);
+		$errorsUser = self::validate($data, $except, $uniqueId);
 		$errorsSociety = Society::validate($data, $except, $uniqueId);
 		
 		if ($errorsUser !== true || $errorsSociety !== true)
@@ -254,7 +240,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	 */
 	public static function getAllUsersForAdmin()
 	{
-		return User::with('society')->orderBy('is_actif', 'ASC')->orderBy('email', 'ASC')->get();
+		return self::with('society')->orderBy('is_actif', 'ASC')->orderBy('email', 'ASC')->get();
 	}
 
 }

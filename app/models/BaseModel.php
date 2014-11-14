@@ -20,6 +20,13 @@ class BaseModel extends Eloquent {
 	 */
 	protected static $validateRules = array();
 	
+	
+	/**
+	 * Order models by this column on listing
+	 * @var string
+	 */
+	protected static $orderBy = "id";
+	
 	/**
 	 * Validation rules of the model
 	 * @return array
@@ -85,6 +92,33 @@ class BaseModel extends Eloquent {
 		}
 
 		return $exceptValidation;
+	}
+	
+	/**
+	 * Returns listing of all the data model, as and [id => name] array
+	 * @return array
+	 */
+	public static function getAsIdNameArray()
+	{
+		$array = array();
+		
+		// get all data
+		$data = static::orderBy(static::$orderBy)->get();
+		foreach ($data as $d)
+		{
+			$array[$d->id] = $d->getName();
+		}
+		
+		return $array;
+	}
+	
+	/**
+	 * Representational name of the model data
+	 * @return string
+	 */
+	public function getName()
+	{
+		return isset($this->attributes['name']) ? $this->attributes['name'] : $this->attributes['id'];
 	}
 	
 }

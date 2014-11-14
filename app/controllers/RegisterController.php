@@ -14,7 +14,7 @@ class RegisterController extends BaseController {
 
 	public function getUser()
 	{
-		return \View::make('register.user')->with('city', Locality::getLocalitiesArray());
+		return \View::make('register.user')->with('city', Locality::getAsIdNameArray());
 	}
 
 	public function getConfirm()

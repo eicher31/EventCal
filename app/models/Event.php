@@ -17,24 +17,14 @@ class Event extends BaseModel {
 	 *
 	 * @var array
 	 */
-	protected $fillable = array(
-		'name',
-		'description',
-		'datetime',
-		'address',
-		'locality_id',
-		'category_id'
-	);
+	protected $fillable = array('name','description','datetime','address','locality_id','category_id');
 
 	/**
 	 * Fields that cannot be filled with fill()
 	 *
 	 * @var array
 	 */
-	protected $guarded = array(
-		'id',
-		'society_id'
-	);
+	protected $guarded = array('id','society_id');
 
 	/**
 	 * Validation rules of an event
@@ -50,7 +40,7 @@ class Event extends BaseModel {
 		'locality_id' => 'required|exists:localities,id',
 		'category_id' => 'required|exists:events_categories,id',
 	);
-
+		
 	/**
 	 * An event belongs to a society
 	 *
@@ -128,7 +118,7 @@ class Event extends BaseModel {
 		
 		$errors = self::validate($data, $exceptionValidation);
 		
-		if ($errorEvent !== true)
+		if ($errors !== true)
 		{
 			return $errorEvent;
 		}
@@ -162,11 +152,7 @@ class Event extends BaseModel {
 	 */
 	public static function findWithData($id)
 	{
-		return self::with(array(
-			'locality',
-			'society',
-			'category'
-		))->find($id);
+		return self::with(array('locality','society','category'))->find($id);
 	}
 	
 	/**

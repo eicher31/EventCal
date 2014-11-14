@@ -12,7 +12,7 @@
 		<p>{{$error}}<p>
 	@endforeach
 	
-	{{ Form::model($event, array('action' => array($action),'method' => $method)) }}
+	{{ Form::model($event, array('action' => array($action, $event->id),'method' => $method)) }}
         
     <fieldset>
     <legend>Event :</legend>

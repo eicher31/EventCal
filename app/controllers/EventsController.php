@@ -29,14 +29,8 @@ class EventsController extends BaseController {
 	 */
 	public function create()
 	{
-		return \View::make('events.edit')->with(array(
-			'event' 	=> 	new Event(),
-			'societies' => 	\Auth::user()->is_admin ? Society::getSocietiesArray() : array(),
-			'categories'=> 	EventCategory::getCategoriesArray(),
-			'localities'=> 	Locality::getLocalitiesArray(),
-			'action' 	=> 'EventCal\Controllers\EventsController@store',
-			'method'	=> 'post',
-		));
+		$data = $this->createViewEditData(new Event(), 'store', 'post');
+		return \View::make('events.edit')->with($data);
 	}
 
 	/**
@@ -82,14 +76,8 @@ class EventsController extends BaseController {
 	 */
 	public function edit($id)
 	{
-		return \View::make('events.edit')->with(array(
-			'event' 	=> 	Event::findWithData($id),
-			'societies' => 	Auth::user()->is_admin ? Society::getSocietiesArray() : array(),
-			'categories'=> 	EventCategory::getCategoriesArray(),
-			'localities'=> 	Locality::getLocalitiesArray(), 
-			'action' 	=> 'EventCal\Controllers\EventsController@update',
-			'method'	=> 'put',
-		));
+		$data = $this->createViewEditData(Event::findWithData($id), 'update', 'put');
+		return \View::make('events.edit')->with($data);
 	}
 
 	/**
@@ -108,7 +96,8 @@ class EventsController extends BaseController {
 			return \Redirect::action('EventCal\Controllers\EventsController@edit',array($id))->withErrors($error)->withInput();
 		}
 		
-		return \Redirect::action('EventCal\Controllers\EventsController@show',array($id))->with('notification','maj');
+		// TODO redirect to @show
+		return \Redirect::action('EventCal\Controllers\EventsController@index',array($id))->with('notification','maj');
 	}
 
 	/**
@@ -121,5 +110,24 @@ class EventsController extends BaseController {
 	{
 		Event::deleteEvent($id);
 		return \Redirect::action('EventCal\Controllers\EventsController@index')->with('notification','delete');
+	}
+	
+	/**
+	 * Creates array of data passed to a edit view
+	 * @param Event $event
+	 * @param string $action
+	 * @param string $method
+	 * @return array
+	 */
+	private function createViewEditData($event, $action, $method)
+	{
+		return array(
+			'event' 	=> 	$event,
+			'societies' => 	\Auth::user()->is_admin ? Society::getAsIdNameArray() : array(),
+			'categories'=> 	EventCategory::getAsIdNameArray(),
+			'localities'=> 	Locality::getAsIdNameArray(), 
+			'action' 	=> 'EventCal\Controllers\EventsController@' . $action,
+			'method'	=> $method,
+		);
 	}
 }

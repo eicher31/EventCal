@@ -47,7 +47,7 @@ class ProfileController extends BaseController {
 	{
 		return \View::make('profile.edit')->with(array(
 			'user' => User::findWithSociety($this->currentUserId),
-			'city' => Locality::getLocalitiesArray(),
+			'city' => Locality::getAsIdNameArray(),
 		));
 	}
 

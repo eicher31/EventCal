@@ -18,7 +18,7 @@
 		<p>{{{ $user->society->logo }}}</p>
 		<p>{{{ $user->society->telephone }}}</p>
 		<p>{{{ $user->society->address }}}</p>
-		<p>{{{ $user->society->locality->codeCity() }}}</p>
+		<p>{{{ $user->society->locality->getName() }}}</p>
 	@endif
 	
 	<h3>Evénements</h3>

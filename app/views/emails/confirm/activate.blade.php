@@ -7,7 +7,7 @@
 		<h2>Activation</h2>	
 
 		<div>
-			Bonjour {{{$user->fullName()}}},<br/><br/>
+			Bonjour {{{$user->getName()}}},<br/><br/>
 			Votre compte a été activé sur le site EventCal.<br/>
 			
 			Nous vous remercions d'utiliser nos service pour afficher vos évennements.

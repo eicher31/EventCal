@@ -37,6 +37,12 @@ class Society extends BaseModel
 	);
 	
 	/**
+	 * Order models by this column on listing
+	 * @var string
+	 */
+	protected static $orderBy = "name";
+	
+	/**
 	 * A society belongs to a specific user
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
 	 */
@@ -77,26 +83,11 @@ class Society extends BaseModel
 	 */
 	public static function getAllActiveSocietiesData()
 	{
-		return Society::with(array('events', 'locality','user'))
+		return self::with(array('events', 'locality','user'))
 			->whereHas('user', function($req)
 			{
 				$req->where('users.is_actif','=','1');
 			})->get();
 	}
 	
-	public static function getSocietiesArray()
-	{
-		$societies = self::orderBy('name')->get();
-	
-		$soc = array();
-	
-		foreach ($societies as $s)
-		{
-			$soc[$s->id] = $s->name;
-	
-		}
-	
-		return $soc;
-	}
-
 }

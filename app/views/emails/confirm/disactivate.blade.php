@@ -7,7 +7,7 @@
 		<h2>Désactivation de votre compte</h2>	
 
 		<div>
-			Bonjour {{{$user->fullName()}}},<br/><br/>
+			Bonjour {{{$user->getName()}}},<br/><br/>
 			Votre compte a été désactivé du site EventCal.<br/>
 			
 			Nous vous remercions de votre compréhension.

@@ -69,7 +69,7 @@ class UsersController extends BaseController {
 	{
 		return \View::make('admin.edit_user')->with(array(
 			'user' => User::findWithSociety($id),
-			'city' => Locality::getLocalitiesArray(),
+			'city' => Locality::getAsIdNameArray(),
 		));
 	}
 

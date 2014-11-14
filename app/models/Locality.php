@@ -3,12 +3,18 @@
 namespace EventCal\Models;
 
 class Locality extends BaseModel
-{
+{	
 	/**
 	 * Table name on DB
 	 * @var string
 	 */
 	protected $table = 'localities';
+	
+	/**
+	 * Order models by this column on listing
+	 * @var string
+	 */
+	protected static $orderBy = "code";
 	
 	/**
 	 * A locality has many societies
@@ -27,32 +33,14 @@ class Locality extends BaseModel
 	{
 		return $this->hasMany('EventCal\Models\Event');
 	}
-	
+		
 	/**
-	 * concatenation of code and city
+	 * Representational name of the model data
 	 * @return string
 	 */
-	public function codeCity()
+	public function getName()
 	{
 		return $this->attributes['code'] . " " . $this->attributes['city'];
 	}
 	
-	/**
-	 * Returns an array of the localities, ordered by code, with format: id => code-city
-	 * @return array
-	 */
-	public static function getLocalitiesArray()
-	{
-		$locality = Locality::orderBy('code')->get();
-		
-		$local = array();
-		
-		foreach ($locality as $l)
-		{
-			$local[$l->id] = $l->codeCity();
-				
-		}
-		
-		return $local;
-	}
 }
