@@ -27,6 +27,7 @@
 		        <div id="navbar" class="collapse navbar-collapse">
 		          <ul class="nav navbar-nav">
 		            <li class="active"><a href="{{ url('/') }} ">Accueil</a></li>
+		            <li>{{ link_to('societies', 'Liste des sociétés') }}</li>
 					@if (Auth::guest())
 						<li>{{ link_to('connexion', 'Connexion') }}</li>
 					@else

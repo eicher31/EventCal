@@ -2,6 +2,10 @@
 
 @section('contenu')
 	
+	@if (Auth::check())
+		{{Button::normal('Créer nouveau événement')->asLinkTo('event/create')}}
+	@endif
+	
 	@foreach($weekEvents as $day => $events)
 		<p>{{$day}} :</p>
 		
@@ -13,6 +17,8 @@
     		<p> Description		: {{$event->description}}</p>
     		<p> Organisé 		: {{$event->society->name}}</p>
     		<p> Adresse 		: {{$event->address}}</p>
+    		
+    		<p>{{Button::normal("Voir l'événements")->asLinkTo('event/'.$event->id)}}</p>
     		<br>
     		
     	@endforeach 

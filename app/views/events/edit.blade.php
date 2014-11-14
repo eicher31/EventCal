@@ -6,11 +6,8 @@
 	@else
 	<h2>Ajout de l'évènement</h2>
 	@endif
-	
-	
-	@foreach($errors->all() as $error)
-		<p>{{$error}}<p>
-	@endforeach
+
+	@include('tools.errors')
 	
 	{{ Form::model($event, array('action' => array($action, $event->id),'method' => $method)) }}
         
