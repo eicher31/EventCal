@@ -3,6 +3,6 @@
 @section('contenu')
 	<h2>Calendrier</h2>
 	
-@include('calender.calender')
+@include('events.calender')
 	
 @stop

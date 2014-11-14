@@ -32,7 +32,7 @@ class Society extends BaseModel
 		'website' => 'url',
 		'logo' => '',
 		'telephone' => '',
-		'address' => 'required',
+		'address' => '',
 		'locality_id' => 'required|exists:localities,id',
 	);
 	
@@ -82,6 +82,21 @@ class Society extends BaseModel
 			{
 				$req->where('users.is_actif','=','1');
 			})->get();
+	}
+	
+	public static function getSocietiesArray()
+	{
+		$societies = self::orderBy('name')->get();
+	
+		$soc = array();
+	
+		foreach ($societies as $s)
+		{
+			$soc[$s->id] = $s->name;
+	
+		}
+	
+		return $soc;
 	}
 
 }

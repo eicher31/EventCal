@@ -51,9 +51,10 @@ class BaseModel extends Eloquent {
 				$validationRules[$unique] .= ',' . $id;
 			}
 		}
-		
+				
 		// create validator and validate
 		$validator = \Validator::make($data, $validationRules);
+
 		if ($validator->fails())
 		{
 			return $validator->messages();

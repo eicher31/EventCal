@@ -47,11 +47,9 @@ Route::group(array('before' => 'auth'), function()
 	Route::get('deconnexion', 'EventCal\Controllers\SessionController@disconnect');
 	// profile
 	Route::controller('profile', 'EventCal\Controllers\ProfileController');
+	// event managing
+	Route::resource('event', 'EventCal\Controllers\EventsController');
 });
-
-
-// event managing
-Route::resource('event', 'EventCal\Controllers\EventsController');
 
 // about contact
 Route::controller('about',  'EventCal\Controllers\AboutController');

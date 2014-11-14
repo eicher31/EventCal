@@ -4,6 +4,9 @@ namespace EventCal\Controllers;
 
 use Carbon\Carbon;
 use EventCal\Models\Event;
+use EventCal\Models\Society;
+use EventCal\Models\EventCategory;
+use EventCal\Models\Locality;
 
 class EventsController extends BaseController {
 
@@ -16,7 +19,7 @@ class EventsController extends BaseController {
 	{
 		//TODO a changer une fois le calendrier est en place
 		$date = Carbon::today();
-		return \View::make('index')->with('weekEvents',Event::showEventPerWeek($date));
+		return \View::make('index')->with('weekEvents',Event::getEventPerWeek($date));
 	}
 
 	/**
@@ -26,7 +29,14 @@ class EventsController extends BaseController {
 	 */
 	public function create()
 	{
-		//
+		return \View::make('events.edit')->with(array(
+			'event' 	=> 	new Event(),
+			'societies' => 	\Auth::user()->is_admin ? Society::getSocietiesArray() : array(),
+			'categories'=> 	EventCategory::getCategoriesArray(),
+			'localities'=> 	Locality::getLocalitiesArray(),
+			'action' 	=> 'EventCal\Controllers\EventsController@store',
+			'method'	=> 'post',
+		));
 	}
 
 	/**
@@ -36,7 +46,15 @@ class EventsController extends BaseController {
 	 */
 	public function store()
 	{
-		//
+		$input = \Input::all();
+		$error = Event::creatEvent($input);
+		
+		if($error !== true)
+		{
+			return \Redirect::action('EventCal\Controllers\EventsController@create')->withErrors($error)->withInput();
+		}
+		//TODO redirriger vers event creer
+		return \Redirect::action('EventCal\Controllers\EventsController@index')->with('notification','creation reussite');
 	}
 
 	/**
@@ -47,7 +65,13 @@ class EventsController extends BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$event = Event::findWithData($id); //categor, societe
+		return \View::make('event.show')->with(array(
+			'event'		=> $event,
+			'locality' 	=> $event->locality,
+			'society' 	=> $event->society,
+			'category' 	=> $event->category,
+			));
 	}
 
 	/**
@@ -58,8 +82,14 @@ class EventsController extends BaseController {
 	 */
 	public function edit($id)
 	{
-		$input = \Input::all();
-		
+		return \View::make('events.edit')->with(array(
+			'event' 	=> 	Event::findWithData($id),
+			'societies' => 	Auth::user()->is_admin ? Society::getSocietiesArray() : array(),
+			'categories'=> 	EventCategory::getCategoriesArray(),
+			'localities'=> 	Locality::getLocalitiesArray(), 
+			'action' 	=> 'EventCal\Controllers\EventsController@update',
+			'method'	=> 'put',
+		));
 	}
 
 	/**
@@ -70,7 +100,15 @@ class EventsController extends BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$input = \Input::all();
+		$error = Event::editEvent($id, $input);
+		
+		if($error !== true)
+		{
+			return \Redirect::action('EventCal\Controllers\EventsController@edit',array($id))->withErrors($error)->withInput();
+		}
+		
+		return \Redirect::action('EventCal\Controllers\EventsController@show',array($id))->with('notification','maj');
 	}
 
 	/**
@@ -81,6 +119,7 @@ class EventsController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		Event::deleteEvent($id);
+		return \Redirect::action('EventCal\Controllers\EventsController@index')->with('notification','delete');
 	}
 }

@@ -39,4 +39,24 @@ class EventCategory extends BaseModel
 	{
 		return $this->hasMany('EventCal\Models\Event');
 	}
+	
+	/**
+	 * 
+	 * @return multitype:NULL
+	 */
+	//TODO : function unique in baseModel
+	public static function getCategoriesArray()
+	{
+		$categories = self::orderBy('name')->get();
+	
+		$cat = array();
+	
+		foreach ($categories as $c)
+		{
+			$cat[$c->id] = $c->name;
+	
+		}
+	
+		return $cat;
+	}
 }
