@@ -22,10 +22,10 @@
         {{ Form::text('name')}}
         
         {{ Form::label('date', 'Date : ') }}
-        {{ Form::text('date')}}
+        {{ Form::text('date', $event->id ? $event->getDate() : '')}}
         
         {{ Form::label('time', 'Hour : ') }}
-        {{ Form::text('time')}}
+        {{ Form::text('time', $event->id ? $event->getTime() : '')}}
         
         {{ Form::label('address', 'Adresse : ') }}
         {{ Form::text('address')}}

@@ -19,8 +19,8 @@
 								  color: white !important;">
 								{{{ $event->name }}}
 								
-								@if ($event->getHour())
-									{{{ ' (' . $event->getHour() . ')' }}}
+								@if ($event->getTime())
+									{{{ ' (' . $event->getTime() . ')' }}}
 								@endif
 						</a>
 			    	@endforeach 

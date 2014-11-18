@@ -36,7 +36,7 @@ class Event extends BaseModel {
 		'name' => 'required',
 		'description' => 'required',
 		'date' => 'required|date_format:"Y-m-d"',
-		'time' => 'date_format:"H:i:s"',
+		'time' => 'date_format:"H:i"',
 		//'datetime' => 'required|date_format:"Y-m-d H:i:s"',
 		'address' => '',
 		'locality_id' => 'required|exists:localities,id',
@@ -72,18 +72,35 @@ class Event extends BaseModel {
 	{
 		return $this->belongsTo('EventCal\Models\EventCategory');
 	}
-
-	public function getLocality()
+	
+	/**
+	 * Returns the datetime as Carbon's date
+	 * @return \Carbon
+	 */
+	public function getCarbonDate()
 	{
-		if($this->attributes['locality_id'])
-		{
-			return $this->attributes['locality_id'];
-		}
-		return $this->attributes[''];
+		return Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes["datetime"]);
 	}
 	
 	/**
-	 * 
+	 * Return the date part as Y-m-d formatted string
+	 */
+	public function getDate()
+	{
+		return $date = $this->getCarbonDate()->format('Y-m-d');
+	}
+	
+	/**
+	 * Return a time formatted as H:i, empty if hour is 00:00
+	 */
+	public function getTime()
+	{
+		$hour =$this->getCarbonDate()->format('H:i');
+		return $hour != "00:00" ? $hour : "";
+	}
+	
+	/**
+	 * Create an event
 	 * @param array $data
 	 * @return \Illuminate\Validation\Validator|\EventCal\Models\Event
 	 */
@@ -114,8 +131,8 @@ class Event extends BaseModel {
 	}
 	
 	/**
-	 * 
-	 * @param unknown $id
+	 * Update an existing event
+	 * @param int $id
 	 * @param array $data
 	 * @return unknown|boolean
 	 */
@@ -149,8 +166,8 @@ class Event extends BaseModel {
 	}
 
 	/**
-	 * 
-	 * @param unknown $id
+	 * Delete an event
+	 * @param int $id
 	 */
 	public static function deleteEvent($id)
 	{
@@ -168,15 +185,6 @@ class Event extends BaseModel {
 		return self::with(array('locality','society','category'))->find($id);
 	}
 	
-	/**
-	 * Return a hour format
-	 */
-	public function getHour()
-	{
-		$newHourFormat = Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes["datetime"]);
-		return $newHourFormat->format('H:i');
-	}
-
 	/**
 	 * Show a array of event by week or by event
 	 * 
@@ -224,10 +232,9 @@ class Event extends BaseModel {
 	 */
 	private static function setDateTime(array &$data)
 	{
-		
 		if(empty($data['time']))
 		{
-			$data['time'] = "00:00:00";
+			$data['time'] = "00:00";
 		}
 
 		$data['datetime'] = $data['date']." ". $data['time'];
