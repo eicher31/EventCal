@@ -21,8 +21,11 @@
         {{ Form::label('name', "Nom de l'evenement : ") }}
         {{ Form::text('name')}}
         
-        {{ Form::label('datetime', 'Date : ') }}
-        {{ Form::text('datetime')}}
+        {{ Form::label('date', 'Date : ') }}
+        {{ Form::text('date')}}
+        
+        {{ Form::label('time', 'Hour : ') }}
+        {{ Form::text('time')}}
         
         {{ Form::label('address', 'Adresse : ') }}
         {{ Form::text('address')}}
@@ -38,8 +41,16 @@
     </fieldset>
     
     	{{ Form::reset('clear') }}
-    	{{ Form::submit('enregistrer') }}
-        
+    	{{ Form::submit('enregistrer')}}
 	{{ Form::close() }}
+	
+	
+	@if($event->id)
+		{{ Form::open(array('action' => array('EventCal\Controllers\EventsController@destroy', $event->id), 'method' => 'delete')) }}
+			{{ Form::submit('Supprimer') }}
+		{{ Form::close()}}
+	@endif
+	
+
 
 @stop

@@ -77,7 +77,7 @@ class EventsController extends BaseController {
 	 */
 	public function edit($id)
 	{
-		$data = $this->createViewEditData(Event::findWithData($id), 'update', 'put');
+		$data = $this->createViewEditData(Event::findWithData($id), 'update', 'put');		
 		return \View::make('events.edit')->with($data);
 	}
 

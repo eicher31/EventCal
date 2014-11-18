@@ -35,7 +35,9 @@ class Event extends BaseModel {
 		'society_id' => 'required|exists:societies,id',
 		'name' => 'required',
 		'description' => 'required',
-		'datetime' => 'required|date',
+		'date' => 'required|date_format:"Y-m-d"',
+		'time' => 'date_format:"H:i:s"',
+		//'datetime' => 'required|date_format:"Y-m-d H:i:s"',
 		'address' => '',
 		'locality_id' => 'required|exists:localities,id',
 		'category_id' => 'required|exists:events_categories,id',
@@ -81,9 +83,14 @@ class Event extends BaseModel {
 	}
 	
 	/**
+	 * 
+	 * @param array $data
+	 * @return \Illuminate\Validation\Validator|\EventCal\Models\Event
 	 */
 	public static function creatEvent(array $data)
 	{
+		self::setDateTime($data);
+		
 		// if an events doesn't have a society, set to current session society id
 		if (! isset($data['society_id']))
 		{
@@ -105,13 +112,18 @@ class Event extends BaseModel {
 		
 		return $event;
 	}
-
+	
 	/**
-	 *
-	 * @param unknown $id        	
+	 * 
+	 * @param unknown $id
+	 * @param array $data
+	 * @return unknown|boolean
 	 */
 	public static function editEvent($id, array $data)
 	{
+
+		self::setDateTime($data);
+		
 		$event = self::find($id);
 		
 		$exceptKey = array_keys(self::$validateRules);
@@ -121,7 +133,7 @@ class Event extends BaseModel {
 		
 		if ($errors !== true)
 		{
-			return $errorEvent;
+			return $errors;
 		}
 		
 		$event->fill($data);
@@ -137,8 +149,8 @@ class Event extends BaseModel {
 	}
 
 	/**
-	 *
-	 * @param unknown $id        	
+	 * 
+	 * @param unknown $id
 	 */
 	public static function deleteEvent($id)
 	{
@@ -157,6 +169,7 @@ class Event extends BaseModel {
 	}
 	
 	/**
+	 * Return a hour format
 	 */
 	public function getHour()
 	{
@@ -165,7 +178,8 @@ class Event extends BaseModel {
 	}
 
 	/**
-	 *
+	 * Show a array of event by week or by event
+	 * 
 	 * @param Carbon::date $date        	
 	 * @return array event in a week
 	 */
@@ -202,5 +216,21 @@ class Event extends BaseModel {
 		}
 		
 		return $dataEvent;
+	}
+	
+	/**
+	 * Allow to check if there are a empty string
+	 * @param array $data
+	 */
+	private static function setDateTime(array &$data)
+	{
+		
+		if(empty($data['time']))
+		{
+			$data['time'] = "00:00:00";
+		}
+
+		$data['datetime'] = $data['date']." ". $data['time'];
+		
 	}
 }
