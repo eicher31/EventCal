@@ -46,4 +46,12 @@ class EventCategory extends BaseModel
 		return $this->hasMany('EventCal\Models\Event');
 	}
 	
+	/**
+	 * Get all categories
+	 */
+	public static function getAllCategories()
+	{
+		return self::orderBy(self::$orderBy)->get();
+	}
+	
 }

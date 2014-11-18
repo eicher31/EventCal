@@ -19,7 +19,10 @@ class EventsController extends BaseController {
 	{
 		//TODO a changer une fois le calendrier est en place
 		$date = Carbon::today();
-		return \View::make('index')->with('weekEvents',Event::getEventPerWeek($date));
+		return \View::make('index')->with(array(
+			'weekEvents'	=> Event::getEventPerWeek($date),
+			'categories'	=> EventCategory::getAllCategories(),
+		));
 	}
 
 	/**
