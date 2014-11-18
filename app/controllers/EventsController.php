@@ -40,15 +40,16 @@ class EventsController extends BaseController {
 	 */
 	public function store()
 	{
-		$input = \Input::all();
-		$error = Event::creatEvent($input);
 		
-		if($error !== true)
+		$input = \Input::all();
+		$return = Event::creatEvent($input);
+			
+		if(!($return instanceof Event))
 		{
-			return \Redirect::action('EventCal\Controllers\EventsController@create')->withErrors($error)->withInput();
+			return \Redirect::action('EventCal\Controllers\EventsController@create')->withErrors($return)->withInput();
 		}
-		//TODO redirriger vers event creer
-		return \Redirect::action('EventCal\Controllers\EventsController@index')->with('notification','creation reussite');
+
+		return \Redirect::action('EventCal\Controllers\EventsController@show',array($return->id))->with('notification','creation reussite');
 	}
 
 	/**
@@ -60,7 +61,7 @@ class EventsController extends BaseController {
 	public function show($id)
 	{
 		$event = Event::findWithData($id); //categor, societe
-		return \View::make('event.show')->with(array(
+		return \View::make('events.show')->with(array(
 			'event'		=> $event,
 			'locality' 	=> $event->locality,
 			'society' 	=> $event->society,
@@ -96,8 +97,7 @@ class EventsController extends BaseController {
 			return \Redirect::action('EventCal\Controllers\EventsController@edit',array($id))->withErrors($error)->withInput();
 		}
 		
-		// TODO redirect to @show
-		return \Redirect::action('EventCal\Controllers\EventsController@index',array($id))->with('notification','maj');
+		return \Redirect::action('EventCal\Controllers\EventsController@show',array($id))->with('notification','mise a jour');
 	}
 
 	/**

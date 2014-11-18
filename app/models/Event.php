@@ -92,6 +92,7 @@ class Event extends BaseModel {
 		
 		$errorEvent = self::validate($data);
 		
+		
 		if ($errorEvent !== true)
 		{
 			return $errorEvent;
@@ -102,7 +103,7 @@ class Event extends BaseModel {
 		$event->society_id = $data['society_id'];
 		$event->save();
 		
-		return true;
+		return $event;
 	}
 
 	/**

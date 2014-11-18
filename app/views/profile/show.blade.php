@@ -6,8 +6,7 @@
 	<p>{{ link_to_action('EventCal\Controllers\ProfileController@getEdit', 'Editer') }}</p>
 		
 	<p>{{{ $user->email }}}</p>
-	<p>{{{ $user->first_name }}}</p>
-	<p>{{{ $user->last_name }}}</p>
+	<p>{{{ $user->getName() }}}</p>
 	
 	<h3>Société</h3>
 	
