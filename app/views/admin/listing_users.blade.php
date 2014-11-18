@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layoutAdmin')
 
 @section('contenu')
 	<h2>Administration des utilisateurs</h2>

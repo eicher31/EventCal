@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layoutAdmin')
 
 @section('contenu')
 	<h2>Edition de l'utilisateur {{{ $user->email }}}</h2>
