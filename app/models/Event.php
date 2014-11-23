@@ -87,7 +87,7 @@ class Event extends BaseModel {
 	 */
 	public function getDate()
 	{
-		return $date = $this->getCarbonDate()->format('Y-m-d');
+		return $this->getCarbonDate()->format('Y-m-d');
 	}
 	
 	/**
@@ -95,12 +95,31 @@ class Event extends BaseModel {
 	 */
 	public function getTime()
 	{
-		$hour =$this->getCarbonDate()->format('H:i');
+		$hour = $this->getCarbonDate()->format('H:i');
 		return $hour != "00:00" ? $hour : "";
 	}
 	
 	/**
-	 * Create an event
+	 * Check if the current event is editable by the current authed user
+	 * @param Event $event
+	 * @return boolean
+	 */
+	public function isEditable()
+	{
+		$user = \Auth::user();
+		
+		if ($user->is_admin)
+		{
+			return true;
+		}
+		
+		$society = $user->society;
+		return $society && $this->attributes['society_id'] == $society->id;
+	}
+	
+	/**
+	 * Create an event if data are valid
+	 * Returns the created event on success, or the errors on failure
 	 * @param array $data
 	 * @return \Illuminate\Validation\Validator|\EventCal\Models\Event
 	 */
@@ -132,16 +151,21 @@ class Event extends BaseModel {
 	
 	/**
 	 * Update an existing event
+	 * Returns false if the event cannot be edited by the current user, true on success, array of errors on fail
 	 * @param int $id
 	 * @param array $data
 	 * @return unknown|boolean
 	 */
 	public static function editEvent($id, array $data)
 	{
-
 		self::setDateTime($data);
 		
 		$event = self::find($id);
+		
+		if (!$event->isEditable())
+		{
+			return false;
+		}
 		
 		$exceptKey = array_keys(self::$validateRules);
 		$exceptionValidation = self::buildExceptValidation($exceptKey, $data);
@@ -166,13 +190,21 @@ class Event extends BaseModel {
 	}
 
 	/**
-	 * Delete an event
+	 * Delete an event if the event can be edited by the current authed user
 	 * @param int $id
+	 * @return boolean
 	 */
 	public static function deleteEvent($id)
 	{
 		$event = self::find($id);
+		
+		if (!$event->isEditable())
+		{
+			return false;
+		}
+		
 		$event->delete();
+		return true;
 	}
 
 	/**

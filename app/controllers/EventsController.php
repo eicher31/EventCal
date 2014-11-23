@@ -9,7 +9,14 @@ use EventCal\Models\EventCategory;
 use EventCal\Models\Locality;
 
 class EventsController extends BaseController {
-
+	
+	public function __construct()
+	{
+		$this->beforeFilter('auth', array(
+			'except' => array('index', 'show'),
+		));
+	}
+		
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -80,7 +87,14 @@ class EventsController extends BaseController {
 	 */
 	public function edit($id)
 	{
-		$data = $this->createViewEditData(Event::findWithData($id), 'update', 'put');		
+		$event = Event::findWithData($id);
+		
+		if (!$event->isEditable())
+		{
+			return \Redirect::action('EventCal\Controllers\EventsController@show', array($id));
+		}
+		
+		$data = $this->createViewEditData($event, 'update', 'put');		
 		return \View::make('events.edit')->with($data);
 	}
 
@@ -97,6 +111,12 @@ class EventsController extends BaseController {
 		
 		if($error !== true)
 		{
+			// event cannot be edited by the logged user
+			if ($error === false) 
+			{
+				return \Redirect::action('EventCal\Controllers\EventsController@show', array($id));
+			}
+			
 			return \Redirect::action('EventCal\Controllers\EventsController@edit',array($id))->withErrors($error)->withInput();
 		}
 		
@@ -111,7 +131,12 @@ class EventsController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		Event::deleteEvent($id);
+		if (!Event::deleteEvent($id))
+		{
+			// event cannot be deleted (unauthorized user)
+			return \Redirect::action('EventCal\Controllers\EventsController@show', array($id));
+		}
+		
 		return \Redirect::action('EventCal\Controllers\EventsController@index')->with('notification','delete');
 	}
 	
@@ -133,4 +158,5 @@ class EventsController extends BaseController {
 			'method'	=> $method,
 		);
 	}
+	
 }

@@ -14,7 +14,8 @@
     <p> Adresse 		: {{{$event->address}}}</p>
     <p> Localitée		: {{{$locality->getName()}}}
     
+    @if ($event->isEditable())
     <p>{{Button::normal("Editer l'événements")->asLinkTo(url('event/'.$event->id.'/edit'))}}</p>
-	
+	@endif
 
 @stop
