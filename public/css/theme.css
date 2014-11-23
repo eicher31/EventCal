@@ -6,3 +6,7 @@ body {
 	padding: 40px 15px;
 	text-align: left;
 }
+
+.event-label {
+	 color: white !important;
+}
