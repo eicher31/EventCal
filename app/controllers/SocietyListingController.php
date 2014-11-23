@@ -11,8 +11,12 @@ class SocietyListingController extends BaseController
 	{
 		// get societies, their events and localities, avoiding N+1 queries performance problem
 		$societies = Society::getAllActiveSocietiesData();
+		$events = Society::extractEventsByDayFromSocieties($societies);
 		
-		return \View::make('societies.listing')->with('societies', $societies);
+		return \View::make('societies.listing')->with(array(
+			'societies'	=> $societies,
+			'events'	=> $events,
+		));
 	}
 	
 }

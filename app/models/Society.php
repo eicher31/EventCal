@@ -75,7 +75,7 @@ class Society extends BaseModel
 	public function getAllEvents()
 	{
 		// must be on Event model, we grab events corresponding to the current society
-		return Event::where('society_id', '=', $this->attributes['id'])->orderBy('datetime', 'DESC')->get();
+		return Event::with('category')->where('society_id', '=', $this->attributes['id'])->orderBy('datetime', 'DESC')->get();
 	}
 	
 	/**
@@ -88,6 +88,42 @@ class Society extends BaseModel
 			{
 				$req->where('users.is_actif','=','1');
 			})->get();
+	}
+	
+	/**
+	 * Extracts events of the given societies, and store them as an array
+	 * The array format is: [society-id => [day => events]]
+	 * @param array $societies
+	 * @return array
+	 */
+	public static function extractEventsByDayFromSocieties($societies)
+	{
+		$eventsByDay = array();
+		
+		foreach ($societies as $society)
+		{
+			$eventsByDay[$society->id] = self::extractEventsByDay($society->events);
+		}
+		
+		return $eventsByDay;
+	}
+	
+	/**
+	 * Extract the events from a general events tab and store them in an array by day
+	 * Format of return is: [day => [events...]]
+	 * @param array $events
+	 * @return array
+	 */
+	public static function extractEventsByDay($events)
+	{
+		$eventsByDay = array();
+		
+		foreach ($events as $event)
+		{
+			$eventsByDay[$event->getDate()][] = $event;
+		}
+		
+		return $eventsByDay;
 	}
 	
 }
