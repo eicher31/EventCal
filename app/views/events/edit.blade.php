@@ -1,6 +1,11 @@
 @extends('layout')
 
+@section('css')
+	{{ HTML::style('css/bootstrap-datetimepicker.min.css') }}
+@stop
+
 @section('contenu')
+
 	@if($event->id)
 	<h2>Edition de l'évènement</h2>
 	@else
@@ -19,13 +24,39 @@
     	@endif
     
         {{ Form::label('name', "Nom de l'evenement : ") }}
-        {{ Form::text('name')}}
+        {{ Form::text('name')}}       
         
         {{ Form::label('date', 'Date : ') }}
-        {{ Form::text('date', $event->id ? $event->getDate() : '')}}
-        
-        {{ Form::label('time', 'Hour : ') }}
-        {{ Form::text('time', $event->id ? $event->getTime() : '')}}
+        <div class="container">
+		    <div class="row">
+		        <div class="col-sm-6">
+		            <div class="form-group">
+		                <div class='input-group date' id="datepicker">
+		                    <span class="input-group-addon">
+		                    	<span class="glyphicon glyphicon-calendar"></span>
+		                    </span>
+		                    {{ Form::text('date', $event->id ? $event->getDate() : '', array('data-date-format' => 'DD.MM.YYYY')) }}
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+		
+		{{ Form::label('time', 'Time : ') }}
+        <div class="container">
+		    <div class="row">
+		        <div class="col-sm-6">
+		            <div class="form-group">
+		                <div class='input-group date' id="timepicker">
+		                	<span class="input-group-addon">
+		                    	<span class="glyphicon glyphicon-time"></span>
+		                    </span>
+		                    {{ Form::text('time', $event->id ? $event->getTime() : '', array('data-date-format' => 'HH:mm')) }}
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
         
         {{ Form::label('address', 'Adresse : ') }}
         {{ Form::text('address')}}
@@ -51,6 +82,24 @@
 		{{ Form::close()}}
 	@endif
 	
+	
+@stop
 
-
+@section('js')
+	{{ HTML::script('js/moment-with-locales.min.js') }}
+	{{ HTML::script('js/bootstrap-datetimepicker.min.js') }}
+	
+	<script type="text/javascript">
+		$(function () {
+			$('#datepicker').datetimepicker({
+				language: 'fr',
+				pickTime: false
+			});
+			
+			$('#timepicker').datetimepicker({
+				language: 'fr',
+				pickDate: false
+			});
+		});
+    </script>
 @stop
