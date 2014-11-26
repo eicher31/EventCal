@@ -96,14 +96,21 @@ class BaseModel extends Eloquent {
 	
 	/**
 	 * Returns listing of all the data model, as and [id => name] array
+	 * @param boolean $prependSelectOption
 	 * @return array
 	 */
-	public static function getAsIdNameArray()
+	public static function getAsIdNameArray($prependSelectOption = true)
 	{
 		$array = array();
 		
 		// get all data
 		$data = static::orderBy(static::$orderBy)->get();
+		
+		if ($prependSelectOption)
+		{
+			$array[""] = "- Sélectionner -";
+		}
+		
 		foreach ($data as $d)
 		{
 			$array[$d->id] = $d->getName();
@@ -111,7 +118,7 @@ class BaseModel extends Eloquent {
 		
 		return $array;
 	}
-	
+		
 	/**
 	 * Representational name of the model data
 	 * @return string
