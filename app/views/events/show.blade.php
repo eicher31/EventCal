@@ -4,7 +4,7 @@
 		
 	<h2> Détail de l'évènements </h2>
 	
-	<p> Début à {{{$event->datetime}}}
+	<p> Date: {{{ $event->getDate() }}} {{{ $event->getTime() }}}</p>
 	
     <p> Nom de l'event	: {{{$event->name}}}</p>
     <p> Catégorie		: {{{$category->name}}}</p>

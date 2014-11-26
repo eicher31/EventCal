@@ -84,14 +84,16 @@ class Event extends BaseModel {
 	
 	/**
 	 * Return the date part as Y-m-d formatted string
+	 * @return string
 	 */
 	public function getDate()
 	{
-		return $this->getCarbonDate()->format('Y-m-d');
+		return $this->getCarbonDate()->format('d.m.Y');
 	}
 	
 	/**
 	 * Return a time formatted as H:i, empty if hour is 00:00
+	 * @return string
 	 */
 	public function getTime()
 	{
@@ -264,6 +266,8 @@ class Event extends BaseModel {
 	 */
 	private static function setDateTime(array &$data)
 	{
+		$data['date'] = Carbon::createFromFormat('d.m.Y', $data['date'])->format('Y-m-d');
+		
 		if(empty($data['time']))
 		{
 			$data['time'] = "00:00";

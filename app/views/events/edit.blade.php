@@ -35,7 +35,7 @@
 		                    <span class="input-group-addon">
 		                    	<span class="glyphicon glyphicon-calendar"></span>
 		                    </span>
-		                    {{ Form::text('date', $event->id ? $event->getDate() : '', array('data-date-format' => 'YYYY-MM-DD')) }}
+		                    {{ Form::text('date', $event->id ? $event->getDate() : '', array('data-date-format' => 'DD.MM.YYYY')) }}
 		                </div>
 		            </div>
 		        </div>
