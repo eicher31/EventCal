@@ -58,7 +58,30 @@ Route::controller('about', 'EventCal\Controllers\AboutController');
 Route::when('*', 'csrf', array('post', 'put', 'delete'));
 
 // Routes unknown
+/*
 App::missing(function ()
 {
-	return "404";
+	return Route::make('error','error.missing');
+	//return "404";
+});
+
+// Server Error
+App::error(function()
+{
+	return "500";
+});*/
+
+// Routes errors (404 / server error )
+App::error(function($exception, $code)
+{
+    switch ($code)
+    {
+        case 403:
+      
+        case 404:
+            return Response::view('error.missing', array(), $code);
+
+        default:
+            return Response::view('error.serverError', array(), $code);
+    }
 });
