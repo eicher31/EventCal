@@ -2,11 +2,11 @@
 
 namespace EventCal\Controllers;
 
-use Carbon\Carbon;
 use EventCal\Models\Event;
 use EventCal\Models\Society;
 use EventCal\Models\EventCategory;
 use EventCal\Models\Locality;
+use Carbon\Carbon;
 
 class EventsController extends BaseController {
 	
@@ -23,12 +23,11 @@ class EventsController extends BaseController {
 	 * @return Response
 	 */
 	public function index()
-	{
-		//TODO a changer une fois le calendrier est en place
-		$date = Carbon::today();
+	{								
 		return \View::make('index')->with(array(
-			'weekEvents'	=> Event::getEventPerWeek($date),
-			'categories'	=> EventCategory::getAllCategories(),
+			'showSocietyEvents'	=> true,
+			'eventsByMonths'	=> Event::getListingEvents(Carbon::today()),
+			'categories'		=> EventCategory::getAllCategories(),
 		));
 	}
 

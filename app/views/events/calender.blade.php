@@ -4,27 +4,9 @@
 			
 	<div class="row">
         <div class="col-md-9">
-        	<table>
-			@foreach($weekEvents as $day => $events)
-				<tr>
-					<td>{{$day}} :</td>
-					
-					<td>
-					@foreach($events as $event)											
-						<a href="{{ url('event', array($event->id)) }}" class="btn event-label" 
-							style="background-color: {{{ $event->category->color }}};">
-							{{{ $event->name }}}
-							
-							@if ($event->getTime())
-								{{{ ' (' . $event->getTime() . ')' }}}
-							@endif
-						</a>
-			    	@endforeach 
-			    	</td>
-		    	</tr>
-			@endforeach  
-			</table>
-			
+        	
+        	@include('events.listing')
+					 
 			@if (Auth::check())
 				{{Button::normal('Créer nouveau événement')->asLinkTo(url('event/create'))}}
 			@endif
@@ -32,7 +14,7 @@
         </div>
         
         <div class="col-md-3">
-        	<h4>
+        	<h3>
 			@foreach ($categories as $cat)
 				<p>
 					<span class="label event-label" style="background-color: {{{ $cat->color }}};">
@@ -40,7 +22,7 @@
 				  	</span>
 			  	</p>
 			@endforeach
-			</h4>
+			</h3>
         </div>
 	</div>
 

@@ -31,11 +31,14 @@ class ProfileController extends BaseController {
 	public function getIndex()
 	{
 		$user = \Auth::user();
-		$events = $user->society ? Society::extractEventsByDay($user->society->getAllEvents()) : array();
+		$events = $user->society ? Event::getListingEvents(null, false, $user->society->id) : array();
 		
-		return \View::make('profile.show')->with(array(
-			'user'   => $user,
-			'events' => $events,
+		return \View::make('users.show_user')->with(array(
+			'isAdmin'			=> false,
+			'actionEdit'		=> 'EventCal\Controllers\ProfileController@getEdit',
+			'showSocietyEvents'	=> false,
+			'eventsByMonths'	=> $events,
+			'user'   			=> $user,
 		));
 	}
 
@@ -46,9 +49,11 @@ class ProfileController extends BaseController {
 	 */
 	public function getEdit()
 	{
-		return \View::make('profile.edit')->with(array(
-			'user' => User::findWithSociety($this->currentUserId),
-			'city' => Locality::getAsIdNameArray(),
+		return \View::make('users.edit_user')->with(array(
+			'isAdmin'		=> false,
+			'actionEdit'	=> 'EventCal\Controllers\ProfileController@putEdit',
+			'user' 			=> User::findWithSociety($this->currentUserId),
+			'city' 			=> Locality::getAsIdNameArray(),
 		));
 	}
 
