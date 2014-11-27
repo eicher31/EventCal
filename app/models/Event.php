@@ -41,6 +41,12 @@ class Event extends BaseModel {
 		'locality_id' => 'required|exists:localities,id',
 		'category_id' => 'required|exists:events_categories,id',
 	);
+	
+	/**
+	 * Order models by this column on listing
+	 * @var string
+	 */
+	protected static $orderBy = "datetime";
 		
 	/**
 	 * An event belongs to a society
@@ -125,6 +131,10 @@ class Event extends BaseModel {
 	public function isEditable()
 	{
 		$user = \Auth::user();
+		if (!$user)
+		{
+			return false;
+		}
 		
 		if ($user->is_admin)
 		{
@@ -234,44 +244,38 @@ class Event extends BaseModel {
 	}
 	
 	/**
-	 * Show a array of event by week or by event
-	 * 
-	 * @param Carbon::date $date        	
-	 * @return array event in a week
+	 * Get listing of events, grouped by month in an associtive array [month => [events...]]
+	 * The listing can begging at specified date or with a society
+	 * @param Carbon $dateFrom
+	 * @param string $chronologicalOrder
+	 * @param number $societyId
+	 * @return array
 	 */
-	public static function getEventPerWeek($date)
+	public static function getListingEvents(Carbon $dateFrom = null, $chronologicalOrder = true, $societyId = 0)
 	{
-		if (isset($date))
+		$events = self::with('society', 'category');
+		
+		if ($dateFrom)
 		{
-			$today = $date;
-			// TODO : faux car il faut prendre $date
-			$nextWeek = Carbon::today()->addWeek();
-		}
-		else
-		{
-			$today = Carbon::today();
-			$nextWeek = Carbon::today()->addWeek();
+			$events->where('datetime', '>=', $dateFrom);
 		}
 		
-		$day = Carbon::today();
+		$events->orderBy(self::$orderBy, $chronologicalOrder ? "ASC" : "DESC");
 		
-		$events = self::with('society', 'category')->where('datetime', '>=', $today)->where('datetime', '<', $nextWeek)->get();
-		
-		$dataEvent = array();
-		
-		for ($i = 0; $i <= 7; $i ++)
+		if ($societyId)
 		{
-			$dataEvent[$day->toDateString()] = array();
-			$day->addDay();
+			$events->where('society_id', '=', $societyId);
+		}
+				
+		$outputByMonth = array();
+		
+		foreach ($events->get() as $event)
+		{
+			$dateEvent = $event->getCarbonDate();
+			$outputByMonth[$dateEvent->format('m.Y')][] = $event;
 		}
 		
-		foreach ($events as $event)
-		{
-			$newDateFormat = $event->getCarbonDate();
-			$dataEvent[$newDateFormat->toDateString()][] = $event;
-		}
-		
-		return $dataEvent;
+		return $outputByMonth;
 	}
 	
 }

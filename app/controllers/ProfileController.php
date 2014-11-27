@@ -31,11 +31,12 @@ class ProfileController extends BaseController {
 	public function getIndex()
 	{
 		$user = \Auth::user();
-		$events = $user->society ? Society::extractEventsByDay($user->society->getAllEvents()) : array();
+		$events = $user->society ? Event::getListingEvents(null, false, $user->society->id) : array();
 		
 		return \View::make('profile.show')->with(array(
-			'user'   => $user,
-			'events' => $events,
+			'showSocietyEvents'	=> false,
+			'eventsByMonths'	=> $events,
+			'user'   			=> $user,
 		));
 	}
 
