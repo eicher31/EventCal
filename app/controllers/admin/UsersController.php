@@ -4,6 +4,7 @@ namespace EventCal\Controllers\Admin;
 use EventCal\Controllers\BaseController;
 use EventCal\Models\User;
 use EventCal\Models\Locality;
+use EventCal\Models\Event;
 
 class UsersController extends BaseController {
 
@@ -15,31 +16,8 @@ class UsersController extends BaseController {
 	public function index()
 	{
 		$users = User::getAllUsersForAdmin();
-		return \View::make('admin.listing_users')->with('users', $users);
+		return \View::make('users.listing_users')->with('users', $users);
 	}
-
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-// 	public function create()
-// 	{
-// 		//
-// 	}
-
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-// 	public function store()
-// 	{
-// 		//
-// 	}
-
 
 	/**
 	 * Display the specified resource.
@@ -50,11 +28,14 @@ class UsersController extends BaseController {
 	public function show($id)
 	{
 		$user = User::findWithSociety($id);
-		$events = $user->society ? $user->society->getAllEvents() : array();
+		$events = $user->society ? Event::getListingEvents(null, false, $user->society->id) : array();
 		
-		return \View::make('admin.show_user')->with(array(
-			'user'   => $user,
-			'events' => $events,
+		return \View::make('users.show_user')->with(array(
+			'user'   			=> $user,
+			'isAdmin'			=> true,
+			'actionEdit'		=> 'EventCal\Controllers\Admin\UsersController@edit',
+			'showSocietyEvents'	=> false,
+			'eventsByMonths'	=> $events,
 		));
 	}
 
@@ -67,9 +48,11 @@ class UsersController extends BaseController {
 	 */
 	public function edit($id)
 	{
-		return \View::make('admin.edit_user')->with(array(
-			'user' => User::findWithSociety($id),
-			'city' => Locality::getAsIdNameArray(),
+		return \View::make('users.edit_user')->with(array(
+			'isAdmin'		=> true,
+			'actionEdit'	=> 'EventCal\Controllers\Admin\UsersController@update',
+			'user' 			=> User::findWithSociety($id),
+			'city' 			=> Locality::getAsIdNameArray(),
 		));
 	}
 

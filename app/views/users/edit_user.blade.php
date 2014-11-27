@@ -1,11 +1,11 @@
-@extends('layout')
+@extends($isAdmin ? 'layoutAdmin' : 'layout')
 
 @section('contenu')
 	<h2>Edition de l'utilisateur {{{ $user->email }}}</h2>
 	
 	@include('tools.errors')
 	
-    {{ Form::model($user, array('action' => 'EventCal\Controllers\ProfileController@putEdit','method' => 'put')) }}
+    {{ Form::model($user, array('action' => array($actionEdit, $user->id),'method' => 'put')) }}
         
     <fieldset>
     <legend>Information personnel:</legend>
@@ -19,6 +19,11 @@
         {{ Form::password('password') }}
         {{ Form::label('password_confirm', 'Confirmer : ') }}
         {{ Form::password('password_confirm') }}
+        
+        @if ($isAdmin)
+        {{ Form::label('is_actif', 'Compte actif') }}
+        {{ Form::checkbox('is_actif') }}
+        @endif
     </fieldset>
 	
 	@if ($user->society)
