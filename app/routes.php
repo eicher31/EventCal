@@ -74,14 +74,17 @@ App::error(function()
 // Routes errors (404 / server error )
 App::error(function($exception, $code)
 {
-    switch ($code)
-    {
-        case 403:
-      
-        case 404:
-            return Response::view('error.missing', array(), $code);
-
-        default:
-            return Response::view('error.serverError', array(), $code);
-    }
+	if(App::environment('production'))
+	{
+	    switch ($code)
+	    {
+	        case 403:
+	      
+	        case 404:
+	            return Response::view('error.missing', array(), $code);
+	
+	        default:
+	            return Response::view('error.serverError', array(), $code);
+	    }
+	}
 });
