@@ -3,6 +3,8 @@
 namespace EventCal\Controllers;
 use EventCal\Models\Society;
 use EventCal\Models\User;
+use EventCal\Models\Event;
+use Carbon\Carbon;
 
 class SocietyListingController extends BaseController
 {
@@ -20,6 +22,12 @@ class SocietyListingController extends BaseController
 	
 	public function show($id)
 	{
+		$society = Society::getActiveSociety($id);
 		
+		return \View::make('societies.show')->with(array(
+			'society'			=> $society,
+			'showSocietyEvents'	=> false,
+			'eventsByMonths'	=> Event::getListingEvents(Carbon::today(), true, $society->id),
+		));
 	}
 }

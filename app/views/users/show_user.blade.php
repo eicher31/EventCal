@@ -29,36 +29,47 @@
 		</div>
 		@endif
     </div>
-		
 	
 	<div class="row">
-        <div class="col-md-6">
-        	<h3>Utilisateur</h3>
-        	<p>{{{ $user->email }}}</p>
-			<p>{{{ $user->first_name }}}</p>
-			<p>{{{ $user->last_name }}}</p>
+        <div class="col-md-6">        
+            <label class="control-label">Nom et prénom</label>
+        	<div class="container">{{{ $user->getName() }}}</div>
+        	
+        	@if ($user->society)
+	        	<label class="control-label">Nom de société</label>
+	        	<div class="container">{{{ $user->society->name }}}</div>
+			
+				<label class="control-label">Description de la société</label>
+	        	<div class="container">{{{ $user->society->description }}}</div>
+        	@else
+        		<label class="control-label">Ne possède pas de société</label>
+        	@endif
 		</div>
 		<div class="col-md-6">
-			<h3>Société</h3>
-	
-			@if ($user->society)
-				<p>{{{ $user->society->name }}}</p>
-				<p>{{{ $user->society->description }}}</p>
-				<p>{{{ $user->society->website }}}</p>
-				<p>{{{ $user->society->logo }}}</p>
-				<p>{{{ $user->society->telephone }}}</p>
-				<p>{{{ $user->society->address }}}</p>
-				<p>{{{ $user->society->locality->getName() }}}</p>
-			@else
-				<p>Aucune société</p>
-			@endif
+			<label class="control-label">Adresse e-mail</label>
+        	<div class="container">{{{ $user->email }}}</div>
 			
+			@if ($user->society)
+	        	<label class="control-label">Site Internet</label>
+	        	<div class="container">{{{ $user->society->website ? $user->society->website : 'Non spécifié' }}}</div>
+	        	
+	        	<label class="control-label">Téléphone</label>
+	        	<div class="container">{{{ $user->society->telephone ? $user->society->telephone : 'Non spécifié' }}}</div>
+	        	
+	        	<label class="control-label">Adresse et localité</label>
+	        	<div class="container">
+	        		@if ($user->society->address)
+	        			{{{ $user->society->address }}} <br />
+	        		@endif
+	        		{{{ $user->society->locality->getName() }}}
+	        	</div>
+			@endif
 		</div>
 	</div>
 		
 	<div class="row">
         <div class="col-md-10">
-        	<h3>Evénements</h3>
+        	<h2>Evénements</h2>
 	
 			@include('events.listing')
 		</div>

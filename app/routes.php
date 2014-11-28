@@ -37,6 +37,7 @@ Route::group(array('before' => 'auth.admin'), function ()
 
 // routes for listing entreprise with there events
 Route::get('societies', 'EventCal\Controllers\SocietyListingController@index');
+Route::get('societies/{id}', 'EventCal\Controllers\SocietyListingController@show');
 
 // routes for connected users, like profile and event management
 Route::group(array('before' => 'auth'), function ()
