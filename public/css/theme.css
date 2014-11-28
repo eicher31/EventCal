@@ -10,3 +10,11 @@ body {
 .event-label {
 	 color: white !important;
 }
+
+.btn-containers form {
+	display: inline;
+}
+
+.row h2 {
+	margin-top: 0;
+}

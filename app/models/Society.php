@@ -98,35 +98,33 @@ class Society extends BaseModel
 	}
 	
 	/**
-	 * 
-	 * @return Ambigous <multitype:, unknown, \Illuminate\Database\Eloquent\Model, \Illuminate\Database\Eloquent\static, NULL>
+	 * Returns the active societies, in a 2D array ordered by the first letter of the name [letter => [societies...], ...]
+	 * @return array
 	 */
 	public static function getSocietiesByName()
 	{
-
 		$alphas = range('A', 'Z');
-		$num = range('0','9');		
+		$num = range('0','9');	
 		
 		$societies = self::getActiveSociety();
 		$data = array();
 		
 		foreach ($societies as $society)
 		{
-			$char = $society->name[0];
+			$char = strtoupper($society->name[0]);
 			
 			// recup
-			if(in_array($char,$alphas))
+			if(in_array($char, $alphas, true))
 			{
 				$data[$char][] = $society;
 			}
-			
-			elseif(in_array($char,$num))
+			elseif(in_array($char,$num, true))
 			{
 				$data["0-9"][] = $society;
 			}
 			else
 			{
-				$data["else"][] = $society;
+				$data["§"][] = $society;
 			}
 		}
 		
