@@ -1,35 +1,34 @@
-@extends('layout')
+@extends('layout') 
 
-@section('contenu')
-	
-@foreach ($societies as $society)
-	
-	<div class="row">
-        <div class="col-md-6">
-		    <p>{{ $society->name }} </p>
-		    <p>{{ $society->name }} | {{ $society->address }}</p>
-		    <p>{{ $society->description }} | {{ $society->telephone }}</p>
-		    <p>{{ $society->locality->getName() }}</p>
-     	</div>
-		<div class="col-md-6">
-			<table>
-		    @foreach($events[$society->id] as $day => $evts)
-		    	<tr>
-		    		<td>{{{ $day }}}</td>
-		    		<td>
-		    		@foreach ($evts as $e)
-    					<a href="{{ url('event', array($e->id)) }}" class="label label-default">
-		    				{{{ $e->getName() }}}
-		    			</a>
-		    		@endforeach
-		    		</td>
-		    	</tr>
-			@endforeach  
-			</table>
-		</div>
-	</div>
-	<hr />
-	
-@endforeach
+@section('contenu') 
+
+
+
+<table class="table table-condensed">
+			<thead>
+				<tr>
+					<th>Nom</th>
+					<th>Localite</th>
+					<th>Website</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				@foreach ($societiesByName as $name => $societies)
+				<tr>
+					<td colspan="3"><h3>{{{ $name }}}</h3></td>
+				</tr>
+
+				@foreach ($societies as $society)
+				<tr>
+					<td><a href="{{ url('societies', array($society->id)) }}">
+		        					{{{ $society->getName() }}}
+		        	</a></td>
+					<td>{{{ $society->locality->getName() }}}</td>
+					<td>{{{ $society->website }}}</td> 
+				</tr>
+				@endforeach @endforeach
+			</tbody>
+		</table>
 
 @stop

@@ -14,13 +14,9 @@ class SocietyListingController extends BaseController
 	 * @return \View
 	 */
 	public function index()
-	{
-		$societies = Society::getActiveSociety();
-		$events = Society::extractEventsByDayFromSocieties($societies);
-		
+	{	
 		return \View::make('societies.listing')->with(array(
-			'societies'	=> $societies,
-			'events'	=> $events,
+			'societiesByName'	=> Society::getSocietiesByName(),
 		));
 	}
 	

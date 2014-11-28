@@ -1,11 +1,10 @@
 @extends('layout')
 
 @section('contenu')
-	<h2>A propos</h2>
 	
-	{{Lang::get('message.titreAboutUs')}}
+	<h2>{{Lang::get('message.titreAboutUs')}}</h2>
 	
-	<h2>{{Lang::get('message.contactTitre')}}</h2>
+	{{Lang::get('message.contactTitre')}}
 	
 	@include('tools.errors')
 	

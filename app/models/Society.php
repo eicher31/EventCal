@@ -88,13 +88,49 @@ class Society extends BaseModel
 			{
 				$req->where('users.is_actif','=','1');
 			});
-		
+				
 		if ($id)
 		{
 			return $data->find($id);
 		}
 		
-		return $data->get();
+		return $data->orderBy(static::$orderBy)->get();
+	}
+	
+	/**
+	 * 
+	 * @return Ambigous <multitype:, unknown, \Illuminate\Database\Eloquent\Model, \Illuminate\Database\Eloquent\static, NULL>
+	 */
+	public static function getSocietiesByName()
+	{
+
+		$alphas = range('A', 'Z');
+		$num = range('0','9');		
+		
+		$societies = self::getActiveSociety();
+		$data = array();
+		
+		foreach ($societies as $society)
+		{
+			$char = $society->name[0];
+			
+			// recup
+			if(in_array($char,$alphas))
+			{
+				$data[$char][] = $society;
+			}
+			
+			elseif(in_array($char,$num))
+			{
+				$data["0-9"][] = $society;
+			}
+			else
+			{
+				$data["else"][] = $society;
+			}
+		}
+		
+		return $data;
 	}
 	
 	/**
