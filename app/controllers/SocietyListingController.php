@@ -9,6 +9,10 @@ use Carbon\Carbon;
 class SocietyListingController extends BaseController
 {
 	
+	/**
+	 * Lists all societies
+	 * @return \View
+	 */
 	public function index()
 	{
 		$societies = Society::getActiveSociety();
@@ -20,6 +24,11 @@ class SocietyListingController extends BaseController
 		));
 	}
 	
+	/**
+	 * Show a specific society
+	 * @param int $id
+	 * @return \View
+	 */
 	public function show($id)
 	{
 		$society = Society::getActiveSociety($id);
