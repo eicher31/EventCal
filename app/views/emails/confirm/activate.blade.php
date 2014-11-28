@@ -7,6 +7,7 @@
 		<h2>Activation</h2>	
 
 		<div>
+			{{Lang::get('message.activationText',array('nom'=> $user->getName()))}}
 			Bonjour {{{$user->getName()}}},<br/><br/>
 			Votre compte a été activé sur le site EventCal.<br/>
 			

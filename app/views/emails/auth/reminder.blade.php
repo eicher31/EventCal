@@ -4,12 +4,12 @@
 		<meta charset="utf-8">
 	</head>
 	<body>
-		<h2>Password Reset</h2>
+		<h2>{{Lang::get('message.titreReset')}}</h2>
 
 		<div>
-			To reset your password, complete this form: 
+			{{Lang::get('message.textReset1')}}
 			<a href="{{ URL::to('password/reset', array($token)) }}">{{ url('password/reset') }}</a>.<br/>
-			This link will expire in {{ Config::get('auth.reminder.expire', 60) }} minutes.
+			{{Lang::get('message.textReset2',array('expire' => Config::get('auth.reminder.expire', 60)))}}
 		</div>
 	</body>
 </html>

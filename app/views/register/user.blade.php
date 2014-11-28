@@ -24,8 +24,7 @@
     <legend>Information société:</legend>
         {{ Form::label('name', 'Nom : ') }}
         {{ Form::text('name') }}
-        {{ Form::label('logo', 'Votre logo : ') }}
-        {{ Form::file('logo') }}
+
         {{ Form::label('description', 'Description : ') }}
         {{ Form::text('description') }}
         {{ Form::label('website', 'Site internet: ') }}
@@ -36,8 +35,7 @@
         {{ Form::text('address') }}
         {{ Form::label('telephone', 'Numero de téléphone : ') }}
         {{ Form::number('telephone') }}
-        {{ Form::label('is_public', 'Voulez que vos données soient publiques ? ') }}
-        {{ Form::checkbox('is_public') }}
+
     </fieldset>
         {{ Form::submit('Enregistrer') }}
 	{{ Form::close() }}

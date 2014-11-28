@@ -71,7 +71,7 @@ class ProfileController extends BaseController {
 			return \Redirect::action('EventCal\Controllers\ProfileController@getEdit')->withErrors($errors)->withInput();			
 		}
 		
-		return \Redirect::action('EventCal\Controllers\ProfileController@getIndex')->with('notification', 'Màj réussie');
+		return \Redirect::action('EventCal\Controllers\ProfileController@getIndex')->with('notification', \Lang::get('message.profileConfirmation'));
 	}
 
 	

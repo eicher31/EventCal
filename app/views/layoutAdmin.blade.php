@@ -58,7 +58,7 @@
 		<footer>
 			<div class="container">
 		      	<div class="starter-template">
-					<p class="lead">&copy; EventCal 2014</p>
+					<p class="lead">{{\Lang::get('message.lead')}}</p>
 				</div>
 	    	</div>
 		</footer>
