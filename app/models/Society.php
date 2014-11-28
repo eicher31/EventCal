@@ -79,15 +79,22 @@ class Society extends BaseModel
 	}
 	
 	/**
-	 * Get active societies, with their data (user, locality, events)
+	 * Get active societies, with their data (user, locality)
 	 */
-	public static function getAllActiveSocietiesData()
+	public static function getActiveSociety($id = 0)
 	{
-		return self::with(array('events', 'locality','user'))
+		$data = self::with(array('locality', 'user'))
 			->whereHas('user', function($req)
 			{
 				$req->where('users.is_actif','=','1');
-			})->get();
+			});
+		
+		if ($id)
+		{
+			return $data->find($id);
+		}
+		
+		return $data->get();
 	}
 	
 	/**

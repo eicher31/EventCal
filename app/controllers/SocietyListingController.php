@@ -9,8 +9,7 @@ class SocietyListingController extends BaseController
 	
 	public function index()
 	{
-		// get societies, their events and localities, avoiding N+1 queries performance problem
-		$societies = Society::getAllActiveSocietiesData();
+		$societies = Society::getActiveSociety();
 		$events = Society::extractEventsByDayFromSocieties($societies);
 		
 		return \View::make('societies.listing')->with(array(
@@ -19,4 +18,8 @@ class SocietyListingController extends BaseController
 		));
 	}
 	
+	public function show($id)
+	{
+		
+	}
 }
