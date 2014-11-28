@@ -4,16 +4,14 @@
 			
 	<div class="row">
         <div class="col-md-9">
-        	
-        	@include('events.listing')
-					 
-			@if (Auth::check())
-				{{Button::normal('Créer nouveau événement')->asLinkTo(url('event/create'))}}
-			@endif
-			
+        	@include('events.listing')			
         </div>
         
         <div class="col-md-3">
+        	@if (Auth::check())
+				{{Button::normal('Créer nouveau événement')->asLinkTo(url('event/create'))}}
+			@endif
+        
         	<h3>
 			@foreach ($categories as $cat)
 				<p>
