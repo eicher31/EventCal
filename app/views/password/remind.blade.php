@@ -1,14 +1,27 @@
 @extends('layout')
 
 @section('contenu')
-	<h2>Récupère le mot de passe</h2>
+
+    <div class="row">
+		<div class="col-md-12">
+			<h2>Récupère le mot de passe</h2>
+		</div>
+	</div>
 	
-	@include('tools.errors')
-	
-    {{ Form::open(array('action' => 'EventCal\Controllers\RemindersController@postRemind', 'method' => 'post')) }}
-    {{ Form::label('email', 'E-mail :') }}
-    {{ Form::text('email') }}
-    {{ Form::submit('Envoyer le mot de passe') }}
-    {{ Form::close() }}
+    <div class="row">
+		<div class="col-md-6">			
+		    {{ Form::open(array('action' => 'EventCal\Controllers\RemindersController@postRemind', 'method' => 'post')) }}
+		
+			@include('tools.errors')
+		
+			<div class="form-group">
+				{{ Form::label('email', 'E-mail :') }}
+   				{{ Form::text('email') }}
+			</div>
+						
+        	{{ Form::submit('Envoyer le mot de passe') }}
+		    {{ Form::close() }}
+		</div>
+	</div>
 
 @stop

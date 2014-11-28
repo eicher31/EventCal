@@ -5,9 +5,9 @@ namespace EventCal\Controllers;
 class AboutController extends BaseController {
 	
 	private static $contactRules = array(
-		'email'	=> 'required|email',
-		'title'	=> 'required',
-		'msg'	=> 'required',
+		'email'		=> 'required|email',
+		'title'		=> 'required',
+		'text'		=> 'required',
 	);
 	
 	public function getIndex()
