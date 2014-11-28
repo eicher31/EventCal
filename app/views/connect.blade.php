@@ -8,13 +8,13 @@
     {{ Form::text('email') }}
     {{ Form::label('password', 'Mot de passe :') }}
     {{ Form::password('password') }}
-	{{ Form::label('persistent', 'Se souvenir de moi') }}
+	{{ Form::label('persistent', Lang::get('message.rememberMe')) }}
 	{{ Form::checkbox('persistent') }}
     {{ Form::submit('Se connecter') }}
     {{ Form::close() }}
 
 	<p>
-		{{ Link_to('register',"Inscription") }}
-		{{ link_to('password/remind', 'Mot de passe perdu') }}
+		{{ Link_to('register',Lang::get('message.inscription')) }}
+		{{ link_to('password/remind', Lang::get('message.lossPassword')) }}
 	</p>
 @stop

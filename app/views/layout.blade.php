@@ -56,7 +56,7 @@
 		<footer>
 			<div class="container">
 		      	<div class="starter-template">
-					<p class="lead">&copy; EventCal 2014</p>
+					<p class="lead">{{Lang::get('message.lead')}}</p>
 					@if (Auth::check() && Auth::user()->is_admin)
 						<p class="lead">{{ link_to('admin', 'Administration') }}</p>
 					@endif

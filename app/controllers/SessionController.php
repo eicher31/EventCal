@@ -30,7 +30,7 @@ class SessionController extends BaseController {
 		{
 			// connexion réussie
 			$url = \Session::get('url.intended', '/');
-			return \Redirect::to($url)->with('notification', 'Connexion réussie');
+			return \Redirect::to($url)->with('notification', \Lang::get('message.connexionSuccess'));
 		}
 	}
 	
@@ -41,7 +41,7 @@ class SessionController extends BaseController {
 	{
 		\Auth::logout();
 		
-		return \Redirect::to('/')->with('notification', 'Vous êtes déconnecté!');
+		return \Redirect::to('/')->with('notification', \Lang::get('message.disconnection'));
 	}
 
 }

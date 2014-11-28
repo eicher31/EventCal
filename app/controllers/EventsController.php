@@ -58,7 +58,7 @@ class EventsController extends BaseController {
 			return \Redirect::action('EventCal\Controllers\EventsController@create')->withErrors($return)->withInput();
 		}
 
-		return \Redirect::action('EventCal\Controllers\EventsController@show',array($return->id))->with('notification','creation reussite');
+		return \Redirect::action('EventCal\Controllers\EventsController@show',array($return->id))->with('notification',\Lang::get('message.eventCreate'));
 	}
 
 	/**
@@ -119,7 +119,7 @@ class EventsController extends BaseController {
 			return \Redirect::action('EventCal\Controllers\EventsController@edit',array($id))->withErrors($error)->withInput();
 		}
 		
-		return \Redirect::action('EventCal\Controllers\EventsController@show',array($id))->with('notification','mise a jour');
+		return \Redirect::action('EventCal\Controllers\EventsController@show',array($id))->with('notification',\Lang::get('message.eventUpdate'));
 	}
 
 	/**
@@ -136,7 +136,7 @@ class EventsController extends BaseController {
 			return \Redirect::action('EventCal\Controllers\EventsController@show', array($id));
 		}
 		
-		return \Redirect::action('EventCal\Controllers\EventsController@index')->with('notification','delete');
+		return \Redirect::action('EventCal\Controllers\EventsController@index')->with('notification',\Lang::get('message.eventDelete'));
 	}
 	
 	/**

@@ -33,6 +33,6 @@ class AboutController extends BaseController {
 			$message->subject($data['title']);
 		});
 		
-		return \Redirect::back()->with('notification', 'Mail envoyé');
+		return \Redirect::back()->with('notification', \Lang::get('message.sendMail'));
 	}
 }

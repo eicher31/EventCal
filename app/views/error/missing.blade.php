@@ -1,6 +1,6 @@
 @extends('layout')
 
 @section('contenu')
-	<h2>Error 404</h2>
+	<h2>{{Lang::get('message.404')}}</h2>
 	
 @stop

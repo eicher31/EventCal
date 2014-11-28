@@ -3,9 +3,9 @@
 @section('contenu')
 	<h2>A propos</h2>
 	
-	<p>Ce site...</p>
+	{{Lang::get('message.titreAboutUs')}}
 	
-	<h2>Contact</h2>
+	<h2>{{Lang::get('message.contactTitre')}}</h2>
 	
 	@include('tools.errors')
 	
