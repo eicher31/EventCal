@@ -14,7 +14,9 @@ class EventCategoryController extends BaseController {
 	 */
 	public function index()
 	{
-		//
+		$cat = EventCategory::getAllCategories();
+		
+		return \View::make("category.listing")->with('categories',$cat);
 	}
 
 
@@ -84,7 +86,11 @@ class EventCategoryController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		
+		$not = (EventCategory::deleteCategory($id))?"maj ok":"errors";
+		
+		return \Redirect::action("EventCal\Controllers\Admin\EventCategoryController@index")->with("notification",$not);
+		
 	}
 
 
