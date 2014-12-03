@@ -91,7 +91,7 @@ class EventCategory extends BaseModel
 		$cat = static::find($id);
 		
 		
-		$errors=static::validate($data);
+		$errors=static::validate($data, array(), array('name' => $id));
 		
 		if($errors!==true)
 		{

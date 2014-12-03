@@ -27,7 +27,11 @@ class EventCategoryController extends BaseController {
 	 */
 	public function create()
 	{
-		//
+		return \View::make("category.formEdit")->with(array(
+			"cat"=>new EventCategory(),
+			"action"=>"EventCal\Controllers\Admin\EventCategoryController@store",
+			"methode"=>"post",
+		));
 	}
 
 
@@ -38,7 +42,12 @@ class EventCategoryController extends BaseController {
 	 */
 	public function store()
 	{
-		//
+		$data = \Input::all();
+		if(($error = EventCategory::createCategory($data))===true)
+		{
+			return \Redirect::action("EventCal\Controllers\Admin\EventCategoryController@index")->with("notification","maj");
+		}
+		return \Redirect::action("EventCal\Controllers\Admin\EventCategoryController@create")->withErrors($error)->withInput();
 	}
 
 
@@ -62,7 +71,11 @@ class EventCategoryController extends BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		return \View::make("category.formEdit")->with(array(
+			"cat"=> EventCategory::find($id),
+			"action"=> "EventCal\Controllers\Admin\EventCategoryController@update",
+			"methode"=>"put",
+		));
 	}
 
 
@@ -74,7 +87,12 @@ class EventCategoryController extends BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$data = \Input::all();
+		if(($error = EventCategory::updateCategory($id, $data))===true)
+		{
+			return \Redirect::action("EventCal\Controllers\Admin\EventCategoryController@index")->with("notification","maj");
+		}
+		return \Redirect::action("EventCal\Controllers\Admin\EventCategoryController@edit",array($id))->withErrors($error)->withInput();
 	}
 
 
