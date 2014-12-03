@@ -1,4 +1,4 @@
-@extends('layoutAdmin')
+@extends('layout')
 
 @section('contenu')
 	<h2>Administration des utilisateurs</h2>
@@ -25,8 +25,14 @@
 				</td>
 				
 				<td>
-					{{ link_to_action('EventCal\Controllers\Admin\UsersController@show', 'Voir', array($user->id)) }}
-					{{ link_to_action('EventCal\Controllers\Admin\UsersController@edit', 'Editer', array($user->id)) }}
+					<div class="btn-containers">		
+						<a class="btn btn-default" href="{{ action('EventCal\Controllers\Admin\UsersController@show', array($user->id)) }}">
+							Voir
+						</a>
+						<a class="btn btn-default" href="{{ action('EventCal\Controllers\Admin\UsersController@edit', array($user->id)) }}">
+							Editer
+						</a>
+					</div>
 				</td>
 			</tr>
 			@endforeach

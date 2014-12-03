@@ -1,7 +1,7 @@
-@extends($isAdmin ? 'layoutAdmin' : 'layout')
+@extends('layout')
 
 @section('contenu')
-
+	
 	<div class="row">
         <div class="col-md-8">
 			<h2>Compte de l'utilisateur {{{ $user->email }}}</h2>
@@ -14,8 +14,8 @@
 				{{ Form::close() }}
 			@endif
 			
-			<a href="{{ action($actionEdit, array($user->id)) }}">
-				{{ Button::withValue('Editer') }}
+			<a class="btn btn-default" href="{{ action($actionEdit, array($user->id)) }}">
+				Editer
 			</a>
 			
 			@if ($isAdmin)

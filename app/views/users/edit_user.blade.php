@@ -1,4 +1,4 @@
-@extends($isAdmin ? 'layoutAdmin' : 'layout')
+@extends('layout')
 
 @section('contenu')
 	
