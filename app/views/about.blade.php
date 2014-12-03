@@ -15,22 +15,22 @@
 			@include('tools.errors')
 			
 			<div class="form-group"> 
-		        {{ Form::label('email', 'Votre e-mail : ') }}
+		        {{ Form::label('email', Lang::get('message.aboutEmail')) }}
         		{{ Form::email('email', $email) }}
         	</div>
         	
         	<div class="form-group"> 
-		        {{ Form::label('title', 'Votre titre : ') }}
+		        {{ Form::label('title', Lang::get('message.aboooutTitle')) }}
 		        {{ Form::text('title') }}
         	</div>
         	
         	<div class="form-group"> 
-		        {{ Form::label('text', 'Votre message : ') }}
+		        {{ Form::label('text', Lang::get('message.aboutMsg')) }}
 		        {{ Form::textarea('text', null, array('rows' => 5)) }}
         	</div>
         	
         	<div class="from-group">
-        		{{ Form::submit('Envoyer') }}
+        		{{ Form::submit(Lang::get('message.send')) }}
         		{{ Form::reset('Réinitialiser', array('class' => 'btn btn-default')) }}
         	</div>
         	

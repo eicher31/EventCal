@@ -7,9 +7,9 @@
 <table class="table table-condensed">
 			<thead>
 				<tr>
-					<th>Nom</th>
-					<th>Localite</th>
-					<th>Website</th>
+					<th>{{Lang::get('message.listingRowName')}}</th>
+					<th>{{Lang::get('message.listingRowLocality')}}</th>
+					<th>{{Lang::get('message.listingRowWeb')}}</th>
 				</tr>
 			</thead>
 

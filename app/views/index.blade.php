@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('contenu')
-	<h2>Calendrier</h2>
+	<h2>{{Lang::get('message.titleIndex')}}</h2>
 	
 @include('events.calender')
 	
