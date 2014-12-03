@@ -8,7 +8,7 @@
 
 	<div class="row">
         <div class="col-md-12">
-			<h2>{{{ $event->id ? "Edition de l'évènement" : "Ajout de l'évènement" }}}</h2>
+			<h2>{{{ $event->id ? Lang::get('message.titleEdit') : Lang::get('message.ajoutEdit') }}}</h2>
         </div>
     </div>
 	
@@ -20,30 +20,30 @@
 		<div class="col-md-6">	
     		@if($societies)
     		<div class="form-group">  	
-	    		{{ Form::label('society_id','Société : ')}}
+	    		{{ Form::label('society_id',Lang::get('message.society'))}}
 	        	{{ Form::select('society_id',$societies)}}
 	        </div>
 	    	@endif
 				
         	<div class="form-group">  
-        	    {{ Form::label('name', "Nom de l'evenement : ") }}
+        	    {{ Form::label('name', Lang::get('message.nameEvent')) }}
         		{{ Form::text('name')}}       
         	</div>
         	
         	<div class="form-group">
-        	    {{ Form::label('description','Description : ')}}
+        	    {{ Form::label('description',Lang::get('message.description'))}}
        			{{ Form::textarea('description', null, array('rows' => 5))}}
         	</div>
         	
         	<div class="form-group">
-		        {{ Form::label('category_id','Catégorie : ')}}
+		        {{ Form::label('category_id',Lang::get('message.categorie'))}}
 		        {{ Form::select('category_id',$categories)}}
         	</div>
 		</div>
 		
 		<div class="col-md-6">
 			<div class="form-group"> 
-				{{ Form::label('date', 'Date : ') }}
+				{{ Form::label('date', Lang::get('message.date')) }}
 				<div class='input-group date' id="datepicker">
                     <span class="input-group-addon">
                     	<span class="glyphicon glyphicon-calendar"></span>
@@ -53,7 +53,7 @@
         	</div>
 		
 			<div class="form-group"> 
-				{{ Form::label('time', 'Time : ') }}
+				{{ Form::label('time', Lang::get('message.time')) }}
                 <div class='input-group date' id="timepicker">
                 	<span class="input-group-addon">
                     	<span class="glyphicon glyphicon-time"></span>
@@ -63,12 +63,12 @@
         	</div>
         	
         	<div class="form-group">
-		        {{ Form::label('address', 'Adresse : ') }}
+		        {{ Form::label('address', Lang::get('message.editAdress')) }}
 		        {{ Form::text('address')}}
         	</div>
         	
         	<div class="form-group">
-		        {{ Form::label('locality_id', 'Localite : ') }}
+		        {{ Form::label('locality_id', Lang::get('message.editLocality')) }}
         		{{ Form::select('locality_id',$localities)}}
         	</div>
 		</div>
@@ -76,7 +76,7 @@
         
     <div class="row">
     	<div class="col-md-6">
-    		{{ Form::submit('enregistrer')}}        
+    		{{ Form::submit(Lang::get('message.save'))}}        
     		{{ Form::reset('clear', array('class' => 'btn btn-default')) }}
     	</div>
     </div> 

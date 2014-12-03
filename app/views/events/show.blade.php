@@ -9,10 +9,10 @@
 		
 		<div class="col-md-4 btn-containers">
 	    @if ($event->isEditable())
-	   		{{Button::normal("Editer")->asLinkTo(url('event/'.$event->id.'/edit'))}}
+	   		{{Button::normal(Lang::get('message.edit'))->asLinkTo(url('event/'.$event->id.'/edit'))}}
 	   		
    			{{ Form::open(array('action' => array('EventCal\Controllers\EventsController@destroy', $event->id), 'method' => 'delete')) }}
-				{{ Form::submit('Supprimer') }}
+				{{ Form::submit(Lang::get('message.del')) }}
 			{{ Form::close()}}
 		@endif		
 		</div>
@@ -21,12 +21,12 @@
 	<div class="row">
 		<div class="col-md-6">			
 			<div class="form-group">  
-	            <label>Date</label>
+	            <label>{{Lang::get('message.showDate')}}</label>
 	        	<p>{{{ $event->getDate() }}} {{{ $event->getTime() }}}</p>
         	</div>
         	
         	<div class="form-group">  
-	            <label>Localisation</label>
+	            <label>{{Lang::get('message.showLocality')}}</label>
 	        	<p>
         			@if ($event->address)
 	        			{{{ $event->address }}} <br />
@@ -36,14 +36,14 @@
 			</div>
 		        	
         	<div class="form-group">  
-	            <label>Description de l'événement</label>
+	            <label>{{Lang::get('message.showDescription')}}</label>
 	        	<p>{{{ $event->description }}}</p>
         	</div>
 		</div>
 		
 		<div class="col-md-6">
 			<div class="form-group">  
-	            <label>Catégorie</label>
+	            <label>{{Lang::get('message.showCategory')}}</label>
 	        	<p>
 		        	<span class="label event-label" style="background-color: {{{ $category->color }}};">
 		        		{{{ $category->name }}}
@@ -52,14 +52,14 @@
         	</div>
 		
 			<div class="form-group">  
-	            <label>Société organisatrice</label>
+	            <label>{{Lang::get('message.showOrganizer')}}</label>
 	        	<p>
 	        		<a href="{{ url('societies', array($society->id)) }}">{{{ $society->getName() }}}</a>
         		</p>
         	</div>
         	
 			<div class="form-group">  
-	            <label>Site Internet de la société</label>
+	            <label>{{Lang::get('message.showSite')}}</label>
 	        	<p>
 	        		@if ($society->website)
 	        		<a href="{{{ $society->website }}}">{{{ $society->website }}}</a>
@@ -70,8 +70,8 @@
         	</div>
 		
 			<div class="form-group">  
-	            <label>Téléphone</label>
-	        	<p>{{{ $society->telephone ? $society->telephone : 'Non spécifié' }}}</p>
+	            <label>{{Lang::get('message.showTelephone')}}</label>
+	        	<p>{{{ $society->telephone ? $society->telephone : Lang::get('message.showNotShow') }}}</p>
         	</div>
         	        	
 		</div>

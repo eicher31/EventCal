@@ -4,7 +4,7 @@
 	
 	<div class="row">
 		<div class="col-md-12">
-			<h2>Connexion</h2>
+			<h2>{{Lang::get('message.connexion')}}</h2>
 		</div>
 	</div>
 	
@@ -16,12 +16,12 @@
 			@include('tools.errors')
 		
 			<div class="form-group">
-				{{ Form::label('email', 'E-mail :') }}
+				{{ Form::label('email', Lang::get('message.email')) }}
 			    {{ Form::text('email') }}
 			</div>
 			
 			<div class="form-group">
-				{{ Form::label('password', 'Mot de passe :') }}
+				{{ Form::label('password', Lang::get('message.password')) }}
 			    {{ Form::password('password') }}
 			</div>
 			

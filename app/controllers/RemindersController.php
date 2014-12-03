@@ -32,7 +32,7 @@ class RemindersController extends BaseController {
 				return \Redirect::back()->withErrors($this->createErrors($response));
 			
 			case \Password::REMINDER_SENT:
-				return \Redirect::back()->with('notification', 'Email de récupération de mot de passe envoyé');
+				return \Redirect::back()->with('notification', \Lang::get('message.msgRecup'));
 		}
 	}
 	
@@ -73,7 +73,7 @@ class RemindersController extends BaseController {
 				return \Redirect::back()->withErrors($this->createErrors($response));
 			
 			case \Password::PASSWORD_RESET:
-				return \Redirect::to('/')->with('notification', 'Mot de passe mis à jour');
+				return \Redirect::to('/')->with('notification', \Lang::get('message.msgPassUpadate'));
 		}
 	}
 	

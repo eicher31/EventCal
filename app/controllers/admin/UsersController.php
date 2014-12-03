@@ -74,7 +74,7 @@ class UsersController extends BaseController {
 			return \Redirect::action('EventCal\Controllers\Admin\UsersController@edit', array($id))->withErrors($errors)->withInput();			
 		}
 		
-		return \Redirect::action('EventCal\Controllers\Admin\UsersController@show', array($id))->with('notification', 'Màj réussie');
+		return \Redirect::action('EventCal\Controllers\Admin\UsersController@show', array($id))->with('notification', \Lang::get('message.msgMAJ'));
 	}
 
 
@@ -88,7 +88,7 @@ class UsersController extends BaseController {
 	{
 		User::deleteAllData($id);
 		
-		return \Redirect::action('EventCal\Controllers\Admin\UsersController@index')->with('notification', 'Suppression effectuée');
+		return \Redirect::action('EventCal\Controllers\Admin\UsersController@index')->with('notification', \Lang::get('message.msgSup'));
 	}
 	
 	/**
@@ -103,7 +103,7 @@ class UsersController extends BaseController {
 		
 		User::updateWithSociety($id, $input);
 		
-		return \Redirect::action('EventCal\Controllers\Admin\UsersController@show', array($id))->with('notification', 'Utilisateur activé');
+		return \Redirect::action('EventCal\Controllers\Admin\UsersController@show', array($id))->with('notification', \Lang::get('message.msgMAJ'));
 	}
 	
 }

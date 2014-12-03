@@ -2,7 +2,9 @@
 
 	return array(
 		// index 
+		'titleEventCal'						=> "EventCal",
 		'index' 							=> "",
+		'titleIndex'						=> "Calendrier",
 		
 		// top
 		'homepage'							=> "Acceil",
@@ -10,6 +12,8 @@
 		'disconnexion'						=> "Déconnexion",
 		'theSociety'						=> "Liste des sociétés",
 		'aPropos'							=> "A propos / Contact",
+		'profile'							=> "Profile",
+		'admin'								=> "Administration",
 		
 		// footer
 		'lead'								=> "&copy; EventCal 2014",
@@ -21,6 +25,17 @@
 		
 		'contactTitre'						=> "Contact",
 		
+		'aboutEmail'						=> "Votre e-mail : ",
+		'aboooutTitle'						=> "Votre titre : ",
+		'aboutMsg'							=> "Votre message : ",
+		
+		// admin
+		'adminTitle'						=> "EventCal Administration",
+		
+		// contact 
+		'contactTitle'						=> "Contact EventCal",
+		'mailContact'						=> "Ce message de :mail a été renvoyé par le formulaire de contact d'EventCal.",
+		
 		// formulaire
 		'name'								=> "Nom : ",
 		'fname'								=> "Prenom: ",
@@ -31,14 +46,51 @@
 		'description'						=> "Description: ",
 		'website'							=> "Site Internet: ",
 		'locality'							=> "Localité: ",
-		'adress'							=> "Adresse de votre société: ",
+		'adress'							=> "Adresse de la société: ",
 		'phone'								=> "Numéro  de téléphone",
 		
 		'editionUser'						=> "Edition de l'utilisateur :email",
 		
+		// show compagnie
+		'showDate'							=> "Date",
+		'showLocality'						=> "Localisation",
+		'showDescription'					=> "Description de l'événement",
+		'showCategory'						=> "Catégorie",
+		'showOrganizer'						=> "Société organisatrice",
+		'showSite'							=> "Site Internet de la société",
+		'showTelephone'						=> "Téléphone",
+		'showNotShow'						=> "Non spécifié",
+		
+		// edition
+		'titleEdit'							=> "Edition de l'évènement",
+		'ajoutEdit'							=> "Ajout de l'évènement",
+		
+		'society'							=> "Société :",
+		'nameEvent'							=> "Nom de l'evenement : ",
+		'description'						=> "Description : ",
+		'categorie'							=> "Catégorie : ",
+		'date'								=> "Date: ",
+		'time'								=> "Time : ",
+		'editAdress'						=> "Adresse : ",
+		'editLocality'						=> "Localite : ",	
+		
+		
 		// submit
 		'save'								=> "Enregistrer",
+		'del'								=> "Supprimer",
+		'send'								=> "Envoyer",
+		'edit'								=> "Editer",
 		
+		// listing
+		'listingRowName'					=> "Nom",
+		'listingRowWeb'						=> "Website",
+		
+		'listingRowDate'					=> "Date",
+		'listingRowHour'					=> "Heure",
+		'listingRowEvent'					=> "Evénement",
+		'listingRowLocality'				=> "Localité",
+		'listingRowOrganiser'				=> "Organisateur",
+		'listingNoResult'					=> "Aucun événement",
 		
 		// connexion
 		'rememberMe'						=> "Se souvenir de moi",
@@ -66,18 +118,27 @@
 			
 												Cordialement<br/>
 												L'équipe EventCal",
+	
+		
+		// mail de récup
+		'msgRecup'							=> 'Email de récupération de mot de passe envoyé',
 		
 		// msg error		
 		'404'								=> "Error 404",
 		'500'								=> "Error 500",
+		
+		// button
+		'buttonCreatEvent'					=> "Créer un nouveau évènement",
 		
 		// notification
 		'sendMail'							=> "Mail envoyé",
 		'connexionSuccess'					=> "Connexion réussie",
 		'disconnection'						=> "Vous êtes déconnecté!",
 		
-		// profile
-		'profileConfirmation'				=> "Mise à jour réussite",
+		// notification
+		'msgSup'							=> "Suppression effectuée",
+		'msgMAJ'							=> "Mise à jour réussite",
+		'msgPassUpadate'					=> "Mot de passe mis à jour",
 		
 		// event
 		'eventCreate'						=> "Evenement créé",

@@ -9,7 +9,7 @@
         
         <div class="col-md-3">
         	@if (Auth::check())
-				{{Button::normal('Créer nouveau événement')->asLinkTo(url('event/create'))}}
+				{{Button::normal(Lang::get('message.buttonCreatEvent'))->asLinkTo(url('event/create'))}}
 			@endif
         
         	<h3>

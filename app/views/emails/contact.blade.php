@@ -4,11 +4,11 @@
 		<meta charset="utf-8">
 	</head>
 	<body>
-		<h1>Contact EventCal</h1>
+		<h1>{{Lang::get('message.contactTitle')}}</h1>
 		<h2>{{{ $title }}}</h2>
 
 		<p>
-			Ce message de {{{ $email }}} a été renvoyé par le formulaire de contact d'EventCal.
+			{{Lang::get('message.mailContact',array('mail' => $email))}}
 		</p>
 		
 		<hr />

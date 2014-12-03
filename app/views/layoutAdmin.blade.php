@@ -5,7 +5,7 @@
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
 		
-		<title>EventCal Administration</title>
+		<title>{{Lang::get('message.adminTitle')}}</title>
 		
 		<!-- {{ Helpers::css() }} -->
 		{{ HTML::style('css/bootstrap.min.css') }}
