@@ -52,6 +52,57 @@ class EventCategory extends BaseModel
 	public static function getAllCategories()
 	{
 		return self::orderBy(self::$orderBy)->get();
+	} 
+	
+	public static function createCategory(array $data)
+	{
+		$errors=static::validate($data);
+		
+		if($errors!==true)
+		{
+			return $errors;
+		}
+		
+		$cat = new self();
+		
+		$cat->fill($data);
+		
+		$cat->save(); //Stock DB
+		
+		return true;
 	}
+	
+	public static function  deleteCategory($id)
+	{
+		$cat=static::find($id);
+		
+		
+		try
+		{
+			$cat->delete();	
+			return true;
+		}catch(\Exception $e)
+		{
+			return false;
+		}
+	}
+	public static function updateCategory($id,$data)
+	{
+		$cat = static::find($id);
+		
+		
+		$errors=static::validate($data, array(), array('name' => $id));
+		
+		if($errors!==true)
+		{
+			return $errors;
+		}
+		
+		$cat->fill($data);
+		
+		$cat->save();
+		
+		return true;
+	} 
 	
 }

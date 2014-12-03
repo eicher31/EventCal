@@ -14,7 +14,7 @@
 	</head>
 	
 	<body>
-		    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 		      <div class="container">
 		      
 		        <div class="navbar-header">
@@ -30,13 +30,9 @@
 		        <div id="navbar" class="collapse navbar-collapse">
 		          <ul class="nav navbar-nav">
 		            <li class="active"><a href="{{ url('/') }} ">Accueil</a></li>
-					@if (Auth::guest())
-						<li>{{ link_to('connexion', 'Connexion') }}</li>
-					@else
-						<li>{{ link_to('profile', 'Profil') }}</li>
-						<li>{{ link_to('deconnexion', 'Déconnexion') }}</li>
-					@endif
-		            <li>{{ link_to('about', 'A propos / Contact') }}</li>
+					<li>{{ link_to('deconnexion', 'Déconnexion') }}</li>
+					<li>{{ link_to('admin', 'Utilisateurs') }}</li>
+					<li>{{ link_to('admin/category', 'Catégorie') }}</li>
 		          </ul>
 		        </div><!--/.nav-collapse -->
 		        

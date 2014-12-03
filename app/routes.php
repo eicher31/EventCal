@@ -33,6 +33,7 @@ Route::group(array('before' => 'auth.admin'), function ()
 	});
 	Route::resource('admin/users', 'EventCal\Controllers\Admin\UsersController');
 	Route::controller('admin/users', 'EventCal\Controllers\Admin\UsersController');
+	Route::resource('admin/category', 'EventCal\Controllers\Admin\EventCategoryController');
 });
 
 // routes for listing entreprise with there events
