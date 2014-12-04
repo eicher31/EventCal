@@ -4,7 +4,7 @@
 
     <div class="row">
 		<div class="col-md-12">
-			<h2>Récupère le mot de passe</h2>
+			<h2>{{ Lang::get('message.titreRemind') }}</h2>
 		</div>
 	</div>
 	
@@ -15,11 +15,11 @@
 			@include('tools.errors')
 		
 			<div class="form-group">
-				{{ Form::label('email', 'E-mail :') }}
+				{{ Form::label('email', Lang::get('message.email')) }}
    				{{ Form::text('email') }}
 			</div>
 						
-        	{{ Form::submit('Envoyer le mot de passe') }}
+        	{{ Form::submit(Lang::get('message.sendPasswd')) }}
 		    {{ Form::close() }}
 		</div>
 	</div>

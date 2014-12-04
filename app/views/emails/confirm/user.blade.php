@@ -8,8 +8,8 @@
 
 		<div>
 			Bonjour {{{$user->getName()}}},<br/><br/>
-			Votre comptre a bien été créer sur le site EventCal.<br/>
-			Le compte doit encore être valider par l'administrateur du site.<br/>
+			Votre compte a bien été créé sur le site EventCal.<br/>
+			Le compte doit encore être validé par l'administrateur du site.<br/>
 			Une validation vous sera envoyé prochainement.<br/><br/>
 			
 			Cordialement<br/>

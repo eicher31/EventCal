@@ -5,7 +5,7 @@
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
 		
-		<title>EventCal</title>
+		<title>{{Lang::get('message.titleEventCal')}}</title>
 		
 		<!-- {{ Helpers::css() }} -->
 		{{ HTML::style('css/bootstrap.min.css') }}
@@ -24,19 +24,25 @@
 		            <span class="icon-bar"></span>
 		            <span class="icon-bar"></span>
 		          </button>
-		          <a class="navbar-brand" href="{{ url('/') }}">EventCal</a>
+		          <a class="navbar-brand" href="{{ url('/') }}">{{Lang::get('message.titleEventCal')}}</a>
 		        </div>
 		        <div id="navbar" class="collapse navbar-collapse">
 		          <ul class="nav navbar-nav">
-		            <li class="active"><a href="{{ url('/') }} ">Accueil</a></li>
-		            <li>{{ link_to('societies', 'Liste des sociétés') }}</li>
-					@if (Auth::guest())
-						<li>{{ link_to('connexion', 'Connexion') }}</li>
-					@else
-						<li>{{ link_to('profile', 'Profil') }}</li>
-						<li>{{ link_to('deconnexion', 'Déconnexion') }}</li>
+		          	{{ HTML::nav_link('/', Lang::get('message.homepage')) }}
+		          	{{ HTML::nav_link('societies', Lang::get('message.theSociety')) }}
+		          	
+          			{{ HTML::nav_link('about', Lang::get('message.aPropos')) }}
+		          	
+		          	@if (Auth::check() && Auth::user()->is_admin)
+						{{ HTML::nav_link('admin', Lang::get('message.admin')) }}
 					@endif
-		            <li>{{ link_to('about', 'A propos / Contact') }}</li>
+		          	
+					@if (Auth::guest())
+						{{ HTML::nav_link('connexion', Lang::get('message.connexion')) }}
+					@else
+						{{ HTML::nav_link('profile', Lang::get('message.profile')) }}
+						{{ HTML::nav_link('deconnexion', Lang::get('message.disconnexion')) }}
+					@endif
 		          </ul>
 		        </div><!--/.nav-collapse -->
 		      </div>
@@ -45,6 +51,8 @@
  		
 	    <div class="container">
 	      	<div class="starter-template">
+	      		@include('tools.admin_links')
+	      		
 				@if (Session::has('notification'))
 					{{ Alert::success(Session::get('notification'))->close() }}
 				@endif
@@ -56,10 +64,7 @@
 		<footer>
 			<div class="container">
 		      	<div class="starter-template">
-					<p class="lead">{{Lang::get('message.lead')}}</p>
-					@if (Auth::check() && Auth::user()->is_admin)
-						<p class="lead">{{ link_to('admin', 'Administration') }}</p>
-					@endif
+					<p>{{Lang::get('message.footer')}}</p>
 				</div>
 	    	</div>
 		</footer>

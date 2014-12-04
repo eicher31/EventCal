@@ -9,6 +9,12 @@ body {
 
 .event-label {
 	 color: white !important;
+	 white-space: normal !important;
+	 text-align: left;
+}
+
+p .event-label {
+	font-size: 110%;
 }
 
 .btn-containers form {
