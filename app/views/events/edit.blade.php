@@ -9,9 +9,10 @@
 	<div class="row">
         <div class="col-md-12">
 			<h2>{{{ $event->id ? Lang::get('message.titleEdit') : Lang::get('message.ajoutEdit') }}}</h2>
+			<p>{{ Lang::get('message.editEvent') }}</p>
         </div>
     </div>
-	
+    	
 	{{ Form::model($event, array('action' => array($action, $event->id),'method' => $method)) }}
     
     @include('tools.errors')
@@ -77,7 +78,7 @@
     <div class="row">
     	<div class="col-md-6">
     		{{ Form::submit(Lang::get('message.save'))}}        
-    		{{ Form::reset('clear', array('class' => 'btn btn-default')) }}
+    		{{ Form::reset(Lang::get('message.reset'), array('class' => 'btn btn-default')) }}
     	</div>
     </div> 
     

@@ -5,6 +5,8 @@
     <div class="row">
 		<div class="col-md-6">
 			<h2>{{Lang::get('message.titreAboutUs')}}</h2>
+			<p>{{ Lang::get('message.descriptionAboutUs') }}</p>
+			<p>{{ Lang::get('message.auteursAboutUs') }}</p>
 		</div>
 		
 		<div class="col-md-6">

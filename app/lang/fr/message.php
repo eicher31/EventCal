@@ -5,29 +5,40 @@
 		'titleEventCal'						=> "EventCal",
 		'index' 							=> "",
 		'titleIndex'						=> "Calendrier",
+		'welcomeCalender'					=> "Bienvenue sur EventCal. Ce site vous permet de découvrir les événements organisés par les
+												sociétés de votre région. Si vous êtes une société, vous pouvez publier un événement
+												après vous être " . link_to('connexion', "inscrit ou connecté."),
 		
 		// top
-		'homepage'							=> "Acceil",
+		'homepage'							=> "Evénements",
 		'connexion'							=> "Connexion",
 		'disconnexion'						=> "Déconnexion",
-		'theSociety'						=> "Liste des sociétés",
-		'aPropos'							=> "A propos / Contact",
-		'profile'							=> "Profile",
+		'theSociety'						=> "Sociétés",
+		'aPropos'							=> "A propos",
+		'profile'							=> "Profil",
 		'admin'								=> "Administration",
 		
 		// footer
-		'lead'								=> "&copy; EventCal 2014",
+		'footer'							=> "&copy; EventCal 2014<br />Réalisé par Andy Cheung, Stéphane Eicher et Mathieu Rosser",
 		'administration'					=> "Administration",
+		
+		// admin
+		'adminUsers'						=> 'Utilisateurs',
+		'adminCategory'						=> 'Catégories',
 		
 		// page "about us"
 		'titreAboutUs'						=> "A propos",
-		'descriptionAboutUs'				=> "blabla about us",
+		'descriptionAboutUs'				=> "Le site EventCal regroupe les événements publics organisés par des sociétés.
+												Les visiteurs peuvent prendre connaissance des événements organisés. 
+												Les sociétés peuvent s'inscrire pour publier leurs événements.",
+		'auteursAboutUs'					=> "Le site a été réalisé durant le semestre d'automne 2014, dans le cadre du
+												cours Développement web à la HE-Arc Ingénierie, par Andy Cheung, Stéphane Eicher et Mathieu Rosser.",
 		
 		'contactTitre'						=> "Contact",
 		
-		'aboutEmail'						=> "Votre e-mail : ",
-		'aboooutTitle'						=> "Votre titre : ",
-		'aboutMsg'							=> "Votre message : ",
+		'aboutEmail'						=> "Votre e-mail *",
+		'aboooutTitle'						=> "Votre titre *",
+		'aboutMsg'							=> "Votre message *",
 		
 		// admin
 		'adminTitle'						=> "EventCal Administration",
@@ -37,22 +48,45 @@
 		'mailContact'						=> "Ce message de :mail a été renvoyé par le formulaire de contact d'EventCal.",
 		
 		// formulaire
-		'name'								=> "Nom : ",
-		'fname'								=> "Prenom: ",
-		'password'							=> "Mot de passe: ",
-		'email'								=> "Email: ",
-		'confirmation'						=> "Confirmation: ",
+		'name'								=> "Nom *",
+		'fname'								=> "Prenom *",
+		'password'							=> "Mot de passe *",
+		'email'								=> "E-mail *",
+		'confirmation'						=> "Confirmation du mot de passe *",
 		
-		'description'						=> "Description: ",
-		'website'							=> "Site Internet: ",
-		'locality'							=> "Localité: ",
-		'adress'							=> "Adresse de la société: ",
-		'phone'								=> "Numéro  de téléphone",
+		'nameSociety'						=> 'Nom de la société *',
+		'description'						=> "Description de la société *",
+		'website'							=> "Site Internet",
+		'locality'							=> "Localité *",
+		'adress'							=> "Adresse de la société ",
+		'phone'								=> "Numéro de téléphone",
+		
+		'actif'								=> 'Compte actif ?',
 		
 		'editionUser'						=> "Edition de l'utilisateur :email",
 		
-		// show compagnie
-		'showDate'							=> "Date",
+		'reset'								=> 'Réinitialiser',
+		
+		// edit user
+		'emailProfile'						=> 'E-mail',
+		'descProfile'						=> "Ce formulaire vous permet de modifier les informations de votre profil sur EventCal. 
+												D'un côté, vous trouvez vos informations personnelles et de l'autre celle de votre société.",
+		
+		'descInscription'					=> "<p>Ce formulaire vous permet de créer un compte sur EventCal. Un compte permet à une société
+												de publier ses événements sur le site.</p>
+												<p>Si vous n'êtes pas une société, vous n'avez pas besoin de vous inscrire. Un compte est 
+												soumis à une validation par les administrateurs du site. Tout compte invalide sera refusé.</p>",
+		
+		'infoPerso'							=> "Informations personnelles",
+		'infoSoc'							=> "Informations de la société",
+		
+		'activate'							=> 'Activer',
+		'nameFirstName'						=> 'Nom et prénom',
+		
+		'allEvents'							=> "Evénements de la société",
+		
+		// show event/society
+		'showDate'							=> "Date de l'événement",
 		'showLocality'						=> "Localisation",
 		'showDescription'					=> "Description de l'événement",
 		'showCategory'						=> "Catégorie",
@@ -62,18 +96,28 @@
 		'showNotShow'						=> "Non spécifié",
 		
 		// edition
-		'titleEdit'							=> "Edition de l'évènement",
-		'ajoutEdit'							=> "Ajout de l'évènement",
+		'titleEdit'							=> "Edition de l'événement",
+		'ajoutEdit'							=> "Ajout de l'événement",
 		
-		'society'							=> "Société :",
-		'nameEvent'							=> "Nom de l'evenement : ",
-		'description'						=> "Description : ",
-		'categorie'							=> "Catégorie : ",
-		'date'								=> "Date: ",
-		'time'								=> "Time : ",
-		'editAdress'						=> "Adresse : ",
-		'editLocality'						=> "Localite : ",	
+		'editEvent'							=> "Ce formulaire vous permet de publier votre événement.",
 		
+		'society'							=> "Société *",
+		'nameEvent'							=> "Nom de l'événement *",
+		'description'						=> "Description *",
+		'categorie'							=> "Catégorie *",
+		'date'								=> "Date *",
+		'time'								=> "Heure",
+		'editAdress'						=> "Adresse",
+		'editLocality'						=> "Localité *",	
+		
+		// society listing
+		'infoSociety'						=> 'Information sur la société ',
+		'societyNextEvent'					=> 'Prochains événements de la société',
+		
+		'socName'							=> 'Nom de la société',
+		'socDesc'							=> 'Description de la société',
+		'socNone'							=> 'Ne possède pas de société',
+		'socDesc'							=> 'Description de la société',
 		
 		// submit
 		'save'								=> "Enregistrer",
@@ -82,8 +126,12 @@
 		'edit'								=> "Editer",
 		
 		// listing
+		'listingSocieties'					=> "Liste des sociétés inscrites sur EventCal",
+		'listingSocietiesRegister'			=> "Vous êtes une société et souhaitez publier vos événements ? " 
+												. link_to('register', "Inscrivez-vous !"),
+		
 		'listingRowName'					=> "Nom",
-		'listingRowWeb'						=> "Website",
+		'listingRowWeb'						=> "Site Internet",
 		
 		'listingRowDate'					=> "Date",
 		'listingRowHour'					=> "Heure",
@@ -94,19 +142,25 @@
 		
 		// connexion
 		'rememberMe'						=> "Se souvenir de moi",
-		
+		'connexionDescription'				=> "La connexion et l'inscription sur EventCal permettent aux sociétés de publier leurs
+												événements. L'accès à la liste des événements est public et ne nécessite pas de compte.",
+
 		'inscription'						=> "Inscription",
 		'lossPassword'						=> "Mot de passe perdu",
 		
 		// message de confirmation
-		'titreConfirmation'					=> " Confirmation",
+		'titreConfirmation'					=> "Confirmation d'inscription",
 		'msgConfigmation'					=> "<p>Votre inscription a bien été enregistrée.</p>
 												<p>Votre compte doit encore être activé par un administrateur.</p>
 												<p>Vous recevrez prochainement un e-mail de confirmation d'activation à l'adresse :email </p>",
 		
 		// reset Password
-		'titreReset'						=> "Password Reset",
-		'textReset1'						=> "Pour reset votre mot de pass, compléter ce formulaire: ",
+		'titreRemind'						=> "Récupération du mot de passe",
+		'sendPasswd'						=> "Envoyer le mot de passe",
+		'resetPasswd'						=> "Réinitialiser le mot de passe",
+		
+		'titreReset'						=> "Réinitialisation du mot de passe",
+		'textReset1'						=> "Pour réinitialiser votre mot de passe, compléter ce formulaire: ",
 		'textReset2'						=> "Ce lien va expirer dans :expire minutes",
 		
 		// mail d'activation
@@ -114,7 +168,7 @@
 		'activationText'					=> "Bonjour :nom ,<br/><br/>
 												Votre compte a été activé sur le site EventCal.<br/>
 			
-												Nous vous remercions d'utiliser nos service pour afficher vos évennements.
+												Nous vous remercions d'utiliser nos service pour afficher vos événements.
 			
 												Cordialement<br/>
 												L'équipe EventCal",
@@ -124,16 +178,20 @@
 		'msgRecup'							=> 'Email de récupération de mot de passe envoyé',
 		
 		// msg error		
-		'404'								=> "Error 404",
-		'500'								=> "Error 500",
+		'404'								=> "Oups... La page que vous recherchez n'existe pas",
+		'404Desc'							=> "N'hésiter pas à retourner à la liste des événements pour trouver celui qui vous plaît.",
+		'500'								=> "Oups... Quelque chose s'est mal passé",
+		'500Desc'							=> "Malheureusement une erreur est survenue. Les administrateurs d'EventCal ont été notifiés
+												et s'excusent pour le désagrément.",
 		
 		// button
-		'buttonCreatEvent'					=> "Créer un nouveau évènement",
+		'buttonCreatEvent'					=> "Publier un événement",
 		
 		// notification
 		'sendMail'							=> "Mail envoyé",
 		'connexionSuccess'					=> "Connexion réussie",
-		'disconnection'						=> "Vous êtes déconnecté!",
+		'connexionFail'						=> "Impossible de se connecter. L'e-mail ou le mot de passe est incorrect.",
+		'disconnection'						=> "Vous êtes déconnecté",
 		
 		// notification
 		'msgSup'							=> "Suppression effectuée",

@@ -4,13 +4,13 @@
 	
 	<div class="row">
         <div class="col-md-12">
-			<h2>
-			@if ($user->id)
-				Edition de l'utilisateur {{{ $user->email }}}
-			@else
-				Création d'un compte utilisateur>
-			@endif
-            </h2>
+        @if ($user->id)
+			<h2>{{ Lang::get('message.profile') }} {{{ $user->email }}}</h2>
+			<p>{{ Lang::get('message.descProfile') }}</p>
+		@else
+			<h2>{{ Lang::get('message.inscription') }}</h2>
+			<p>{{ Lang::get('message.descInscription') }}</p>
+		@endif
     	</div>
     </div>
 	
@@ -21,74 +21,74 @@
     <div class="row">
 		<div class="col-md-6">
 		    <fieldset>
-   			 	<legend>Informations personnelles</legend>
+   			 	<legend>{{ Lang::get('message.infoPerso') }}</legend>
 			
 	    		<div class="form-group">  	
-		    		{{ Form::label('last_name', 'Nom : ') }}
+		    		{{ Form::label('last_name', Lang::get('message.name')) }}
         			{{ Form::text('last_name') }}
 		        </div>
 					
 	        	<div class="form-group">  
-	        	    {{ Form::label('first_name', 'Prénom : ') }}
+	        	    {{ Form::label('first_name', Lang::get('message.fname')) }}
        				{{ Form::text('first_name') }}      
 	        	</div>
 	        	
 	        	<div class="form-group">
-	        	    {{ Form::label('email', 'E-mail : ') }}
+	        	    {{ Form::label('email', Lang::get('message.email')) }}
         			{{ Form::text('email') }}
 	        	</div>
 	        	
 	        	<div class="form-group">
-			        {{ Form::label('password', 'Mot de passe : ') }}
+			        {{ Form::label('password', Lang::get('message.password')) }}
         			{{ Form::password('password') }}
 	        	</div>
 	        	
 	        	<div class="form-group">
-			        {{ Form::label('password_confirm', 'Confirmer : ') }}
+			        {{ Form::label('password_confirm', Lang::get('message.confirmation')) }}
         			{{ Form::password('password_confirm') }}
 	        	</div>
 	        	
 	        	@if ($isAdmin)
 	        	<div class="form-group">
-	        	    {{ Form::checkbox('is_actif') }}
-			        {{ Form::label('is_actif', 'Compte actif') }}
+	        	    {{ Form::checkbox('is_actif', null, false, array('id' => 'is_actif')) }}
+			        {{ Form::label('is_actif', Lang::get('message.actif')) }}
 	        	</div> 
-	        	@endif       	
+	        	@endif
         	</fieldset>
 		</div>
 		
 		@if (!$user->id || $user->society)
 		<div class="col-md-6">
 			<fieldset>
-		    	<legend>Informations de la société</legend>
+		    	<legend>{{ Lang::get('message.infoSoc') }}</legend>
 		
 	    		<div class="form-group">  	
-		    		{{ Form::label('name', 'Nom : ') }}
+		    		{{ Form::label('name', Lang::get('message.nameSociety')) }}
         			{{ Form::text('name', $user->society ? $user->society->name : null) }}
 		        </div>
 					
 	        	<div class="form-group">  
-	        	    {{ Form::label('description', 'Description : ') }}
+	        	    {{ Form::label('description', Lang::get('message.description')) }}
         			{{ Form::textarea('description', $user->society ? $user->society->description : null, array('rows' => 5)) }}     
 	        	</div>
 	        	
 	        	<div class="form-group">
-	        	    {{ Form::label('website', 'Site internet: ') }}
+	        	    {{ Form::label('website', Lang::get('message.website')) }}
        				{{ Form::text('website', $user->society ? $user->society->website : null) }}
 	        	</div>
 	        	
 	        	<div class="form-group">
-			        {{ Form::label('telephone', 'Numero de téléphone : ') }}
+			        {{ Form::label('telephone', Lang::get('message.phone')) }}
         			{{ Form::number('telephone', $user->society ? $user->society->telephone : null) }}
 	        	</div>
 	        	
 	        	<div class="form-group">
-			        {{ Form::label('address', 'Adresse de votre société : ') }}
+			        {{ Form::label('address', Lang::get('message.adress')) }}
         			{{ Form::text('address', $user->society ? $user->society->address : null) }}
 	        	</div>
 	        	
 	        	<div class="form-group">
-			        {{ Form::label('locality_id', 'Localité : ') }}
+			        {{ Form::label('locality_id', Lang::get('message.locality')) }}
         			{{ Form::select('locality_id', $city, $user->society ? $user->society->locality_id : null) }}
 	        	</div>
 	        	
@@ -100,8 +100,8 @@
         
     <div class="row">
     	<div class="col-md-6">
-    		{{ Form::submit('enregistrer')}}        
-    		{{ Form::reset('clear', array('class' => 'btn btn-default')) }}
+    		{{ Form::submit(Lang::get('message.save'))}}        
+    		{{ Form::reset(Lang::get('message.reset'), array('class' => 'btn btn-default')) }}
     	</div>
     </div> 
     

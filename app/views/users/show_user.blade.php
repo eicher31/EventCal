@@ -4,13 +4,13 @@
 	
 	<div class="row">
         <div class="col-md-8">
-			<h2>Compte de l'utilisateur {{{ $user->email }}}</h2>
+			<h2>{{ Lang::get('message.profile') }} {{{ $user->email }}}</h2>
 		</div>
 		
         <div class="col-md-4 btn-containers">
        		@if ($isAdmin && !$user->is_actif)
 			    {{ Form::open(array('action' => array('EventCal\Controllers\Admin\UsersController@putActivate', $user->id), 'method'	=> 'put')) }}
-				{{ Form::submit('Activer') }}
+				{{ Form::submit(Lang::get('message.activate')) }}
 				{{ Form::close() }}
 			@endif
 			
@@ -20,7 +20,7 @@
 			
 			@if ($isAdmin)
 	        	{{ Form::open(array('action' => array('EventCal\Controllers\Admin\UsersController@destroy', $user->id), 'method' => 'delete')) }}
-				{{ Form::submit('Supprimer') }}
+				{{ Form::submit(Lang::get('message.del')) }}
 				{{ Form::close() }}
 			@endif
 		</div>
@@ -29,14 +29,14 @@
 	<div class="row">
         <div class="col-md-6">  
         	<div class="form-group">  
-	            <label>Nom et prénom</label>
+	            <label>{{ Lang::get('message.nameFirstName') }}</label>
 	        	<p>{{{ $user->getName() }}}</p>
         	</div>
 		</div>
 		
 		<div class="col-md-6">
 		    <div class="form-group">  
-	            <label>Adresse e-mail</label>
+	            <label>{{ Lang::get('message.emailProfile') }}</label>
 	        	<p>{{{ $user->email }}}</p>
         	</div>
 		</div>
@@ -46,13 +46,13 @@
 	
 	<div class="row">
         <div class="col-md-8">
-        	<h2>Evénements</h2>
+        	<h2>{{ Lang::get('message.allEvents') }}</h2>
 		</div>
 		
         <div class="col-md-4 btn-containers">
         @if (!$isAdmin)
 	       	<a href="{{ url('event/create') }}">
-				{{ Button::withValue('Nouvel événement') }}
+				{{ Button::withValue(Lang::get('message.buttonCreatEvent')) }}
 			</a>
         @endif
 		</div>

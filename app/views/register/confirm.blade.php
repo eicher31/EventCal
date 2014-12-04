@@ -2,7 +2,7 @@
 
 @section('contenu')
 	
-	{{Lang::get('message.nomConfirmation')}}
+	<h2>{{Lang::get('message.titreConfirmation')}}</h2>
 	{{Lang::get('message.msgConfigmation',array('email' => $email))}}
 			
 @stop

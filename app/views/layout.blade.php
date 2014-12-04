@@ -24,7 +24,7 @@
 		            <span class="icon-bar"></span>
 		            <span class="icon-bar"></span>
 		          </button>
-		          <a class="navbar-brand" href="{{ url('/') }}">EventCal</a>
+		          <a class="navbar-brand" href="{{ url('/') }}">{{Lang::get('message.titleEventCal')}}</a>
 		        </div>
 		        <div id="navbar" class="collapse navbar-collapse">
 		          <ul class="nav navbar-nav">
@@ -64,7 +64,7 @@
 		<footer>
 			<div class="container">
 		      	<div class="starter-template">
-					<p class="lead">{{Lang::get('message.lead')}}</p>
+					<p>{{Lang::get('message.footer')}}</p>
 				</div>
 	    	</div>
 		</footer>

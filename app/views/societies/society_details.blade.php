@@ -2,16 +2,16 @@
 		<div class="col-md-6">
         	@if ($society)
         		<div class="form-group">  
-		            <label>Nom de société</label>
+		            <label>{{ Lang::get('message.socName') }}</label>
 		        	<p>{{{ $society->name }}}</p>
 	        	</div>
 	        	<div class="form-group">  
-		            <label>Description de la société</label>
-		        	<p>{{{ $society->description }}}</p>
+		            <label>{{ Lang::get('message.socDesc') }}</label>
+		        	<p>{{ nl2br(e($society->description)) }}</p>
 	        	</div>
         	@else
         		<div class="form-group">  
-		            <label>Ne possède pas de société</label>
+		            <label>{{ Lang::get('message.socNone') }}</label>
 	        	</div>
         	@endif
 		</div>
@@ -19,23 +19,23 @@
 		<div class="col-md-6">
 			@if ($society)
 			<div class="form-group">  
-	            <label>Site Internet</label>
+	            <label>{{ Lang::get('message.listingRowWeb') }}</label>
 	        	<p>
 	        		@if ($society->website)
 	        		<a href="{{{ $society->website }}}">{{{ $society->website }}}</a>
 	        		@else
-	        		Non spécifié
+	        		{{ Lang::get('message.showNotShow') }}
 	        		@endif
 	        	</p>
         	</div>
 		
 			<div class="form-group">  
-	            <label>Téléphone</label>
-	        	<p>{{{ $society->telephone ? $society->telephone : 'Non spécifié' }}}</p>
+	            <label>{{ Lang::get('message.showTelephone') }}</label>
+	        	<p>{{{ $society->telephone ? $society->telephone : Lang::get('message.showNotShow') }}}</p>
         	</div>
 		
 			<div class="form-group">  
-	            <label>Adresse et localité</label>
+	            <label>{{Lang::get('message.showLocality')}}</label>
 	        	<p>
         			@if ($society->address)
 	        			{{{ $society->address }}} <br />

@@ -24,7 +24,7 @@ class EventsController extends BaseController {
 	 */
 	public function index()
 	{								
-		return \View::make('index')->with(array(
+		return \View::make('events.calender')->with(array(
 			'showSocietyEvents'	=> true,
 			'eventsByMonths'	=> Event::getListingEvents(Carbon::today()),
 			'categories'		=> EventCategory::getAllCategories(),

@@ -3,8 +3,8 @@
 @section('contenu')
 		
 	<div class="row">
-        <div class="col-md-8">
-			<h2>Evénement {{{ $event->getName() }}}</h2>
+        <div class="{{ $event->isEditable() ? 'col-md-8' : 'col-md-12' }}">
+			<h2>{{{ $event->getName() }}}</h2>
 		</div>
 		
 		<div class="col-md-4 btn-containers">
@@ -17,7 +17,7 @@
 		@endif		
 		</div>
     </div>
-	
+    	
 	<div class="row">
 		<div class="col-md-6">			
 			<div class="form-group">  
@@ -37,7 +37,7 @@
 		        	
         	<div class="form-group">  
 	            <label>{{Lang::get('message.showDescription')}}</label>
-	        	<p>{{{ $event->description }}}</p>
+	        	<p>{{ nl2br(e($event->description)) }}</p>
         	</div>
 		</div>
 		
@@ -62,9 +62,9 @@
 	            <label>{{Lang::get('message.showSite')}}</label>
 	        	<p>
 	        		@if ($society->website)
-	        		<a href="{{{ $society->website }}}">{{{ $society->website }}}</a>
+	        			<a href="{{{ $society->website }}}">{{{ $society->website }}}</a>
 	        		@else
-	        		Non spécifié
+	        			{{ Lang::get('message.showNotShow') }}
 	        		@endif
 	        	</p>
         	</div>

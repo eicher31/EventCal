@@ -24,7 +24,7 @@ class SessionController extends BaseController {
 		if (!$success)
 		{
 			// impossible de se connecter
-			return \Redirect::back()->withErrors(array('Impossible de se connecter!'))->withInput(\Input::except('password'));
+			return \Redirect::back()->withErrors(array(\Lang::get('message.connexionFail')))->withInput(\Input::except('password'));
 		}
 		else
 		{
