@@ -4,7 +4,6 @@ class DeleteTableSeeder extends Seeder {
 
 	public function run()
 	{	
-		//DB::table('events_dates')->delete();
 		DB::table('events')->delete();
 		DB::table('events_categories')->delete();
 		DB::table('societies')->delete();

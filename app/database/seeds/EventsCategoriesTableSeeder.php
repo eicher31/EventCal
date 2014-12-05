@@ -6,18 +6,18 @@ class EventsCategoriesTableSeeder extends Seeder {
 	{
 		DB::table('events_categories')->insert(array(
 			array(
-				'name' => 'concert',
-				'color' => 'Red',
+				'name' => 'Concert',
+				'color' => 'red',
 			),
 			
 			array(
-				'name' => 'exposition',
-				'color' => 'Green',
+				'name' => 'Exposition',
+				'color' => 'green',
 			),
 
 			array(
-				'name' => 'fête de village',
-				'color' => 'Blue',
+				'name' => 'Fête de village',
+				'color' => 'blue',
 			),
 		));
 	}
