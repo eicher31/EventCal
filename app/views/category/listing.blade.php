@@ -35,7 +35,7 @@
 							{{ Button::normal(Lang::get('message.edit'))->asLinkTo(url("admin/category/$cat->id/edit")) }}
 							
 							{{ Form::open(array('action'=> array('EventCal\Controllers\Admin\EventCategoryController@destroy', $cat->id), 'method' => 'delete')) }}
-								{{ Form::submit(Lang::get('message.del'), array('id' => 'btn-del')) }}
+								{{ Form::submit(Lang::get('message.del'), array('class' => 'btn-del')) }}
 							{{ Form::close() }}
 						</th>
 					</tr>
@@ -48,10 +48,5 @@
 @stop
 
 @section('js')
-	<script type="text/javascript">
-		$('#btn-del').click(function(e)
-			{
-				return confirm("{{Lang::get('message.msgConfirmDelete')}}");
-			});
-    </script>	
+	@include('js.delete_confirm')
 @stop

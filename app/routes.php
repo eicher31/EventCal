@@ -59,6 +59,10 @@ Route::controller('about', 'EventCal\Controllers\AboutController');
 // applies CSRF protection at every post/put/delete request (token automatically written in form)
 Route::when('*', 'csrf', array('post', 'put', 'delete'));
 
+// Services
+Route::get('localitysearch', 'EventCal\Controllers\Services\LocalitySearchController@search');
+
+
 // Routes unknown
 /*
 App::missing(function ()
@@ -81,7 +85,6 @@ App::error(function($exception, $code)
 	    switch ($code)
 	    {
 	        case 403:
-	      
 	        case 404:
 	            return Response::view('error.missing', array(), $code);
 	
