@@ -45,7 +45,7 @@ class EventCategoryController extends BaseController {
 		$data = \Input::all();
 		if(($error = EventCategory::createCategory($data))===true)
 		{
-			return \Redirect::action("EventCal\Controllers\Admin\EventCategoryController@index")->with("notification","maj");
+			return \Redirect::action("EventCal\Controllers\Admin\EventCategoryController@index")->with("notification",\Lang::get('message.catCreated'));
 		}
 		return \Redirect::action("EventCal\Controllers\Admin\EventCategoryController@create")->withErrors($error)->withInput();
 	}
@@ -90,7 +90,7 @@ class EventCategoryController extends BaseController {
 		$data = \Input::all();
 		if(($error = EventCategory::updateCategory($id, $data))===true)
 		{
-			return \Redirect::action("EventCal\Controllers\Admin\EventCategoryController@index")->with("notification","maj");
+			return \Redirect::action("EventCal\Controllers\Admin\EventCategoryController@index")->with("notification",\Lang::get('message.msgMAJ'));
 		}
 		return \Redirect::action("EventCal\Controllers\Admin\EventCategoryController@edit",array($id))->withErrors($error)->withInput();
 	}
@@ -104,11 +104,9 @@ class EventCategoryController extends BaseController {
 	 */
 	public function destroy($id)
 	{
+		$lang = (EventCategory::deleteCategory($id)) ? "message.msgSup" : "message.catCannotDel";
 		
-		$not = (EventCategory::deleteCategory($id))?"maj ok":"errors";
-		
-		return \Redirect::action("EventCal\Controllers\Admin\EventCategoryController@index")->with("notification",$not);
-		
+		return \Redirect::action("EventCal\Controllers\Admin\EventCategoryController@index")->with("notification", \Lang::get($lang));
 	}
 
 

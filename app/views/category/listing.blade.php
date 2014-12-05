@@ -6,10 +6,10 @@
 
 	<div class="row">
         <div class="col-md-8">
-			<h2>{{{ "Administration des catégories" }}}</h2>
+			<h2>{{{ Lang::get('message.catAdmin') }}}</h2>
         </div>
         <div class="col-md-4 btn-containers">
-			{{ Button::normal("Ajouter une catégorie")->asLinkTo(url("admin/category/create")) }}
+			{{ Button::normal(Lang::get('message.catAdd'))->asLinkTo(url("admin/category/create")) }}
         </div>
     </div>
     
@@ -18,8 +18,8 @@
         	<table class="table table-condensed">
 				<thead>
 					<tr>
-						<th>Nom</th>
-						<th>Action</th>
+						<th>{{ Lang::get('message.catName') }}</th>
+						<th>{{ Lang::get('message.listingRowAction') }}</th>
 					</tr>
 				</thead>
 				
@@ -34,9 +34,10 @@
 							</h2>
 						</th>
 						<th>
-							{{ Button::normal("Editer")->asLinkTo(url("admin/category/$cat->id/edit")) }}
+							{{ Button::normal(Lang::get('message.edit'))->asLinkTo(url("admin/category/$cat->id/edit")) }}
+							
 							{{ Form::open(array('action'=> array('EventCal\Controllers\Admin\EventCategoryController@destroy', $cat->id), 'method' => 'delete')) }}
-								{{ Form::submit('Supprimer') }}
+								{{ Form::submit(Lang::get('message.del'), array('id' => 'btn-del')) }}
 							{{ Form::close() }}
 						</th>
 					</tr>
@@ -46,7 +47,5 @@
 		</div>
 	</div>
 	
-	
-
 @stop
 

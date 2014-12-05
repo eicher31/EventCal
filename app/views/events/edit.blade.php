@@ -49,7 +49,8 @@
                     <span class="input-group-addon">
                     	<span class="glyphicon glyphicon-calendar"></span>
                     </span>
-                    {{ Form::text('date', $event->id ? $event->getDate() : '', array('data-date-format' => 'DD.MM.YYYY')) }}
+                    {{ Form::text('date', $event->id ? $event->getDate() : '', 
+                    	array('data-date-format' => 'DD.MM.YYYY', 'placeholder' => Lang::get('message.placeholderDate'))) }}
                 </div> 
         	</div>
 		
@@ -59,7 +60,8 @@
                 	<span class="input-group-addon">
                     	<span class="glyphicon glyphicon-time"></span>
                     </span>
-                    {{ Form::text('time', $event->id ? $event->getTime() : '', array('data-date-format' => 'HH:mm')) }}
+                    {{ Form::text('time', $event->id ? $event->getTime() : '', 
+                    	array('data-date-format' => 'HH:mm', 'placeholder' => Lang::get('message.placeholderHour'))) }}
                 </div>
         	</div>
         	
@@ -91,16 +93,14 @@
 	{{ HTML::script('js/bootstrap-datetimepicker.min.js') }}
 	
 	<script type="text/javascript">
-		$(function () {
-			$('#datepicker').datetimepicker({
-				language: 'fr',
-				pickTime: false
-			});
-			
-			$('#timepicker').datetimepicker({
-				language: 'fr',
-				pickDate: false
-			});
+		$('#datepicker').datetimepicker({
+			language: 'fr',
+			pickTime: false
+		});
+		
+		$('#timepicker').datetimepicker({
+			language: 'fr',
+			pickDate: false
 		});
     </script>
 @stop

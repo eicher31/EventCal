@@ -108,7 +108,7 @@ class BaseModel extends Eloquent {
 		
 		if ($prependSelectOption)
 		{
-			$array[""] = "- Sélectionner -";
+			$array[""] = \Lang::get('message.select');
 		}
 		
 		foreach ($data as $d)

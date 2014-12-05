@@ -85,9 +85,24 @@ return array(
     */
 
     'custom' => array(
-        'attribute-name' => array(
-            'rule-name' => 'custom-message',
+        'locality_id' => array(
+            'required' => 'Le champ Localité est obligatoire.',
         ),
+    	'society_id' => array(
+    		'required' => 'Le champ Société est obligatoire.',
+    	),
+    	'category_id' => array(
+    		'required' => 'Le champ Catégorie est obligatoire.',
+    	),
+    	'password' => array(
+    		'same' => 'Le champ Mot de passe et sa confirmation doivent être identiques.',
+    	),
+    	'text' => array(
+    		'required' => 'Le champ Message est obligatoire.',
+    	),
+    	'color' => array(
+    		'required' => 'Le champ Couleur est obligatoire.',
+    	),
     ),
 
     /*
@@ -106,7 +121,7 @@ return array(
         "username" => "Pseudo",
         "email" => "E-mail",
         "first_name" => "Prénom",
-        "last_name" => "Nom",
+        "last_name" => "Nom de famille",
         "password" => "Mot de passe",
         "password_confirmation" => "Confirmation du mot de passe",
         "city" => "Ville",

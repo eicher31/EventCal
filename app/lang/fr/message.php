@@ -48,7 +48,7 @@
 		'mailContact'						=> "Ce message de :mail a été renvoyé par le formulaire de contact d'EventCal.",
 		
 		// formulaire
-		'name'								=> "Nom *",
+		'name'								=> "Nom de famille *",
 		'fname'								=> "Prenom *",
 		'password'							=> "Mot de passe *",
 		'email'								=> "E-mail *",
@@ -195,13 +195,30 @@
 		
 		// notification
 		'msgSup'							=> "Suppression effectuée",
-		'msgMAJ'							=> "Mise à jour réussite",
+		'msgMAJ'							=> "Mise à jour réussie",
 		'msgPassUpadate'					=> "Mot de passe mis à jour",
 		
 		// event
-		'eventCreate'						=> "Evenement créé",
-		'eventUpdate'						=> "Evenement mise a jour",
-		'eventDelete'						=> "Evenement effacé",
+		'eventCreate'						=> "Evénement créé",
+		'eventUpdate'						=> "Evénement mise a jour",
+		'eventDelete'						=> "Evénement effacé",
+				
+		// placeholders
+		'placeholderHttp'					=> 'http://...',
+		'placeholderDate'					=> 'JJ.MM.AAAA',
+		'placeholderHour'					=> 'HH:mm',
+		
+		// category
+		'catEdit'							=> "Editer la catégorie",
+		'catAdd'							=> "Ajouter une catégorie",
+		'catName'							=> "Nom de la catégorie",
+		'catColor'							=> "Couleur",
+		'catAdmin'							=> 'Administration des catégories',
+		'catCreated'						=> 'Catégorie ajoutée',
+		'catCannotDel'						=> 'Impossible de supprimer cette catégorie car elle est utilisée par des événements',
+		
+		// other
+		'select'							=> "- Sélectionner -",
+		
 	);
 	
-	//{{Lang::get('message.lossPassword')}}

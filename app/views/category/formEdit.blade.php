@@ -4,27 +4,28 @@
 
 	<div class="row">
         <div class="col-md-12">
-			<h2>{{{ $cat->id ? "Edition d'une categorie" : "Ajout d'une categorie" }}}</h2>
+			<h2>{{{ $cat->id ? Lang::get('message.catEdit') : Lang::get('message.catAdd') }}}</h2>
         </div>
     </div>
 
-{{ Form::model($cat,array('action'=> array($action, $cat->id), 'method' => $methode)) }}
+	{{ Form::model($cat,array('action'=> array($action, $cat->id), 'method' => $methode)) }}
 	@include('tools.errors')
 
 	<div class="row">
 		<div class="col-md-6">
     		<div class="form-group">  	
-	    		{{ Form::label('name',"Nom cat") }}
+	    		{{ Form::label('name',Lang::get('message.catName')) }}
 				{{ Form::text('name') }}
 	        </div>
 				
         	<div class="form-group">  
-        	    {{ Form::label('color',"Nom color") }}
+        	    {{ Form::label('color',Lang::get('message.catColor')) }}
 				{{ Form::text('color') }}      
         	</div>
         	
         	<div class="form-group">
-		        {{ Form::submit('Enregistrer') }}
+		        {{ Form::submit(Lang::get('message.save')) }}
+		        {{ Form::reset(Lang::get('message.reset'), array('class' => 'btn btn-default')) }}
         	</div>
 		</div>
 	</div>

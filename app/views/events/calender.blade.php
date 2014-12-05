@@ -3,17 +3,14 @@
 @section('contenu')
 	
 	<div class="row">
-		<div class="col-md-12">
+		<div class="col-md-9">
 			<p>{{ Lang::get('message.welcomeCalender') }}</p>
+			
+			<br /><br />
+			@include('events.listing')
 		</div>
-	</div>
-	
-	<div class="row">
-        <div class="col-md-9">
-        	@include('events.listing')			
-        </div>
-        
-        <div class="col-md-3">
+		
+		<div class="col-md-3">
         	@if (Auth::check())
 				<p>{{Button::normal(Lang::get('message.buttonCreatEvent'))->asLinkTo(url('event/create'))}}</p>
 			@endif

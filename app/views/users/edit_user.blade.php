@@ -74,12 +74,13 @@
 	        	
 	        	<div class="form-group">
 	        	    {{ Form::label('website', Lang::get('message.website')) }}
-       				{{ Form::text('website', $user->society ? $user->society->website : null) }}
+       				{{ Form::text('website', $user->society ? $user->society->website : null, 
+       					array('placeholder' => Lang::get('message.placeholderHttp'))) }}
 	        	</div>
 	        	
 	        	<div class="form-group">
 			        {{ Form::label('telephone', Lang::get('message.phone')) }}
-        			{{ Form::number('telephone', $user->society ? $user->society->telephone : null) }}
+        			{{ Form::text('telephone', $user->society ? $user->society->telephone : null) }}
 	        	</div>
 	        	
 	        	<div class="form-group">

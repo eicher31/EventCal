@@ -54,6 +54,11 @@ class EventCategory extends BaseModel
 		return self::orderBy(self::$orderBy)->get();
 	} 
 	
+	/**
+	 * Create a category 
+	 * @param array $data
+	 * @return \Illuminate\Validation\Validator|boolean
+	 */
 	public static function createCategory(array $data)
 	{
 		$errors=static::validate($data);
@@ -72,10 +77,14 @@ class EventCategory extends BaseModel
 		return true;
 	}
 	
+	/**
+	 * Delete an existing category, which has no events linked to it
+	 * @param int $id
+	 * @return boolean
+	 */
 	public static function  deleteCategory($id)
 	{
 		$cat=static::find($id);
-		
 		
 		try
 		{
@@ -86,10 +95,16 @@ class EventCategory extends BaseModel
 			return false;
 		}
 	}
+	
+	/**
+	 * Update an existing category
+	 * @param int $id
+	 * @param array $data
+	 * @return \Illuminate\Validation\Validator|boolean
+	 */
 	public static function updateCategory($id,$data)
 	{
 		$cat = static::find($id);
-		
 		
 		$errors=static::validate($data, array(), array('name' => $id));
 		
