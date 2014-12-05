@@ -2,8 +2,6 @@
 
 @section('contenu')
 
-
-
 	<div class="row">
         <div class="col-md-8">
 			<h2>{{{ Lang::get('message.catAdmin') }}}</h2>
@@ -49,3 +47,11 @@
 	
 @stop
 
+@section('js')
+	<script type="text/javascript">
+		$('#btn-del').click(function(e)
+			{
+				return confirm("{{Lang::get('message.msgConfirmDelete')}}");
+			});
+    </script>	
+@stop
