@@ -20,7 +20,7 @@
 			
 			@if ($isAdmin)
 	        	{{ Form::open(array('action' => array('EventCal\Controllers\Admin\UsersController@destroy', $user->id), 'method' => 'delete')) }}
-				{{ Form::submit(Lang::get('message.del')) }}
+				{{ Form::submit(Lang::get('message.del'),array('id' => 'btn-del'))}}
 				{{ Form::close() }}
 			@endif
 		</div>
@@ -63,5 +63,15 @@
 			@include('events.listing')
 		</div>
 	</div>
+	
+	@stop    
+	    
+	@section('js')
+	<script type="text/javascript">
+		$('#btn-del').click(function(e)
+			{
+				return confirm("{{Lang::get('message.msgConfirmDelete')}}");
+			});
+    </script>
 	
 @stop

@@ -12,7 +12,7 @@
 	   		{{Button::normal(Lang::get('message.edit'))->asLinkTo(url('event/'.$event->id.'/edit'))}}
 	   		
    			{{ Form::open(array('action' => array('EventCal\Controllers\EventsController@destroy', $event->id), 'method' => 'delete')) }}
-				{{ Form::submit(Lang::get('message.del')) }}
+				{{ Form::submit(Lang::get('message.del'),array('id' => 'btn-del')) }}
 			{{ Form::close()}}
 		@endif		
 		</div>
@@ -76,6 +76,16 @@
         	        	
 		</div>
 	</div>
+	
+	@stop    
 	    
+	@section('js')
+	<script type="text/javascript">
+		$('#btn-del').click(function(e)
+			{
+				return confirm("{{Lang::get('message.msgConfirmDelete')}}");
+			});
+    </script>
 
+	
 @stop

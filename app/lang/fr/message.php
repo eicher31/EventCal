@@ -124,6 +124,7 @@
 		'del'								=> "Supprimer",
 		'send'								=> "Envoyer",
 		'edit'								=> "Editer",
+		'show'								=> "Voir",
 		
 		// listing
 		'listingSocieties'					=> "Liste des sociétés inscrites sur EventCal",
@@ -139,6 +140,15 @@
 		'listingRowLocality'				=> "Localité",
 		'listingRowOrganiser'				=> "Organisateur",
 		'listingNoResult'					=> "Aucun événement",
+		
+		// administration show
+		'administrationTitle'				=> "Administration des utilisateurs",
+		
+		'listingRowEmail'					=> "E-mail",
+		'listingRowFLName'					=> "Nom prénom",
+		'listingRowSociety'					=> "Société",
+		'listingRowAction'					=> "Actions",
+		
 		
 		// connexion
 		'rememberMe'						=> "Se souvenir de moi",
@@ -197,6 +207,8 @@
 		'msgSup'							=> "Suppression effectuée",
 		'msgMAJ'							=> "Mise à jour réussite",
 		'msgPassUpadate'					=> "Mot de passe mis à jour",
+		
+		'msgConfirmDelete'					=> "Etes-vous de vouloir supprimer ceci?",
 		
 		// event
 		'eventCreate'						=> "Evenement créé",

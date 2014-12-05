@@ -1,15 +1,15 @@
 @extends('layout')
 
 @section('contenu')
-	<h2>Administration des utilisateurs</h2>
+	<h2>{{Lang::get('message.administrationTitle')}}</h2>
 
 	<table class="table table-condensed">
 		<thead>
 			<tr>
-				<th>E-mail</th>
-				<th>Nom prénom</th>
-				<th>Société</th>
-				<th>Actions</th>
+				<th>{{Lang::get('message.listingRowEmail')}}</th>
+				<th>{{Lang::get('message.listingRowFLName')}}</th>
+				<th>{{Lang::get('message.listingRowSociety')}}</th>
+				<th>{{Lang::get('message.listingRowAction')}}</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -27,10 +27,10 @@
 				<td>
 					<div class="btn-containers">		
 						<a class="btn btn-default" href="{{ action('EventCal\Controllers\Admin\UsersController@show', array($user->id)) }}">
-							Voir
+							{{Lang::get('message.show')}}
 						</a>
 						<a class="btn btn-default" href="{{ action('EventCal\Controllers\Admin\UsersController@edit', array($user->id)) }}">
-							Editer
+							{{Lang::get('message.edit')}}
 						</a>
 					</div>
 				</td>

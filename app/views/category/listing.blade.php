@@ -48,5 +48,15 @@
 	
 	
 
-@stop
+	@stop
 
+	@section('js')
+	<script type="text/javascript">
+		$('#btn-del').click(function(e)
+			{
+				return confirm("{{Lang::get('message.msgConfirmDelete')}}");
+			});
+    </script>
+
+	
+@stop
