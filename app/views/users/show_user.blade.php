@@ -47,6 +47,7 @@
 	<div class="row">
         <div class="col-md-8">
         	<h2>{{ Lang::get('message.allEvents') }}</h2>
+        	<p class="help-block">@lang('message.allEventsDesc')</p>
 		</div>
 		
         <div class="col-md-4 btn-containers">

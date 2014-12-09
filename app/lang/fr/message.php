@@ -5,7 +5,7 @@
 		'titleEventCal'						=> "EventCal",
 		'index' 							=> "",
 		'titleIndex'						=> "Calendrier",
-		'welcomeCalender'					=> "Bienvenue sur EventCal. Ce site vous permet de découvrir les événements organisés par les
+		'welcomeCalender'					=> "Bienvenue sur EventCal. Ce site vous permet de découvrir les futurs événements organisés par les
 												sociétés de votre région. Si vous êtes une société, vous pouvez publier un événement
 												après vous être " . link_to('connexion', "inscrit ou connecté."),
 		
@@ -83,7 +83,8 @@
 		'activate'							=> 'Activer',
 		'nameFirstName'						=> 'Nom et prénom',
 		
-		'allEvents'							=> "Evénements de la société",
+		'allEvents'							=> "Evénements publiés par la société",
+		'allEventsDesc'						=> "Les événements sont listés dans l'ordre antéchronologique",
 		
 		// show event/society
 		'showDate'							=> "Date de l'événement",
@@ -226,6 +227,7 @@
 		'catAdd'							=> "Ajouter une catégorie",
 		'catName'							=> "Nom de la catégorie",
 		'catColor'							=> "Couleur",
+		'helperColorCat'					=> "La couleur doit être au format hexadécimal #xxxxxx ou en anglais si elle existe (Vous êtes administrateur, nous vous faisons confiance)",
 		'catAdmin'							=> 'Administration des catégories',
 		'catCreated'						=> 'Catégorie ajoutée',
 		'catCannotDel'						=> 'Impossible de supprimer cette catégorie car elle est utilisée par des événements',

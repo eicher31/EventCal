@@ -21,6 +21,7 @@
         	<div class="form-group">  
         	    {{ Form::label('color',Lang::get('message.catColor')) }}
 				{{ Form::text('color') }}      
+				 <p class="help-block">@lang('message.helperColorCat')</p>
         	</div>
         	
         	<div class="form-group">
