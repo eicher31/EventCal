@@ -254,5 +254,8 @@
 												"Octobre",
 												"Novembre",
 												"Decembre",],
+		
+		//RSS
+		'rssDescription'					=> "Evénements",
 	);
 	
