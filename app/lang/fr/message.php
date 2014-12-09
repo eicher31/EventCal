@@ -233,5 +233,7 @@
 		// other
 		'select'							=> "- Sélectionner -",
 		
+		// rss
+		'rssDescription'					=> "Evénements",	
 	);
 	

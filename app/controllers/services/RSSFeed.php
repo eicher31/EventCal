@@ -18,7 +18,7 @@ class RSSFeed extends BaseController {
 	{
 		$feed = new Feed();
 		
-		 // cache the feed for 60 minutes (second parameter is optional)
+		// cache the feed for 60 minutes (second parameter is optional)
     	//$feed->setCache(60, 'EventCal');
 
 	    // check if there is cached feed and build new only if is not
@@ -27,19 +27,19 @@ class RSSFeed extends BaseController {
 			$posts = Event::getEvents(Carbon::today());
 	
 			// set your feed's title, description, link, pubdate and language
-			$feed->title = 'EventCal';
-			$feed->description = 'Description EventCal';
+			$feed->title = \Lang::get('message.titleEventCal');
+			$feed->description = \Lang::get('message.rssDescription');
 			//$feed->link = \URL::to('event/',$post['id']);
 			$feed->setDateFormat('carbon'); // 'datetime', 'timestamp' or 'carbon'
 			$feed->pubdate = Carbon::now();
 			$feed->lang = 'fr';
-			$feed->setShortening(true); // true or false
-			$feed->setTextLimit(100); // maximum length of description text
+			$feed->setShortening(false); // true or false
+			//$feed->setTextLimit(100); // maximum length of description text
 			
 			foreach ($posts as $post)
 			{
 				// set item's title, author, url, pubdate, description and content
-				$feed->add($post['name'], $post->society->name, \URL::to('event',$post['id']), $post->getCarbonDate(), $post['description'],"");
+				$feed->add($post['name'], $post->society->name, \URL::to('event',$post['id']), $post['updated_at'],$post['description'],'');
 			}
 	    }
 	
