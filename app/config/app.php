@@ -122,6 +122,7 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 	
+		'Roumen\Feed\FeedServiceProvider',
 		'Bootstrapper\BootstrapperServiceProvider',
 	),
 
@@ -215,6 +216,7 @@ return array(
 		'Table' => 'Bootstrapper\Facades\Table',
 		'Thumbnail' => 'Bootstrapper\Facades\Thumbnail',
 		
+		'Feed' => 'Roumen\Feed\Facades\Feed',
 	),
 
 );

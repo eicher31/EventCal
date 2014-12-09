@@ -28,6 +28,13 @@ class Event extends BaseModel {
 	protected $guarded = array('id','society_id');
 
 	/**
+	 * Activate timestamps fields
+	 *
+	 * @var bool
+	 */
+	public $timestamps = true;
+	
+	/**
 	 * Validation rules of an event
 	 *
 	 * @var array
@@ -277,28 +284,38 @@ class Event extends BaseModel {
 	 */
 	public static function getListingEvents(Carbon $dateFrom = null, $chronologicalOrder = true, $societyId = 0)
 	{
-		$events = self::with('society', 'category');
-		
-		if ($dateFrom)
-		{
-			$events->where('datetime', '>=', $dateFrom);
-		}
-		
-		$events->orderBy(self::$orderBy, $chronologicalOrder ? "ASC" : "DESC");
-		
-		if ($societyId)
-		{
-			$events->where('society_id', '=', $societyId);
-		}
+		$events = self::getEvents($dateFrom,$chronologicalOrder,$societyId);
 		
 		$outputByMonth = array();
 		
-		foreach ($events->get() as $event)
+		
+		foreach ($events as $event)
 		{
 			$outputByMonth[$event->getMonthYear()][] = $event;
 		}
 		
 		return $outputByMonth;
+	}
+	
+	/**
+	 * 
+	 * @param Carbon $dateFrom
+	 * @param string $chronologicalOrder
+	 * @param number $societyId
+	 * @return Ambigous <\Illuminate\Database\Eloquent\Collection, multitype:\Illuminate\Database\Eloquent\static >
+	 */
+	public static function getEvents(Carbon $dateFrom = null, $chronologicalOrder = true, $societyId = 0)
+	{
+		$events = self::with('society', 'category');
+	
+		if ($dateFrom)
+		{
+			$events->where('datetime', '>=', $dateFrom);
+		}
+	
+		$events->orderBy(self::$orderBy, $chronologicalOrder ? "ASC" : "DESC");
+	
+		return $events->get();
 	}
 	
 }

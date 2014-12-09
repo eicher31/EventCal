@@ -59,9 +59,11 @@ Route::controller('about', 'EventCal\Controllers\AboutController');
 // applies CSRF protection at every post/put/delete request (token automatically written in form)
 Route::when('*', 'csrf', array('post', 'put', 'delete'));
 
+
+Route::get('feed', 'EventCal\Controllers\Services\RSSFeed@getFeed');
+
 // Services
 Route::get('localitysearch', 'EventCal\Controllers\Services\LocalitySearchController@search');
-
 
 // Routes unknown
 /*
