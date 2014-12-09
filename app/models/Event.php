@@ -253,29 +253,38 @@ class Event extends BaseModel {
 	 */
 	public static function getListingEvents(Carbon $dateFrom = null, $chronologicalOrder = true, $societyId = 0)
 	{
-		$events = self::with('society', 'category');
-		
-		if ($dateFrom)
-		{
-			$events->where('datetime', '>=', $dateFrom);
-		}
-		
-		$events->orderBy(self::$orderBy, $chronologicalOrder ? "ASC" : "DESC");
-		
-		if ($societyId)
-		{
-			$events->where('society_id', '=', $societyId);
-		}
-				
+		$events = self::getEvents($dateFrom,$chronologicalOrder,$societyId);			
 		$outputByMonth = array();
 		
-		foreach ($events->get() as $event)
+		
+		foreach ($events as $event)
 		{
 			$dateEvent = $event->getCarbonDate();
 			$outputByMonth[$dateEvent->format('m.Y')][] = $event;
 		}
 		
 		return $outputByMonth;
+	}
+	
+	/**
+	 * 
+	 * @param Carbon $dateFrom
+	 * @param string $chronologicalOrder
+	 * @param number $societyId
+	 * @return Ambigous <\Illuminate\Database\Eloquent\Collection, multitype:\Illuminate\Database\Eloquent\static >
+	 */
+	public static function getEvents(Carbon $dateFrom = null, $chronologicalOrder = true, $societyId = 0)
+	{
+		$events = self::with('society', 'category');
+	
+		if ($dateFrom)
+		{
+			$events->where('datetime', '>=', $dateFrom);
+		}
+	
+		$events->orderBy(self::$orderBy, $chronologicalOrder ? "ASC" : "DESC");
+	
+		return $events->get();
 	}
 	
 }

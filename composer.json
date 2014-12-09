@@ -5,7 +5,8 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.2.*",
-		"patricktalmadge/bootstrapper": "~5"
+		"patricktalmadge/bootstrapper": "~5",
+		"roumen/feed": "~2.7"
 	},
 	"autoload": {		
 		"classmap": [
