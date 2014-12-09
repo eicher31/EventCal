@@ -20,7 +20,7 @@
 	
 			@foreach ($events as $event)
 				<tr>
-					<td>{{{ $event->getDate() }}}</td>
+					<td>{{{ $event->getDayWeek() }}}<br> {{{$event->getDate()}}}</td>
 					<td>{{{ $event->getTime() }}}</td>
 					<td>
 						<a href="{{ url('event', array($event->id)) }}" class="btn event-label"

@@ -233,5 +233,26 @@
 		// other
 		'select'							=> "- Sélectionner -",
 		
+		// Day of week and month
+		'day'								=> ["Dimanche",
+												"Lundi",
+												"Mardi",
+												"Mercredi",
+												"Jeudi",
+												"Vendredi",
+												"Samedi",],
+		
+		'month'								=> ["Janvier",
+												"Février",
+												"Mars",
+												"Avril",
+												"Mai",
+												"Juin",
+												"Juillet",
+												"Août",
+												"Septembre",
+												"Octobre",
+												"Novembre",
+												"Decembre",],
 	);
 	

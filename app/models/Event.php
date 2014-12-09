@@ -2,6 +2,7 @@
 namespace EventCal\Models;
 
 use Carbon\Carbon;
+use Illuminate\Mail\Message;
 
 class Event extends BaseModel {
 
@@ -94,6 +95,29 @@ class Event extends BaseModel {
 	public function getDate()
 	{
 		return $this->getCarbonDate()->format('d.m.Y');
+	}
+	
+	/**
+	 * Return the day of the week in string
+	 * @return string
+	 */
+	public function getDayWeek()
+	{
+		$nbDay = (int) $this->getCarbonDate()->format('w');
+		
+		return \Lang::get('message.day')[$nbDay];
+	}
+	
+	
+	/**
+	 * Return the month and the year
+	 * @return string
+	 */
+	public function getMonthYear()
+	{
+		$Month = (int) $this->getCarbonDate()->format('n') -1;
+		$MonthYear = \Lang::get('message.month')[$Month];
+		return $MonthYear." ".$this->getCarbonDate()->format('Y');
 	}
 	
 	/**
@@ -266,13 +290,12 @@ class Event extends BaseModel {
 		{
 			$events->where('society_id', '=', $societyId);
 		}
-				
+		
 		$outputByMonth = array();
 		
 		foreach ($events->get() as $event)
 		{
-			$dateEvent = $event->getCarbonDate();
-			$outputByMonth[$dateEvent->format('m.Y')][] = $event;
+			$outputByMonth[$event->getMonthYear()][] = $event;
 		}
 		
 		return $outputByMonth;
