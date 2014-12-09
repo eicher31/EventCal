@@ -71,9 +71,15 @@
         	</div>
         	
         	<div class="form-group">
-		        {{ Form::label('locality_id', Lang::get('message.editLocality')) }}
-        		{{ Form::select('locality_id',$localities)}}
-        	</div>
+				{{ Form::label('codeCity', Lang::get('message.locality')) }}
+				{{ Form::hidden('locality_id', $event->id ? $event->locality_id : '', array('id' => 'locality-id')) }}
+				{{ Form::text('codeCity', $event->id ? $event->locality->getName() : null, array(
+					'placeholder' => Lang::get('message.placeholderLocality'), 
+				    'id' => 'locality-search', 
+				    'autocomplete' => 'off',
+				)) }}
+			</div>
+        	
 		</div>
 	</div>
         
@@ -89,18 +95,6 @@
 @stop
 
 @section('js')
-	{{ HTML::script('js/moment-with-locales.min.js') }}
-	{{ HTML::script('js/bootstrap-datetimepicker.min.js') }}
-	
-	<script type="text/javascript">
-		$('#datepicker').datetimepicker({
-			language: 'fr',
-			pickTime: false
-		});
-		
-		$('#timepicker').datetimepicker({
-			language: 'fr',
-			pickDate: false
-		});
-    </script>
+	@include('js.datetime_picker')
+    @include('js.autocomplete_location')
 @stop

@@ -52,7 +52,6 @@ class UsersController extends BaseController {
 			'isAdmin'		=> true,
 			'actionEdit'	=> 'EventCal\Controllers\Admin\UsersController@update',
 			'user' 			=> User::findWithSociety($id),
-			'city' 			=> Locality::getAsIdNameArray(),
 		));
 	}
 

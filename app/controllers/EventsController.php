@@ -152,7 +152,6 @@ class EventsController extends BaseController {
 			'event' 	=> 	$event,
 			'societies' => 	\Auth::user()->is_admin ? Society::getAsIdNameArray() : array(),
 			'categories'=> 	EventCategory::getAsIdNameArray(),
-			'localities'=> 	Locality::getAsIdNameArray(), 
 			'action' 	=> 'EventCal\Controllers\EventsController@' . $action,
 			'method'	=> $method,
 		);

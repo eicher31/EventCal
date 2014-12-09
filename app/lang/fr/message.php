@@ -219,6 +219,7 @@
 		'placeholderHttp'					=> 'http://...',
 		'placeholderDate'					=> 'JJ.MM.AAAA',
 		'placeholderHour'					=> 'HH:mm',
+		'placeholderLocality'				=> 'NPA Localité',
 		
 		// category
 		'catEdit'							=> "Editer la catégorie",

@@ -88,10 +88,15 @@
         			{{ Form::text('address', $user->society ? $user->society->address : null) }}
 	        	</div>
 	        	
-	        	<div class="form-group">
-			        {{ Form::label('locality_id', Lang::get('message.locality')) }}
-        			{{ Form::select('locality_id', $city, $user->society ? $user->society->locality_id : null) }}
-	        	</div>
+        		<div class="form-group">
+					{{ Form::label('codeCity', Lang::get('message.locality')) }}
+					{{ Form::hidden('locality_id', $user->society ? $user->society_id : '', array('id' => 'locality-id')) }}
+					{{ Form::text('codeCity', $user->society ? $user->society->locality->getName() : null, array(
+						'placeholder' => Lang::get('message.placeholderLocality'), 
+					    'id' => 'locality-search', 
+					    'autocomplete' => 'off',
+					)) }}
+				</div>
 	        	
 			</fieldset>
 		</div>
@@ -106,6 +111,10 @@
     	</div>
     </div> 
     
-	{{ Form::close() }}	
+	{{ Form::close() }}
 
+@stop
+
+@section('js')
+	@include('js.autocomplete_location')
 @stop

@@ -43,4 +43,22 @@ class Locality extends BaseModel
 		return $this->attributes['code'] . " " . $this->attributes['city'];
 	}
 	
+	/**
+	 * Find localities starting with a given NPA
+	 * @param string $npa
+	 */
+	public static function getStartingWithNpa($npa)
+	{
+		return self::where('code', 'LIKE', $npa . '%')->orderBy(self::$orderBy)->get();
+	}
+	
+	/**
+	 * Returns all existing localities
+	 * @return array
+	 */
+	public static function getAll()
+	{
+		return self::orderBy(self::$orderBy)->get();
+	}
+	
 }

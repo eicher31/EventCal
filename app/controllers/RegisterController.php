@@ -15,7 +15,6 @@ class RegisterController extends BaseController {
 	public function getUser()
 	{
 		return \View::make('users.edit_user')->with(array(
-			'city'			=> Locality::getAsIdNameArray(),
 			'isAdmin'		=> false,
 			'user'			=> new User(),
 			'actionEdit'	=> 'EventCal\Controllers\RegisterController@postUser',

@@ -53,7 +53,6 @@ class ProfileController extends BaseController {
 			'isAdmin'		=> false,
 			'actionEdit'	=> 'EventCal\Controllers\ProfileController@putEdit',
 			'user' 			=> User::findWithSociety($this->currentUserId),
-			'city' 			=> Locality::getAsIdNameArray(),
 		));
 	}
 

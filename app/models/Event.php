@@ -27,6 +27,13 @@ class Event extends BaseModel {
 	protected $guarded = array('id','society_id');
 
 	/**
+	 * Activate timestamps fields
+	 *
+	 * @var bool
+	 */
+	public $timestamps = true;
+	
+	/**
 	 * Validation rules of an event
 	 *
 	 * @var array
