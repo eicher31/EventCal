@@ -16,7 +16,7 @@
 				<hr />
 			@endif
 			
-			<p><a href="{{ url('feed') }}">@lang('message.rss')</a></p>
+			<p><a href="{{ url('feed') }}"><img src="{{ url('images/rss-icon.png') }}" alt="@lang('message.rss')" /></a></p>
 			<hr />
 			
 			@foreach ($categories as $cat)

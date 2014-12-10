@@ -7,10 +7,10 @@
 		
 		<title>{{Lang::get('message.titleEventCal')}}</title>
 		
-		<!-- {{ Helpers::css() }} -->
 		{{ HTML::style('css/bootstrap.min.css') }}
 		{{ HTML::style('css/bootstrap-theme.min.css') }}
 		{{ HTML::style('css/theme.css') }}
+		<link rel="alternate" type="application/atom+xml" href="{{ url('feed') }}" />
 		
 		@yield('css')
 	</head>
@@ -69,7 +69,6 @@
 	    	</div>
 		</footer>
 		
-		<!-- {{ Helpers::js() }} -->
 		{{ HTML::script('js/jquery-2.1.0.min.js') }}
 		{{ HTML::script('js/bootstrap.min.js') }}
 		
