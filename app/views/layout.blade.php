@@ -38,10 +38,10 @@
 					@endif
 		          	
 					@if (Auth::guest())
-						{{ HTML::nav_link('connexion', Lang::get('message.connexion')) }}
+						{{ HTML::nav_link('connect', Lang::get('message.connexion')) }}
 					@else
 						{{ HTML::nav_link('profile', Lang::get('message.profile')) }}
-						{{ HTML::nav_link('deconnexion', Lang::get('message.disconnexion')) }}
+						{{ HTML::nav_link('disconnect', Lang::get('message.disconnexion')) }}
 					@endif
 		          </ul>
 		        </div><!--/.nav-collapse -->

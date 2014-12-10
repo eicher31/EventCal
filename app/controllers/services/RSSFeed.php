@@ -29,7 +29,7 @@ class RSSFeed extends BaseController {
 			// set your feed's title, description, link, pubdate and language
 			$feed->title = \Lang::get('message.titleEventCal');
 			$feed->description = \Lang::get('message.rssDescription');
-			//$feed->link = \URL::to('event/',$post['id']);
+			$feed->link = \URL::to('/');
 			$feed->setDateFormat('carbon'); // 'datetime', 'timestamp' or 'carbon'
 			$feed->pubdate = Carbon::now();
 			$feed->lang = 'fr';
@@ -38,8 +38,11 @@ class RSSFeed extends BaseController {
 			
 			foreach ($posts as $post)
 			{
+				$desc = \Lang::get('message.showDate') . ": " . $post->getDayWeek() . " " . $post->getDate() . " " . $post->getTime();
+				$desc .= '<br /><br />' . $post['description'];
+				
 				// set item's title, author, url, pubdate, description and content
-				$feed->add($post['name'], $post->society->name, \URL::to('event',$post['id']), $post['updated_at'],$post['description'],'');
+				$feed->add($post['name'], $post->society->name, \URL::to('event',$post['id']), $post['updated_at'],$desc,'');
 			}
 	    }
 	

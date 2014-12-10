@@ -22,7 +22,7 @@
 		<div class="col-md-6">			
 			<div class="form-group">  
 	            <label>{{Lang::get('message.showDate')}}</label>
-	        	<p>{{{ $event->getDate() }}} {{{ $event->getTime() }}}</p>
+	        	<p>{{{ $event->getDayWeek() }}} {{{ $event->getDate() }}} {{{ $event->getTime() }}}</p>
         	</div>
         	
         	<div class="form-group">  

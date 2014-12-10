@@ -255,9 +255,10 @@
 												"Septembre",
 												"Octobre",
 												"Novembre",
-												"Decembre",],
+												"Décembre",],
 		
 		//RSS
-		'rssDescription'					=> "Evénements",
+		'rssDescription'					=> "Liste des événements publics publiés par les sociétés inscrites sur EventCal",
+		'rss'								=> 'Flux RSS',
 	);
 	

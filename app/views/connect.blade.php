@@ -11,7 +11,7 @@
     <div class="row">
 		<div class="col-md-6">			
 			
-		    {{ Form::open(array('url' => 'connexion', 'method' => 'post')) }}
+		    {{ Form::open(array('url' => 'connect', 'method' => 'post')) }}
 		
 			@include('tools.errors')
 		

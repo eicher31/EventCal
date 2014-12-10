@@ -15,8 +15,8 @@ Route::get('/', 'EventCal\Controllers\EventsController@index');
 // connection for guest
 Route::group(array('before' => 'guest'), function ()
 {
-	Route::get('connexion', 'EventCal\Controllers\SessionController@showConnect');
-	Route::post('connexion', 'EventCal\Controllers\SessionController@connect');
+	Route::get('connect', 'EventCal\Controllers\SessionController@showConnect');
+	Route::post('connect', 'EventCal\Controllers\SessionController@connect');
 	// Register
 	Route::controller('register', 'EventCal\Controllers\RegisterController');
 });
@@ -44,7 +44,7 @@ Route::get('societies/{id}', 'EventCal\Controllers\SocietyListingController@show
 Route::group(array('before' => 'auth'), function ()
 {
 	// disconnection for members
-	Route::get('deconnexion', 'EventCal\Controllers\SessionController@disconnect');
+	Route::get('disconnect', 'EventCal\Controllers\SessionController@disconnect');
 	// profile
 	Route::controller('profile', 'EventCal\Controllers\ProfileController');
 });
@@ -59,25 +59,11 @@ Route::controller('about', 'EventCal\Controllers\AboutController');
 // applies CSRF protection at every post/put/delete request (token automatically written in form)
 Route::when('*', 'csrf', array('post', 'put', 'delete'));
 
-
+// rss feed
 Route::get('feed', 'EventCal\Controllers\Services\RSSFeed@getFeed');
 
 // Services
 Route::get('localitysearch', 'EventCal\Controllers\Services\LocalitySearchController@search');
-
-// Routes unknown
-/*
-App::missing(function ()
-{
-	return Route::make('error','error.missing');
-	//return "404";
-});
-
-// Server Error
-App::error(function()
-{
-	return "500";
-});*/
 
 // Routes errors (404 / server error )
 App::error(function($exception, $code)

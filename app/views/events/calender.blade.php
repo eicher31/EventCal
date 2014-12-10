@@ -13,7 +13,11 @@
 		<div class="col-md-3">
         	@if (Auth::check())
 				<p>{{Button::normal(Lang::get('message.buttonCreatEvent'))->asLinkTo(url('event/create'))}}</p>
+				<hr />
 			@endif
+			
+			<p><a href="{{ url('feed') }}">@lang('message.rss')</a></p>
+			<hr />
 			
 			@foreach ($categories as $cat)
 				<p>
