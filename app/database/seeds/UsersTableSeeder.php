@@ -29,6 +29,14 @@ class UsersTableSeeder extends Seeder {
 				'is_admin'		=> 1,
 				'is_actif'		=> 1,
 			),
+			array(
+				'email' 		=> \Config::get('eventcal.mail'),
+				'password'		=> Hash::make('123456abc'),
+				'first_name'	=> 'Contact',
+				'last_name'		=> 'EventCal',
+				'is_admin'		=> 1,
+				'is_actif'		=> 1,
+			),
 		));
 	}
 }

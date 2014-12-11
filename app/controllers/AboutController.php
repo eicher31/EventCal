@@ -29,7 +29,7 @@ class AboutController extends BaseController {
 		\Mail::send('emails.contact', $data, function($message) use ($data)
 		{
 			$message->from($data['email'], $data['email']);
-			$message->to('mathieu.rosser@he-arc.ch');
+			$message->to(\Config::get('eventcal.mail'));
 			$message->subject($data['title']);
 		});
 		
