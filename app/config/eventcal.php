@@ -11,7 +11,7 @@ return array(
 	|
 	*/
 
-	'mail' => "mathieu.rosser@he-arc.ch",
+	'mail' => "eventcal@outlook.com",
 	
 	/*
 	 |--------------------------------------------------------------------------
@@ -22,7 +22,7 @@ return array(
 	 |
 	 */
 	
-	'noreply' => "noreply@eventcal.ch",
+	'noreply' => "eventcal@outlook.com",
 	
 	/*
 	 |--------------------------------------------------------------------------
