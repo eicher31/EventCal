@@ -4,7 +4,13 @@
 	
 	<div class="row">
 		<div class="col-md-9">
-			<p>{{ Lang::get('message.welcomeCalender') }}</p>
+			<p>
+				{{ Lang::get('message.welcomeCalender') }}
+				
+				@if (!Auth::check())
+					@lang('message.welcomeRegister')
+				@endif
+			</p>
 			
 			<br /><br />
 			@include('events.listing')

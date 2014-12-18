@@ -5,7 +5,10 @@
 <div class="row">
 	<div class="col-md-12">
 		<h2>{{ Lang::get('message.listingSocieties') }}</h2>
+		
+		@if (!Auth::check())
 		<p>{{ Lang::get('message.listingSocietiesRegister') }}</p>
+		@endif
 	</div>
 </div>
 
@@ -34,9 +37,9 @@
 					<td>{{{ $society->locality->getName() }}}</td>
 					<td>
 					@if ($society->website)
-						{{ link_to($society->website) }}
+						{{ link_to($society->website, $society->website, array("target", "_blank")) }}
 					@endif
-					</td> 
+					</td>
 				</tr>
 				@endforeach @endforeach
 			</tbody>

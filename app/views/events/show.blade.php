@@ -62,7 +62,7 @@
 	            <label>{{Lang::get('message.showSite')}}</label>
 	        	<p>
 	        		@if ($society->website)
-	        			<a href="{{{ $society->website }}}">{{{ $society->website }}}</a>
+	        			<a href="{{{ $society->website }}}" target="_blank">{{{ $society->website }}}</a>
 	        		@else
 	        			{{ Lang::get('message.showNotShow') }}
 	        		@endif

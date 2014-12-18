@@ -90,7 +90,7 @@
 	        	
         		<div class="form-group">
 					{{ Form::label('codeCity', Lang::get('message.locality')) }}
-					{{ Form::hidden('locality_id', $user->society ? $user->society_id : '', array('id' => 'locality-id')) }}
+					{{ Form::hidden('locality_id', $user->society ? $user->society->locality_id : '', array('id' => 'locality-id')) }}
 					{{ Form::text('codeCity', $user->society ? $user->society->locality->getName() : null, array(
 						'placeholder' => Lang::get('message.placeholderLocality'), 
 					    'id' => 'locality-search', 

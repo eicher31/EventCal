@@ -6,8 +6,9 @@
 		'index' 							=> "",
 		'titleIndex'						=> "Calendrier",
 		'welcomeCalender'					=> "Bienvenue sur EventCal. Ce site vous permet de découvrir les futurs événements organisés par les
-												sociétés de votre région. Si vous êtes une société, vous pouvez publier un événement
-												après vous être " . link_to('connexion', "inscrit ou connecté."),
+												sociétés de votre région.",
+		'welcomeRegister'					=> "Si vous êtes une société, vous pouvez publier un événement
+												après vous être " . link_to('connect', "inscrit ou connecté."),
 		
 		// top
 		'homepage'							=> "Evénements",

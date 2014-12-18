@@ -312,6 +312,11 @@ class Event extends BaseModel {
 		{
 			$events->where('datetime', '>=', $dateFrom);
 		}
+		
+		if ($societyId)
+		{
+			$events->where('society_id', '=', $societyId);
+		}
 	
 		$events->orderBy(self::$orderBy, $chronologicalOrder ? "ASC" : "DESC");
 	

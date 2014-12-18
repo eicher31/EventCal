@@ -1,10 +1,8 @@
 
-
 ## EventCal
 
-
 Le but du projet EventCal est de proposer un calendrier publique d'événements annoncés par des sociétés.
-Le calendrier des événements s'organise par mois. Les événements sont publiés dans une catégorie, qui permet une identification rapide par code couleur (par exemple, fête de village). 
+Le calendrier liste les événements futurs, regroupés par mois. Les événements sont publiés dans des catégories, qui permet une identification rapide par code couleur (par exemple, fête de village). 
 
 Les visiteurs du site ont accès au calendrier des événements, à la liste des sociétés inscrites ainsi qu'aux détails de chaque société (par exemple, description ou site web de la société).
 
@@ -12,7 +10,7 @@ Les sociétés qui souhaitent publier leurs événements doivent préalablement 
 
 ### Fonctionnalités
 
-Le projet est développé avec le Framework PHP Laravel. Le Framework Javascript jQuery pourrait être utilisé pour les parties dynamiques. La partie design pourrait être réalisée avec le Framework CSS Bootstrap.
+Le projet est développé avec le Framework PHP Laravel. Le Framework Javascript jQuery est utilisé pour les parties dynamiques, avec différents plugins si nécessaire. La partie design est réalisée avec le Framework CSS Bootstrap.
 
 **Visiteur**
 
@@ -26,22 +24,28 @@ Le projet est développé avec le Framework PHP Laravel. Le Framework Javascript
 
 * Autentification
 
-* Gérer les évènements
+* Gérer ses évènements
 
  * Publier un évènement dans une catégorie
  * Mettre à jour un évènement
  * Suprimer un évènement
 
 * Gérer son compte 
- * Modifer ses informations
- * Désactiver son compte
+ * Voir son profil
+ * Modifier ses informations
 
 **Administrateur**
 
 * Gérer les comptes des utilisateurs
  * Activer un compte 
- * Suprimer un compte
+ * Editer un compte
+ * Supprimer un compte
 
 * Gérer les évènements des utilisateurs
+ * Créer un événement pour une société
+ * Modifier un événement
+ * Supprimer un événement
 
 * Gérer les catégories des évènements
+ * Créer/éditer une catégorie
+ * Supprimer une catégorie si elle n'est pas "utilisée" pour un événement

@@ -18,11 +18,11 @@
 		
 		<div class="col-md-6">
 			@if ($society)
-			<div class="form-group">  
+			<div class="form-group">
 	            <label>{{ Lang::get('message.listingRowWeb') }}</label>
 	        	<p>
 	        		@if ($society->website)
-	        		<a href="{{{ $society->website }}}">{{{ $society->website }}}</a>
+	        		<a href="{{{ $society->website }}}" target="_blank">{{{ $society->website }}}</a>
 	        		@else
 	        		{{ Lang::get('message.showNotShow') }}
 	        		@endif

@@ -18,11 +18,11 @@ class RSSFeed extends BaseController {
 	{
 		$feed = new Feed();
 		
-		// cache the feed for 60 minutes (second parameter is optional)
-    	$feed->setCache(60, 'EventCal');
+		// cache the feed for 1 minute (second parameter is optional)
+    	//$feed->setCache(1, 'EventCal');
 
 	    // check if there is cached feed and build new only if is not
-	    if (!$feed->isCached())
+	    //if (!$feed->isCached())
 	    {
 			$posts = Event::getEvents(Carbon::today());
 	
