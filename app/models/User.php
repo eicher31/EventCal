@@ -76,7 +76,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	 */
 	public function getName()
 	{
-		return $this->attributes['first_name'] . " " . $this->attributes['last_name'];
+		return $this->attributes['last_name'] . " " . $this->attributes['first_name'];
 	}
 
 	/**
